@@ -1,4 +1,4 @@
-export const settingData = [
+const settingData = [
   'Outside an abandoned warehouse',
   'At vacation home in upstate New York',
   'On a beach',
@@ -66,7 +66,7 @@ export const settingData = [
   'At their elementary school playground'
 ];
 
-export const adjectiveData = [
+const adjectiveData = [
   'mean',
   'kind',
   'retired',
@@ -136,7 +136,7 @@ export const adjectiveData = [
   'unreliable'
 ];
 
-export const mainCharacterData = [
+const mainCharacterData = [
   'teenage boy',
   'middle-aged woman',
   'dancer',
@@ -204,7 +204,7 @@ export const mainCharacterData = [
   'scammer'
 ];
 
-export const detailData = [
+const detailData = [
   'who walks with a limp',
   'whose cancer is in remission',
   'who owns two Corgis',
@@ -272,7 +272,7 @@ export const detailData = [
   'who has a failing memory'
 ];
 
-export const risingActionData = [
+const risingActionData = [
   'forgets an important date',
   'misplaces a ticket',
   'takes a poorly timed photo',
@@ -408,7 +408,16 @@ const rawclimaxData = [
   'and starts a riot. '
 ];
 
-export const climaxData = rawclimaxData.map(string => {
+const climaxData = rawclimaxData.map(string => {
   let period = string.indexOf('.');
   return string.substring(4, period);
 });
+
+module.exports = {
+  settingData,
+  adjectiveData,
+  detailData,
+  mainCharacterData,
+  risingActionData,
+  climaxData
+};

@@ -1,11 +1,5 @@
 const User = require('./user');
 const StoryElement = require('./storyElement');
-// const Setting = require('./setting');
-// const Adjective = require('./adjective');
-// const MainCharacter = require('./mainCharacter');
-// const Detail = require('./detail');
-// const RisingAction = require('./risingAction');
-// const Climax = require('./climax');
 
 /**
  * If we had any associations to make, this would be a great place to put them!

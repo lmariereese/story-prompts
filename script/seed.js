@@ -9,15 +9,7 @@ const {
 } = require('./data');
 const chalk = require('chalk');
 const db = require('../server/db');
-const {
-  User,
-  Setting,
-  Adjective,
-  MainCharacter,
-  Detail,
-  RisingAction,
-  Climax
-} = require('../server/db/models');
+const { User, StoryElement } = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -25,37 +17,37 @@ async function seed() {
 
   const settings = await Promise.all(
     settingData.map(string => {
-      return Setting.create({ text: string });
+      return StoryElement.create({ text: string, element: 'setting' });
     })
   );
 
   const adjectives = await Promise.all(
     adjectiveData.map(adj => {
-      return Adjective.create({ text: adj });
+      return StoryElement.create({ text: adj, element: 'adjective' });
     })
   );
 
   const mainCharacters = await Promise.all(
     mainCharacterData.map(char => {
-      return MainCharacter.create({ text: char });
+      return StoryElement.create({ text: char, element: 'character' });
     })
   );
 
   const details = await Promise.all(
     detailData.map(detail => {
-      return Detail.create({ text: detail });
+      return StoryElement.create({ text: detail, element: 'detail' });
     })
   );
 
   const risingActions = await Promise.all(
     risingActionData.map(action => {
-      return RisingAction.create({ text: action });
+      return StoryElement.create({ text: action, element: 'action' });
     })
   );
 
   const climaxes = await Promise.all(
     climaxData.map(plot => {
-      return Climax.create({ text: plot });
+      return StoryElement.create({ text: plot, element: 'climax' });
     })
   );
 

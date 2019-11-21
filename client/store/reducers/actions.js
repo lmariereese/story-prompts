@@ -1,0 +1,4 @@
+export const GET_ALL_SETTINGS = 'GET_ALL_SETTINGS';
+export const GET_ONE_SETTING = 'GET_ONE_SETTING';
+
+export const GET_ALL_ELEMENTS = 'GET_ALL_ELEMENTS';

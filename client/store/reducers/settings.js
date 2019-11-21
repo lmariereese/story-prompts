@@ -3,9 +3,9 @@ import { GET_ALL_SETTINGS, GET_ONE_SETTING } from './actions';
 import { randomNumber } from '../helperFuncs';
 
 // Action Creators
-const gotAllSettings = settings => ({
+const gotAllSettings = allSettings => ({
   type: GET_ALL_SETTINGS,
-  settings
+  allSettings
 });
 
 const gotOneSetting = setting => ({
@@ -23,9 +23,18 @@ export const getAllSettings = () => async dispatch => {
   }
 };
 
+export const randomElement = state => {
+  console.log(state);
+  let availableArray = state.settings.available;
+  let copy = [...availableArray];
+  let number = Math.floor(Math.random() * copy.length);
+  return copy[number];
+};
+
 export const getOneSetting = () => {
   return (dispatch, getState) => {
-    dispatch(gotOneSetting());
+    const setting = randomElement(getState());
+    dispatch(gotOneSetting(setting));
   };
 };
 
@@ -39,12 +48,12 @@ const initialState = {
 const settings = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SETTINGS: {
-      return { ...state, all: action.settings, available: action.available };
+      const copy = [...action.allSettings];
+      return { ...state, all: action.allSettings, available: copy };
     }
     case GET_ONE_SETTING: {
       const availableCopy = [...state.available];
-      const idx = randomNumber(state.all.length);
-      const setting = availableCopy[idx];
+      const setting = action.setting;
       const newAvailable = availableCopy.filter(item => item.id !== setting.id);
       return { ...state, available: newAvailable, current: setting };
     }

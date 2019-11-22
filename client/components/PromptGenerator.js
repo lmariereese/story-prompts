@@ -1,5 +1,4 @@
 import React from 'react';
-import { getAllSettings, getOneSetting } from '../store/reducers/settings';
 import { getAllElements } from '../store/reducers/storyElements';
 import { connect } from 'react-redux';
 import { randomNumber } from './helperFuncs';
@@ -50,7 +49,17 @@ class PromptGenerator extends React.Component {
         <button type="button" onClick={() => this.generate()}>
           Click me
         </button>
-        <div>{this.state.setting ? <p>{this.state.setting}</p> : ''}</div>
+        <div>
+          {this.state.setting ? (
+            <p>{`${this.state.setting}, a ${this.state.adjective} ${
+              this.state.character
+            } ${this.state.detail} ${this.state.action} and ${
+              this.state.climax
+            }.`}</p>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
-import settings from './reducers/settings';
+// import settings from './reducers/settings';
 import elements from './reducers/storyElements';
 
 const reducer = combineReducers({ user, elements });

@@ -1,19 +1,46 @@
 import React from 'react';
 import { getAllSettings, getOneSetting } from '../store/reducers/settings';
+import { getAllElements } from '../store/reducers/storyElements';
 import { connect } from 'react-redux';
+import { randomNumber } from './helperFuncs';
 
 class PromptGenerator extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      setting: '',
+      adjective: '',
+      character: '',
+      detail: '',
+      action: '',
+      climax: ''
+    };
     this.generate = this.generate.bind(this);
   }
 
   componentDidMount() {
-    this.props.getAllSettings();
+    this.props.getAllElements();
   }
 
   generate() {
-    this.props.getOneSetting();
+    const { elements } = this.props;
+    const current = {};
+    for (let key in elements) {
+      if (elements.hasOwnProperty(key)) {
+        let singular = key === 'climaxes' ? key.slice(0, -2) : key.slice(0, -1);
+        let len = elements[key].length;
+        let random = randomNumber(len);
+        current[singular] = elements[key][random].text;
+      }
+    }
+    this.setState({
+      setting: current.setting,
+      adjective: current.adjective,
+      character: current.character,
+      detail: current.detail,
+      action: current.action,
+      climax: current.climax
+    });
   }
 
   render() {
@@ -23,20 +50,28 @@ class PromptGenerator extends React.Component {
         <button type="button" onClick={() => this.generate()}>
           Click me
         </button>
-        {/* {this.props.current ? this.props.current : ''} */}
+        <div>{this.state.setting ? <p>{this.state.setting}</p> : ''}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  allSettings: state.settings.all,
-  current: state.settings.current
+  elements: state.elements
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllSettings: () => dispatch(getAllSettings()),
-  getOneSetting: () => dispatch(getOneSetting())
+  getAllElements: () => dispatch(getAllElements())
 });
+
+// const mapStateToProps = state => ({
+//   allSettings: state.settings.all,
+//   current: state.settings.current
+// });
+
+// const mapDispatchToProps = (dispatch, getState) => ({
+//   getAllSettings: () => dispatch(getAllSettings()),
+//   getOneSetting: () => dispatch(getOneSetting())
+// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptGenerator);

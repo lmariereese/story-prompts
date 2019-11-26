@@ -1,5 +1,6 @@
 import React from 'react';
 import { getAllElements } from '../store/reducers/storyElements';
+import { savePrompt } from '../store/reducers/prompts';
 import { connect } from 'react-redux';
 import { randomNumber } from './helperFuncs';
 
@@ -16,6 +17,7 @@ class PromptGenerator extends React.Component {
     };
     this.generate = this.generate.bind(this);
     this.article = this.article.bind(this);
+    this.savePrompt = this.savePrompt.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +30,19 @@ class PromptGenerator extends React.Component {
       return 'an';
     }
     return 'a';
+  }
+
+  savePrompt() {
+    const elements = {
+      setting: this.state.setting,
+      adjective: this.state.adjective,
+      character: this.state.character,
+      detail: this.state.detail,
+      action: this.state.action,
+      climax: this.state.climax
+    };
+    console.log(elements);
+    this.props.savePrompt(elements);
   }
 
   generate() {
@@ -69,6 +84,9 @@ class PromptGenerator extends React.Component {
             ''
           )}
         </div>
+        <button type="button" onClick={() => this.savePrompt()}>
+          Save
+        </button>
       </div>
     );
   }
@@ -79,7 +97,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllElements: () => dispatch(getAllElements())
+  getAllElements: () => dispatch(getAllElements()),
+  savePrompt: els => dispatch(savePrompt(els))
 });
 
 // const mapStateToProps = state => ({

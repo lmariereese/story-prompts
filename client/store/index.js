@@ -5,8 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 // import settings from './reducers/settings';
 import elements from './reducers/storyElements';
+import prompts from './reducers/prompts';
 
-const reducer = combineReducers({ user, elements });
+const reducer = combineReducers({ user, elements, prompts });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

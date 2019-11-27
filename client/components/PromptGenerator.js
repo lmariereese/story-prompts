@@ -2,7 +2,7 @@ import React from 'react';
 import { getAllElements } from '../store/reducers/storyElements';
 import { savePrompt } from '../store/reducers/prompts';
 import { connect } from 'react-redux';
-import { randomNumber } from './helperFuncs';
+import { randomNumber, article } from './helperFuncs';
 
 class PromptGenerator extends React.Component {
   constructor(props) {
@@ -16,20 +16,11 @@ class PromptGenerator extends React.Component {
       climax: ''
     };
     this.generate = this.generate.bind(this);
-    this.article = this.article.bind(this);
     this.savePrompt = this.savePrompt.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllElements();
-  }
-
-  article(char) {
-    const vowels = 'aeiou';
-    if (vowels.indexOf(char) !== -1) {
-      return 'an';
-    }
-    return 'a';
   }
 
   savePrompt() {
@@ -74,11 +65,11 @@ class PromptGenerator extends React.Component {
         </button>
         <div>
           {this.state.setting ? (
-            <p>{`${this.state.setting}, ${this.article(
-              this.state.adjective[0]
-            )} ${this.state.adjective} ${this.state.character} ${
-              this.state.detail
-            } ${this.state.action} and ${this.state.climax}.`}</p>
+            <p>{`${this.state.setting}, ${article(this.state.adjective[0])} ${
+              this.state.adjective
+            } ${this.state.character} ${this.state.detail} ${
+              this.state.action
+            } and ${this.state.climax}.`}</p>
           ) : (
             ''
           )}

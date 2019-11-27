@@ -41,7 +41,6 @@ class PromptGenerator extends React.Component {
       action: this.state.action,
       climax: this.state.climax
     };
-    console.log(elements);
     this.props.savePrompt(elements);
   }
 
@@ -84,9 +83,13 @@ class PromptGenerator extends React.Component {
             ''
           )}
         </div>
-        <button type="button" onClick={() => this.savePrompt()}>
-          Save
-        </button>
+        {this.state.setting ? (
+          <button type="button" onClick={() => this.savePrompt()}>
+            Save
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     );
   }

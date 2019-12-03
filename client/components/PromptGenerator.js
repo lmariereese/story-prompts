@@ -63,13 +63,13 @@ class PromptGenerator extends React.Component {
         <button type="button" onClick={() => this.generate()}>
           Click me
         </button>
-        <div>
+        <div className="prompt-div">
           {this.state.setting ? (
-            <p>{`${this.state.setting}, ${article(this.state.adjective[0])} ${
-              this.state.adjective
-            } ${this.state.character} ${this.state.detail} ${
-              this.state.action
-            } and ${this.state.climax}.`}</p>
+            <p className="prompt">{`${this.state.setting}, ${article(
+              this.state.adjective[0]
+            )} ${this.state.adjective} ${this.state.character} ${
+              this.state.detail
+            } ${this.state.action} and ${this.state.climax}.`}</p>
           ) : (
             ''
           )}

@@ -63,13 +63,17 @@ class PromptGenerator extends React.Component {
         <button type="button" onClick={() => this.generate()}>
           Click me
         </button>
-        <div className="prompt-div">
+        <div className="prompt-wrapper-div">
           {this.state.setting ? (
-            <p className="prompt">{`${this.state.setting}, ${article(
-              this.state.adjective[0]
-            )} ${this.state.adjective} ${this.state.character} ${
-              this.state.detail
-            } ${this.state.action} and ${this.state.climax}.`}</p>
+            <div className="prompt-div">
+              <p className="prompt">{`${this.state.setting},`}</p>
+              <p>{`${article(this.state.adjective[0])} ${
+                this.state.adjective
+              } ${this.state.character}`}</p>
+              <p>{this.state.detail}</p>
+              <p>{`${this.state.action}`}</p>
+              <p>{`and ${this.state.climax}.`}</p>
+            </div>
           ) : (
             ''
           )}

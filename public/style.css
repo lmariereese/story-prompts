@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -21,13 +21,27 @@ form div {
 }
 
 /* PromptGenerator component */
+.prompt-wrapper-div {
+  display: flex;
+  flex-direction: column;
+}
+
 .prompt-div {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: lightblue;
 }
 
-.prompt {
-  line-height: 1.5;
+.prompt-div p {
+  font-family: 'Lobster', cursive;
+  display: block;
+  font-size: 1.5em;
+  margin: 0;
+  letter-spacing: 1px;
+  /* line-height: 1.5; */
   background-image: linear-gradient(
     transparent 50%,
     #e1fffe 50%,

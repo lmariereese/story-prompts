@@ -17,6 +17,7 @@ class PromptGenerator extends React.Component {
     };
     this.generate = this.generate.bind(this);
     this.savePrompt = this.savePrompt.bind(this);
+    this.share = this.share.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +34,10 @@ class PromptGenerator extends React.Component {
       climax: this.state.climax
     };
     this.props.savePrompt(elements);
+  }
+
+  share() {
+    console.log('clicked!');
   }
 
   generate() {
@@ -68,30 +73,39 @@ class PromptGenerator extends React.Component {
             Generate Prompt
           </button>
         </div>
-        <div className="prompt-wrapper-div">
+        <div>
           {this.state.setting ? (
-            <div className="prompt-div">
-              <p className="prompt">{`${this.state.setting},`}</p>
-              <p>{`${article(this.state.adjective[0])} ${
-                this.state.adjective
-              } ${this.state.character}`}</p>
-              <p>{this.state.detail}</p>
-              <p>{`${this.state.action}`}</p>
-              <p>{`and ${this.state.climax}.`}</p>
+            <div className="prompt-wrapper-div">
+              <div className="prompt-div">
+                <p className="prompt">{`${this.state.setting},`}</p>
+                <p>{`${article(this.state.adjective[0])} ${
+                  this.state.adjective
+                } ${this.state.character}`}</p>
+                <p>{this.state.detail}</p>
+                <p>{`${this.state.action}`}</p>
+                <p>{`and ${this.state.climax}.`}</p>
+              </div>
+              <div className="btn-wrapper">
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => this.savePrompt()}
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => this.share()}
+                >
+                  Share
+                </button>
+              </div>
             </div>
           ) : (
             ''
           )}
         </div>
-        {this.state.setting ? (
-          <div className="btn-wrapper">
-            <button type="button" onClick={() => this.savePrompt()}>
-              Save
-            </button>
-          </div>
-        ) : (
-          ''
-        )}
       </div>
     );
   }

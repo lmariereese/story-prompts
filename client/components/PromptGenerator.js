@@ -58,11 +58,16 @@ class PromptGenerator extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>some text</p>
-        <button type="button" onClick={() => this.generate()}>
-          Click me
-        </button>
+      <div className="main-content-prompt-div">
+        <div className="btn-wrapper">
+          <button
+            type="button"
+            className="generate-btn"
+            onClick={() => this.generate()}
+          >
+            Generate Prompt
+          </button>
+        </div>
         <div className="prompt-wrapper-div">
           {this.state.setting ? (
             <div className="prompt-div">
@@ -79,9 +84,11 @@ class PromptGenerator extends React.Component {
           )}
         </div>
         {this.state.setting ? (
-          <button type="button" onClick={() => this.savePrompt()}>
-            Save
-          </button>
+          <div className="btn-wrapper">
+            <button type="button" onClick={() => this.savePrompt()}>
+              Save
+            </button>
+          </div>
         ) : (
           ''
         )}

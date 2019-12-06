@@ -1,5 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
 
 a {
@@ -13,6 +18,8 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  color: white;
+  text-decoration: none;
 }
 
 form div {
@@ -20,7 +27,43 @@ form div {
   display: inline-block;
 }
 
+/* Nav bar */
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#nav {
+  background-color: #8eacbb;
+  color: white;
+}
+
+#nav div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.site-title {
+  letter-spacing: 0.1em;
+}
+
 /* PromptGenerator component */
+.main-content-prompt-div {
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-wrapper {
+  width: 20%;
+}
+
+.generate-btn {
+  padding: 14px 10px;
+}
+
 .prompt-wrapper-div {
   display: flex;
   flex-direction: column;
@@ -33,6 +76,8 @@ form div {
   margin: 0 auto;
   padding: 20px;
   background-color: lightblue;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .prompt-div p {

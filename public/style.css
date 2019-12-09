@@ -49,6 +49,19 @@ nav {
   letter-spacing: 0.1em;
 }
 
+.account-div {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  background-image: url('https://image.flaticon.com/icons/svg/126/126486.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  border: 1px solid grey;
+  margin: auto;
+}
+
 /* PromptGenerator component */
 .main-content-prompt-div {
   margin: 10px 20px;

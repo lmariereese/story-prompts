@@ -3,6 +3,8 @@ import { getAllElements } from '../store/reducers/storyElements';
 import { savePrompt } from '../store/reducers/prompts';
 import { connect } from 'react-redux';
 import { randomNumber, article } from './helperFuncs';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 class PromptGenerator extends React.Component {
   constructor(props) {
@@ -34,6 +36,10 @@ class PromptGenerator extends React.Component {
       climax: this.state.climax
     };
     this.props.savePrompt(elements);
+    toast('Your prompt was saved!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
 
   share() {

@@ -2,6 +2,21 @@ const router = require('express').Router();
 const { Prompt, User } = require('../db/models');
 module.exports = router;
 
+router.get('/', async (req, res, next) => {
+  try {
+    const allPrompts = await Prompt.findAll({
+      where: {
+        userId: req.user.id
+      }
+    });
+    if (allPrompts) {
+      res.json(allPrompts);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/', async (req, res, next) => {
   try {
     const newPrompt = await Prompt.create({
@@ -14,25 +29,7 @@ router.post('/', async (req, res, next) => {
     });
     const user = await User.findByPk(req.user.id);
     await newPrompt.setUser(user);
-    console.log('new prompt', newPrompt);
     res.json(newPrompt);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get('/:id', async (req, res, next) => {
-  try {
-    if (req.user.id === req.params.id) {
-      const allPrompts = await Prompt.findAll({
-        where: {
-          userId: req.params.id
-        }
-      });
-      if (allPrompts) {
-        res.status(200).send(allPrompts);
-      }
-    }
   } catch (err) {
     next(err);
   }

@@ -4,3 +4,5 @@ export const GET_ONE_SETTING = 'GET_ONE_SETTING';
 export const GET_ALL_ELEMENTS = 'GET_ALL_ELEMENTS';
 
 export const SAVE_PROMPT = 'SAVE_PROMPT';
+
+export const GET_ALL_SAVED_PROMPTS = 'GET_ALL_SAVED_PROMPTS';

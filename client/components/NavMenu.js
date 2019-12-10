@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../store';
 
 class NavMenu extends React.Component {
   constructor(props) {
@@ -35,7 +37,6 @@ class NavMenu extends React.Component {
           Menu
         </button>
         {this.state.showMenu ? (
-          // <div className="menu-div">
           <ul className="menu">
             <li>
               <Link>My Account</Link>
@@ -46,12 +47,30 @@ class NavMenu extends React.Component {
             <li>
               <Link>Groups</Link>
             </li>
+            <li>
+              <a href="#" onClick={this.props.handleClick}>
+                Logout
+              </a>
+            </li>
           </ul>
-        ) : // </div>
-        null}
+        ) : null}
       </div>
     );
   }
 }
 
-export default NavMenu;
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.user.id
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch(logout());
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(NavMenu);

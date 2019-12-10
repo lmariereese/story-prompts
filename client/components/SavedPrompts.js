@@ -10,7 +10,7 @@ class SavedPrompts extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main-content-wrapper">
         <div>
           <h2>Your Saved Prompts</h2>
         </div>

@@ -5,6 +5,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  color: #114b5f;
 }
 
 a {
@@ -32,11 +33,13 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0.7em 0;
 }
 
 #nav {
   background-color: #8eacbb;
   color: white;
+  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 #nav div:nth-child(1) {
@@ -58,15 +61,28 @@ nav {
   margin-right: 1em;
 }
 
+.menu-drop-down-btn {
+  margin: auto;
+  padding: 5px 7px;
+  font-size: 16px;
+  background-color: inherit;
+  border: 1px solid white;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+}
+
 .menu {
   position: absolute;
   background-color: white;
-  top: 35px;
+  top: 36px;
   right: 80px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .menu li {

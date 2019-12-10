@@ -31,7 +31,7 @@ class NavMenu extends React.Component {
       <div className="nav-button-div">
         <button
           type="button"
-          className="menu-drop-down"
+          className="menu-drop-down-btn"
           onClick={this.showMenu}
         >
           Menu

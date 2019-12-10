@@ -14,7 +14,7 @@ class SavedPrompts extends React.Component {
         <div>
           <h2>Your Saved Prompts</h2>
         </div>
-        <div>
+        <div className="prompt-list-div">
           {this.props.savedPrompts
             ? this.props.savedPrompts.map(item => {
                 return <SinglePromptCard key={item.id} prompts={item} />;

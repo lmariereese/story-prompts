@@ -4,7 +4,7 @@ import { article } from './helperFuncs';
 const SinglePromptCard = props => {
   const { prompts } = props;
   return (
-    <div>
+    <div className="single-prompt-div">
       <p>
         {`${prompts.setting}, ${article(prompts.adjective[0])} ${
           prompts.adjective

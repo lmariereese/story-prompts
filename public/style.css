@@ -115,9 +115,10 @@ nav {
 
 /* */
 .main-content-wrapper {
-  margin: 10px 20px;
   display: flex;
   flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
 }
 
 /* PromptGenerator component */
@@ -189,4 +190,28 @@ nav {
   to {
     background-size: 100% 100%;
   }
+}
+
+/* SAVED PROMPT VIEW STYLES*/
+
+.prompt-list-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* SINGLE PROMPT CARD STYLES*/
+
+.single-prompt-div {
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 0.7rem;
+  width: 50%;
+}
+
+.single-prompt-div p {
+  font-size: 14px;
+  margin: 5px;
+  letter-spacing: 0.01rem;
 }

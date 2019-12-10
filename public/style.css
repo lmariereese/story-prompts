@@ -54,6 +54,10 @@ nav {
   margin: auto;
 }
 
+.site-title a {
+  color: white;
+}
+
 .nav-button-div {
   display: flex;
   flex-direction: column;

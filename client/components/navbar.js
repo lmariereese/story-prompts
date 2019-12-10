@@ -9,7 +9,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div id="nav">
     <div>
       <div>
-        <h1 className="site-title">Story Maker</h1>
+        <h1 className="site-title">
+          <Link to="/prompts">Story Maker</Link>
+        </h1>
       </div>
       <nav>
         {isLoggedIn ? (

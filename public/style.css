@@ -234,6 +234,7 @@ nav {
   flex-direction: column;
   width: 40%;
   margin-bottom: 20px;
+  min-height: 82px;
 }
 
 .profile-section h4 {

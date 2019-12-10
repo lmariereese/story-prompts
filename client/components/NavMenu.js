@@ -39,13 +39,13 @@ class NavMenu extends React.Component {
         {this.state.showMenu ? (
           <ul className="menu">
             <li>
-              <Link to="/my-account">My Account</Link>
-            </li>
-            <li>
               <Link to="/saved-prompts">My Prompts</Link>
             </li>
             <li>
               <Link>My Groups</Link>
+            </li>
+            <li>
+              <Link to="/my-account">My Account</Link>
             </li>
             <li>
               <a href="#" onClick={this.props.handleClick}>

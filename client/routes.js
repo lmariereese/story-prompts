@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
 import PromptGenerator from './components/PromptGenerator';
 import SavedPrompts from './components/SavedPrompts';
+import MyAccount from './components/MyAccount';
 import { me } from './store';
 
 /**
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/prompts" component={PromptGenerator} />
         <Route path="/saved-prompts" component={SavedPrompts} />
+        <Route path="/my-account" component={MyAccount} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -70,20 +70,24 @@ class PromptGenerator extends React.Component {
   render() {
     return (
       <div className="main-content-wrapper">
-        <div>
-          <h2>Create a short story prompt</h2>
+        <div className="heading-div">
+          <h2>Generate a short story prompt</h2>
         </div>
         <div className="body-content">
-          <div className="section">
-            <h3>More text here</h3>
-            <div className="btn-wrapper">
-              <button
-                type="button"
-                className="generate-btn"
-                onClick={() => this.generate()}
-              >
-                Generate Prompt
-              </button>
+          <div className="section-small">
+            <div id="small-card">
+              <h3>
+                Got writer's block?<span />
+              </h3>
+              <div className="btn-wrapper">
+                <button
+                  type="button"
+                  className="generate-btn"
+                  onClick={() => this.generate()}
+                >
+                  Generate Prompt
+                </button>
+              </div>
             </div>
           </div>
           <div className="section">
@@ -97,22 +101,23 @@ class PromptGenerator extends React.Component {
                   <p>{this.state.detail}</p>
                   <p>{`${this.state.action}`}</p>
                   <p>{`and ${this.state.climax}.`}</p>
-                </div>
-                <div className="btn-wrapper">
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => this.savePrompt()}
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => this.share()}
-                  >
-                    Share
-                  </button>
+                  {/* </div> */}
+                  <div className="prompt-btn-div">
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => this.savePrompt()}
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => this.share()}
+                    >
+                      Share
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -133,15 +138,5 @@ const mapDispatchToProps = dispatch => ({
   getAllElements: () => dispatch(getAllElements()),
   savePrompt: els => dispatch(savePrompt(els))
 });
-
-// const mapStateToProps = state => ({
-//   allSettings: state.settings.all,
-//   current: state.settings.current
-// });
-
-// const mapDispatchToProps = (dispatch, getState) => ({
-//   getAllSettings: () => dispatch(getAllSettings()),
-//   getOneSetting: () => dispatch(getOneSetting())
-// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptGenerator);

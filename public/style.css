@@ -137,28 +137,71 @@ nav {
 PromptGenerator component
 ------------------------- */
 
+.main-content-prompt-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* .heading-div {
+  /* padding-left: 40px; */
+/* border-bottom: 1px solid #ffedf0;
+  background-color: rgba(46, 115, 138, 0.3); */
+/* background-color: rgba(255, 237, 240, 0.5);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+} */
+
+.heading-div h2 {
+  font-size: 24px;
+}
+
 .body-content {
   display: flex;
   flex-direction: row;
+  /* flex-wrap: wrap; */
+  /* width: 85%;
+  margin: 10px auto; */
+}
+
+.section-small {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  flex: 1 0 30%;
+  margin-right: 1em;
 }
 
 .section {
-  flex: 1 0 35%;
+  flex: 4 0 70%;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.section-small h3 {
+  margin-top: 0;
+}
+
+#small-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 214, 211, 0.2);
+  padding: 20px;
+  border: 1px solid #ffd6d3;
 }
 
 .btn-wrapper {
-  width: 50%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin: 10px auto;
+  /* justify-content: center;
+  margin: 10px auto; */
 }
 
 .generate-btn {
   padding: 14px 10px;
-  margin: 10px 20px;
+  /* margin: 10px 20px; */
   cursor: pointer;
   outline: none;
   border-radius: 4px;
@@ -168,12 +211,30 @@ PromptGenerator component
   font-size: 14px;
 }
 
+.generate-btn:hover {
+  border: 1px solid #114b5f;
+  background-color: #114b5f;
+  color: #cfd7e6;
+}
+
+.prompt-btn-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 .btn {
   padding: 5px 7px;
-  margin: 10px 20px;
+  margin-left: 5px;
+  margin-top: 10px;
+  /* margin: 10px 20px; */
   width: 50px;
   background-color: #114b5f;
   color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
 }
 
 .prompt-wrapper-div {
@@ -185,22 +246,24 @@ PromptGenerator component
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0 auto;
+  background-color: rgba(255, 214, 211, 0.2);
   padding: 20px;
-  background-color: lightblue;
+  border: 1px solid #ffd6d3;
+  /*
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 10px; */
 }
 
 .prompt-div p {
-  font-family: 'Lobster', cursive;
+  font-family: 'Lobster', sans-serif;
   display: block;
   font-size: 1.5em;
-  color: #114b5f;
+  color: #2e738a;
   margin: 0;
-  letter-spacing: 2px;
+  border-bottom: 1px solid lightgrey;
+  /* letter-spacing: 2px; */
   /* line-height: 1.5; */
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     transparent 50%,
     #e1fffe 50%,
     #b0f8ff 85%,
@@ -210,7 +273,7 @@ PromptGenerator component
   background-repeat: no-repeat;
   background-size: 0% 100%;
   /* animation: animatedBackground 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s forwards; */
-  animation: animatedBackground 2s 0.5s forwards;
+  /*animation: animatedBackground 2s 0.5s forwards; */
 }
 
 @keyframes animatedBackground {

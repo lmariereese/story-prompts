@@ -69,48 +69,56 @@ class PromptGenerator extends React.Component {
 
   render() {
     return (
-      <div className="main-content-prompt-div">
-        <div className="btn-wrapper">
-          <button
-            type="button"
-            className="generate-btn"
-            onClick={() => this.generate()}
-          >
-            Generate Prompt
-          </button>
-        </div>
+      <div className="main-content-wrapper">
         <div>
-          {this.state.setting ? (
-            <div className="prompt-wrapper-div">
-              <div className="prompt-div">
-                <p className="prompt">{`${this.state.setting},`}</p>
-                <p>{`${article(this.state.adjective[0])} ${
-                  this.state.adjective
-                } ${this.state.character}`}</p>
-                <p>{this.state.detail}</p>
-                <p>{`${this.state.action}`}</p>
-                <p>{`and ${this.state.climax}.`}</p>
-              </div>
-              <div className="btn-wrapper">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => this.savePrompt()}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => this.share()}
-                >
-                  Share
-                </button>
-              </div>
+          <h2>Create a short story prompt</h2>
+        </div>
+        <div className="body-content">
+          <div className="section">
+            <h3>More text here</h3>
+            <div className="btn-wrapper">
+              <button
+                type="button"
+                className="generate-btn"
+                onClick={() => this.generate()}
+              >
+                Generate Prompt
+              </button>
             </div>
-          ) : (
-            ''
-          )}
+          </div>
+          <div className="section">
+            {this.state.setting ? (
+              <div className="prompt-wrapper-div">
+                <div className="prompt-div">
+                  <p className="prompt">{`${this.state.setting},`}</p>
+                  <p>{`${article(this.state.adjective[0])} ${
+                    this.state.adjective
+                  } ${this.state.character}`}</p>
+                  <p>{this.state.detail}</p>
+                  <p>{`${this.state.action}`}</p>
+                  <p>{`and ${this.state.climax}.`}</p>
+                </div>
+                <div className="btn-wrapper">
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => this.savePrompt()}
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => this.share()}
+                  >
+                    Share
+                  </button>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </div>
     );

@@ -2,10 +2,10 @@ export const randomNumber = num => {
   return Math.floor(Math.random() * num);
 };
 
-export const article = char => {
+export const addArticle = string => {
   const vowels = 'aeiou';
-  if (vowels.indexOf(char) !== -1) {
-    return 'an';
+  if (vowels.indexOf(string[0]) !== -1) {
+    return `an ${string}`;
   }
-  return 'a';
+  return `a ${string}`;
 };

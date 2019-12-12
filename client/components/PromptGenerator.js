@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllElements } from '../store/reducers/storyElements';
+import { getAllElements, setCurrent } from '../store/reducers/storyElements';
 import { savePrompt } from '../store/reducers/prompts';
 import { connect } from 'react-redux';
 import { randomNumber, article } from './helperFuncs';
@@ -47,24 +47,26 @@ class PromptGenerator extends React.Component {
   }
 
   generate() {
-    const { elements } = this.props;
-    const current = {};
-    for (let key in elements) {
-      if (elements.hasOwnProperty(key)) {
-        let singular = key === 'climaxes' ? key.slice(0, -2) : key.slice(0, -1);
-        let len = elements[key].length;
-        let random = randomNumber(len);
-        current[singular] = elements[key][random].text;
-      }
-    }
-    this.setState({
-      setting: current.setting,
-      adjective: current.adjective,
-      character: current.character,
-      detail: current.detail,
-      action: current.action,
-      climax: current.climax
-    });
+    this.props.setCurrent();
+
+    // const { elements } = this.props;
+    // const current = {};
+    // for (let key in elements) {
+    //   if (elements.hasOwnProperty(key)) {
+    //     let singular = key === 'climaxes' ? key.slice(0, -2) : key.slice(0, -1);
+    //     let len = elements[key].length;
+    //     let random = randomNumber(len);
+    //     current[singular] = elements[key][random].text;
+    //   }
+    // }
+    // this.setState({
+    //   setting: current.setting,
+    //   adjective: current.adjective,
+    //   character: current.character,
+    //   detail: current.detail,
+    //   action: current.action,
+    //   climax: current.climax
+    // });
   }
 
   render() {
@@ -91,16 +93,16 @@ class PromptGenerator extends React.Component {
             </div>
           </div>
           <div className="section">
-            {this.state.setting ? (
+            {this.props.current.setting.text ? (
               <div className="prompt-wrapper-div">
                 <div className="prompt-div">
-                  <p className="prompt">{`${this.state.setting},`}</p>
-                  <p>{`${article(this.state.adjective[0])} ${
-                    this.state.adjective
-                  } ${this.state.character}`}</p>
-                  <p>{this.state.detail}</p>
-                  <p>{`${this.state.action}`}</p>
-                  <p>{`and ${this.state.climax}.`}</p>
+                  <p className="prompt">{`${this.props.setting.text},`}</p>
+                  <p>{`${article(this.props.current.adjective.text[0])} ${
+                    this.props.current.adjective.text
+                  } ${this.props.current.character.text}`}</p>
+                  <p>{this.props.current.detail.text}</p>
+                  <p>{`${this.props.current.action.text}`}</p>
+                  <p>{`and ${this.props.current.climax.text}.`}</p>
                   {/* </div> */}
                   <div className="prompt-btn-div">
                     <button
@@ -131,12 +133,20 @@ class PromptGenerator extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  elements: state.elements
+  elements: state.elements,
+  current: state.elements.current,
+  setting: state.elements.current.setting,
+  adjective: state.elements.current.adjective,
+  character: state.elements.current.character,
+  detail: state.elements.current.detail,
+  action: state.elements.current.action,
+  climax: state.elements.current.climax
 });
 
 const mapDispatchToProps = dispatch => ({
   getAllElements: () => dispatch(getAllElements()),
-  savePrompt: els => dispatch(savePrompt(els))
+  savePrompt: els => dispatch(savePrompt(els)),
+  setCurrent: () => dispatch(setCurrent())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptGenerator);

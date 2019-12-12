@@ -131,6 +131,7 @@ nav {
   flex-direction: column;
   width: 85%;
   margin: 0 auto;
+  padding-bottom: 1em;
 }
 
 /* ----------------------
@@ -267,26 +268,7 @@ PromptGenerator component
   color: #2e738a;
   margin: 0;
   border-bottom: 1px solid lightgrey;
-  /* letter-spacing: 2px; */
-  /* line-height: 1.5; */
-  /* background-image: linear-gradient(
-    transparent 50%,
-    #e1fffe 50%,
-    #b0f8ff 85%,
-    transparent 85%,
-    transparent 100%
-  );
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
-  /* animation: animatedBackground 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s forwards; */
-  /*animation: animatedBackground 2s 0.5s forwards; */
 }
-
-/* @keyframes animatedBackground {
-  to {
-    background-size: 100% 100%;
-  }
-} */
 
 /* SAVED PROMPT VIEW STYLES*/
 

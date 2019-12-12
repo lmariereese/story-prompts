@@ -172,7 +172,7 @@ PromptGenerator component
 }
 
 .section {
-  flex: 4 0 70%;
+  flex: 4 0 60%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -190,6 +190,8 @@ PromptGenerator component
   background-color: rgba(255, 214, 211, 0.2);
   padding: 20px;
   border: 1px solid #ffd6d3;
+  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 
 .btn-wrapper {
@@ -205,9 +207,10 @@ PromptGenerator component
   cursor: pointer;
   outline: none;
   border-radius: 4px;
-  background-color: #ffedf0;
-  color: #003647;
-  border: 1px solid #ffd6d3;
+  background-color: #2e738a;
+  color: white;
+  border: 1px solid #2e738a;
+  letter-spacing: 0.8px;
   font-size: 14px;
 }
 
@@ -225,13 +228,14 @@ PromptGenerator component
 }
 
 .btn {
-  padding: 5px 7px;
-  margin-left: 5px;
+  padding: 7px 11px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  margin-left: 7px;
   margin-top: 10px;
-  /* margin: 10px 20px; */
-  width: 50px;
-  background-color: #114b5f;
+  background-color: #2e738a;
   color: white;
+  border: 1px solid #205f74;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
@@ -240,6 +244,7 @@ PromptGenerator component
 .prompt-wrapper-div {
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
 .prompt-div {
@@ -249,6 +254,7 @@ PromptGenerator component
   background-color: rgba(255, 214, 211, 0.2);
   padding: 20px;
   border: 1px solid #ffd6d3;
+  border-radius: 4px;
   /*
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px; */
@@ -276,11 +282,11 @@ PromptGenerator component
   /*animation: animatedBackground 2s 0.5s forwards; */
 }
 
-@keyframes animatedBackground {
+/* @keyframes animatedBackground {
   to {
     background-size: 100% 100%;
   }
-}
+} */
 
 /* SAVED PROMPT VIEW STYLES*/
 
@@ -294,10 +300,11 @@ PromptGenerator component
 
 .single-prompt-div {
   padding: 10px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
+  border: 1px solid #b4deed;
+  border-radius: 4px;
   margin: 0.7rem;
   width: 50%;
+  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
 .single-prompt-div p {

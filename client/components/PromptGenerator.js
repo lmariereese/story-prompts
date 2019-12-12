@@ -71,7 +71,7 @@ class PromptGenerator extends React.Component {
     return (
       <div className="main-content-wrapper">
         <div className="heading-div">
-          <h2>Generate a short story prompt</h2>
+          <h2>Generate a writing prompt</h2>
         </div>
         <div className="body-content">
           <div className="section-small">

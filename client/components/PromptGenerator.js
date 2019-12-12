@@ -19,16 +19,22 @@ class PromptGenerator extends React.Component {
   }
 
   savePrompt() {
-    const { current } = this.props;
-    const elements = {
-      setting: current.setting.text,
-      adjective: current.adjective.text,
-      character: current.character.text,
-      detail: current.detail.text,
-      action: current.action.text,
-      climax: current.climax.text
-    };
-    this.props.savePrompt(elements);
+    const {
+      setting,
+      adjective,
+      character,
+      detail,
+      action,
+      climax
+    } = this.props.current;
+    this.props.savePrompt({
+      setting,
+      adjective,
+      character,
+      detail,
+      action,
+      climax
+    });
     toast('Your prompt was saved!', {
       position: 'bottom-right',
       autoClose: 2000

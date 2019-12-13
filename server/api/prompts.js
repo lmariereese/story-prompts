@@ -23,17 +23,47 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newPrompt = await Prompt.create({
-      setting: req.body.setting.text,
-      adjective: req.body.adjective.text,
-      character: req.body.character.text,
-      detail: req.body.detail.text,
-      action: req.body.action.text,
-      climax: req.body.climax.text
+    if (!req.user) res.status(401).send();
+    else {
+      const newPrompt = await Prompt.create({
+        setting: req.body.setting.text,
+        adjective: req.body.adjective.text,
+        character: req.body.character.text,
+        detail: req.body.detail.text,
+        action: req.body.action.text,
+        climax: req.body.climax.text
+      });
+      const user = await User.findByPk(req.user.id);
+      await newPrompt.setUser(user);
+      res.json(newPrompt);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/prompt/:id', async (req, res, next) => {
+  try {
+    const onePrompt = await Prompt.findOne({
+      where: {
+        userId: req.user.id,
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'setting',
+        'adjective',
+        'character',
+        'detail',
+        'action',
+        'climax'
+      ]
     });
-    const user = await User.findByPk(req.user.id);
-    await newPrompt.setUser(user);
-    res.json(newPrompt);
+    if (onePrompt) {
+      res.json(onePrompt);
+    } else {
+      res.status(401).send();
+    }
   } catch (err) {
     next(err);
   }

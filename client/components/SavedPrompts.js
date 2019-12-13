@@ -1,11 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllSavedPrompts } from '../store/reducers/prompts';
+import { getAllSavedPrompts, getOnePrompt } from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
+import { withRouter } from 'react-router-dom';
+import history from '../history';
 
 class SavedPrompts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.more = this.more.bind(this);
+  }
   componentDidMount() {
     this.props.getAllSavedPrompts();
+  }
+
+  more(id) {
+    this.props.getOnePrompt(id);
+    history.push('/saved-prompts/prompt');
   }
 
   render() {
@@ -17,7 +28,14 @@ class SavedPrompts extends React.Component {
         <div className="prompt-list-div">
           {this.props.savedPrompts
             ? this.props.savedPrompts.map(item => {
-                return <SinglePromptCard key={item.id} prompts={item} />;
+                return (
+                  <SinglePromptCard
+                    key={item.id}
+                    prompts={item}
+                    view="list"
+                    more={this.more}
+                  />
+                );
               })
             : 'Login to see saved prompts.'}
         </div>
@@ -27,12 +45,15 @@ class SavedPrompts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  savedPrompts: state.prompts,
+  savedPrompts: state.prompts.all,
   user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllSavedPrompts: () => dispatch(getAllSavedPrompts())
+  getAllSavedPrompts: () => dispatch(getAllSavedPrompts()),
+  getOnePrompt: id => dispatch(getOnePrompt(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SavedPrompts);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SavedPrompts)
+);

@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import PromptGenerator from './components/PromptGenerator';
 import SavedPrompts from './components/SavedPrompts';
 import MyAccount from './components/MyAccount';
+import SinglePromptView from './components/SinglePromptView';
 import { me } from './store';
 
 /**
@@ -25,7 +26,12 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/prompts" component={PromptGenerator} />
-        <Route path="/saved-prompts" component={SavedPrompts} />
+        <Route exact path="/saved-prompts" component={SavedPrompts} />
+        <Route
+          exact
+          path="/saved-prompts/prompt"
+          component={SinglePromptView}
+        />
         <Route path="/my-account" component={MyAccount} />
         {isLoggedIn && (
           <Switch>

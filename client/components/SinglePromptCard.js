@@ -1,6 +1,5 @@
 import React from 'react';
 import { addArticle } from './helperFuncs';
-import { Link } from 'react-router-dom';
 
 const SinglePromptCard = props => {
   const { prompts } = props;

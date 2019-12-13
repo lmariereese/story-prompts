@@ -405,3 +405,11 @@ PromptGenerator component
   background-color: #114b5f;
   color: #cfd7e6;
 }
+
+/*
+  WRITING EDITOR COMPONENT
+*/
+
+.editor-wrapper {
+  min-height: 400px;
+}

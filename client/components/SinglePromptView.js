@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getOnePrompt } from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
+import WritingEditor from './WritingEditor';
 
 class SinglePromptView extends React.Component {
   // componentDidMount () {
@@ -17,6 +18,7 @@ class SinglePromptView extends React.Component {
           ) : (
             ''
           )}
+          <WritingEditor />
         </div>
       </div>
     );

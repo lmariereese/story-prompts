@@ -13,6 +13,7 @@ class MyAccount extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleEdit() {
@@ -24,6 +25,15 @@ class MyAccount extends React.Component {
   handleChange(event) {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit(type) {
+    console.log(type);
+    this.setState(state => ({
+      toggleEdit: !state.toggleEdit
+    }));
+    // if (type === 'email' && this.state.email) {
+    // }
   }
 
   render() {
@@ -50,7 +60,11 @@ class MyAccount extends React.Component {
                       onChange={event => this.handleChange(event)}
                     />
                     <div id="email-update-btn-div">
-                      <button type="button" className="inline">
+                      <button
+                        type="button"
+                        className="inline"
+                        onClick={() => this.handleSubmit('email')}
+                      >
                         Update
                       </button>
                       <button

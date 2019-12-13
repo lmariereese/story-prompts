@@ -76,7 +76,9 @@ class PromptGenerator extends React.Component {
             {this.props.current.setting.text ? (
               <div className="prompt-wrapper-div">
                 <div className="prompt-div">
-                  <p className="prompt">{`${this.props.setting.text},`}</p>
+                  <p className="prompt">{`${
+                    this.props.current.setting.text
+                  },`}</p>
                   <p>{`${addArticle(this.props.current.adjective.text)} ${
                     this.props.current.character.text
                   }`}</p>
@@ -114,13 +116,13 @@ class PromptGenerator extends React.Component {
 
 const mapStateToProps = state => ({
   elements: state.elements,
-  current: state.elements.current,
-  setting: state.elements.current.setting,
-  adjective: state.elements.current.adjective,
-  character: state.elements.current.character,
-  detail: state.elements.current.detail,
-  action: state.elements.current.action,
-  climax: state.elements.current.climax
+  current: state.elements.current
+  // setting: state.elements.current.setting,
+  // adjective: state.elements.current.adjective,
+  // character: state.elements.current.character,
+  // detail: state.elements.current.detail,
+  // action: state.elements.current.action,
+  // climax: state.elements.current.climax
 });
 
 const mapDispatchToProps = dispatch => ({

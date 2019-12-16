@@ -27,11 +27,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/prompts" component={PromptGenerator} />
         <Route exact path="/saved-prompts" component={SavedPrompts} />
-        <Route
-          exact
-          path="/saved-prompts/prompt"
-          component={SinglePromptView}
-        />
+        <Route path="/saved-prompts/prompt/:id" component={SinglePromptView} />
         <Route path="/my-account" component={MyAccount} />
         {isLoggedIn && (
           <Switch>

@@ -5,9 +5,9 @@ import SinglePromptCard from './SinglePromptCard';
 import WritingEditor from './WritingEditor';
 
 class SinglePromptView extends React.Component {
-  // componentDidMount () {
-  //   this.props.getOnePrompt(this.props.id)
-  // }
+  componentDidMount() {
+    this.props.getOnePrompt(this.props.match.params.id);
+  }
 
   render() {
     return (

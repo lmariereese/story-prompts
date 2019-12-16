@@ -12,6 +12,7 @@ class SinglePromptView extends React.Component {
   render() {
     return (
       <div className="main-content-wrapper">
+        <h2>Your Story</h2>
         <div>
           {this.props.current.id ? (
             <SinglePromptCard prompts={this.props.current} />

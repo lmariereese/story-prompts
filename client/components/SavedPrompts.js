@@ -16,7 +16,7 @@ class SavedPrompts extends React.Component {
 
   more(id) {
     this.props.getOnePrompt(id);
-    history.push('/saved-prompts/prompt');
+    history.push(`/saved-prompts/prompt/${id}`);
   }
 
   render() {

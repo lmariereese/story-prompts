@@ -6,7 +6,7 @@ class WritingEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = editorState => this.setState({ editorState });
+    // this.onChange = editorState => this.setState({ editorState });
     this.setEditor = editor => {
       this.editor = editor;
     };
@@ -21,6 +21,10 @@ class WritingEditor extends React.Component {
   componentDidMount() {
     this.focusEditor();
   }
+
+  onChange = editorState => {
+    this.setState({ editorState });
+  };
 
   handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -46,7 +50,9 @@ class WritingEditor extends React.Component {
         <Editor
           ref={this.setEditor}
           editorState={this.state.editorState}
+          handleKeyCommand={this.handleKeyCommand}
           onChange={this.onChange}
+          placeholder="Tell a story"
         />
       </div>
     );

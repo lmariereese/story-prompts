@@ -430,6 +430,10 @@ PromptGenerator component
   overflow-y: auto;
 }
 
+/* .public-DraftEditorPlaceholder-root {
+
+} */
+
 div.DraftEditor-editorContainer,
 div.public-DraftEditor-content {
   height: 100%;

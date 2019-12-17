@@ -62,10 +62,7 @@ const prompts = (state = initialState, action) => {
       return { ...state, all: allPrompts };
     }
     case GET_ALL_SAVED_PROMPTS: {
-      if (state.all.length === 0) {
-        return { ...state, all: action.prompts };
-      }
-      return state;
+      return { ...state, all: action.prompts };
     }
     case GET_ONE_SAVED_PROMPT: {
       return { ...state, current: action.prompt };

@@ -1,6 +1,7 @@
 const User = require('./user');
 const StoryElement = require('./storyElement');
 const Prompt = require('./prompt');
+const Content = require('./Content');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -10,6 +11,9 @@ const Prompt = require('./prompt');
  */
 User.hasMany(Prompt);
 Prompt.belongsTo(User);
+
+Prompt.hasMany(Content);
+Content.belongsTo(Prompt);
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -19,5 +23,6 @@ Prompt.belongsTo(User);
 module.exports = {
   User,
   StoryElement,
-  Prompt
+  Prompt,
+  Content
 };

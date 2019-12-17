@@ -24,7 +24,7 @@ class WritingEditor extends React.Component {
   // }
 
   onChange = editorState => {
-    const contentState = editorState.getCurrentContent();
+    // const contentState = editorState.getCurrentContent();
     // console.log('content state', convertToRaw(contentState));
     // console.log('not converted content state', contentState);
     this.setState({ editorState });
@@ -35,7 +35,8 @@ class WritingEditor extends React.Component {
     const contentState = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
-    console.log('content state SAVE', contentState);
+    console.log('content state STRING', JSON.stringify(contentState));
+    console.log('content state', console.log(contentState));
   };
 
   handleKeyCommand(command, editorState) {

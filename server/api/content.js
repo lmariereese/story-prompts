@@ -35,12 +35,23 @@ router.post('/:promptId', async (req, res, next) => {
   }
 });
 
-// router.put('/', async (req, res, next) => {
-// const updateContent = await Content.update({
-//   data: req.body.contentState
-// }, {
-//   where: {
-//     id: req.body.id
-//   }
-// })
-// });
+router.put('/:contentId', async (req, res, next) => {
+  try {
+    const [numOfAffectedRows, affectedRows] = await Content.update(
+      {
+        data: req.body.content
+      },
+      {
+        where: {
+          id: req.params.contentId
+        },
+        returning: true
+      }
+    );
+    if (numOfAffectedRows !== 0) {
+      res.status(200).send('success!');
+    }
+  } catch (err) {
+    next(err);
+  }
+});

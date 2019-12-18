@@ -36,6 +36,16 @@ class WritingEditor extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.content.id !== prevProps.content.id) {
+      this.setState({
+        editorState: EditorState.createWithContent(
+          convertFromRaw(this.props.content.data)
+        )
+      });
+    }
+  }
+
   onChange = editorState => {
     this.setState({ editorState });
   };
@@ -45,7 +55,11 @@ class WritingEditor extends React.Component {
     const contentState = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
-    this.props.saveCurrentContent(contentState, this.props.prompt.id);
+    this.props.saveCurrentContent(
+      contentState,
+      this.props.prompt.id,
+      this.props.content.id
+    );
   };
 
   handleKeyCommand(command, editorState) {
@@ -92,8 +106,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  saveCurrentContent: (content, promptId) =>
-    dispatch(saveCurrentContent(content, promptId)),
+  saveCurrentContent: (content, promptId, contentId) =>
+    dispatch(saveCurrentContent(content, promptId, contentId)),
   loadCurrentContent: promptId => dispatch(loadCurrentContent(promptId))
 });
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { LOAD_CONTENT, SAVE_CONTENT } from './actions';
-import { EditorState } from 'draft-js';
 
 // Action creators
 const loadContent = content => ({
@@ -15,20 +14,28 @@ const saveContent = content => ({
 
 // Thunks
 export const loadCurrentContent = promptId => async dispatch => {
-  console.log('load current content thunk!');
   try {
     const { data } = await axios.get(`/api/content/${promptId}`);
-    console.log(data);
     dispatch(loadContent(data));
   } catch (err) {
     console.error(err);
   }
 };
 
-export const saveCurrentContent = (content, promptId) => async dispatch => {
+export const saveCurrentContent = (
+  content,
+  promptId,
+  contentId
+) => async dispatch => {
   try {
-    const { data } = await axios.post(`/api/content/${promptId}`, { content });
-    dispatch(saveContent(data));
+    if (contentId !== undefined) {
+      await axios.put(`/api/content/${contentId}`, { content });
+    } else {
+      const { data } = await axios.post(`/api/content/${promptId}`, {
+        content
+      });
+      dispatch(saveContent(data));
+    }
   } catch (err) {
     console.error(err);
   }
@@ -36,8 +43,7 @@ export const saveCurrentContent = (content, promptId) => async dispatch => {
 
 const initialState = {
   id: null,
-  data: {},
-  editorState: EditorState.createEmpty()
+  data: {}
 };
 
 // REDUCER

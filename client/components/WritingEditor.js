@@ -1,32 +1,42 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  convertToRaw,
+  convertFromRaw
+} from 'draft-js';
+import { connect } from 'react-redux';
+import {
+  saveCurrentContent,
+  loadCurrentContent
+} from '../store/reducers/content';
 import 'draft-js/dist/Draft.css';
 
 class WritingEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: EditorState.createEmpty() };
-    // this.onChange = editorState => this.setState({ editorState });
-    // this.setEditor = editor => {
-    //   this.editor = editor;
-    // };
-    // this.focusEditor = () => {
-    //   if (this.editor) {
-    //     this.editor.focus();
-    //   }
-    // };
+    this.state = {};
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.focusEditor();
-  // }
+  componentDidMount() {
+    let promptId = this.props.promptId;
+    this.props.loadCurrentContent(promptId);
+    console.log('inside component did mount! ', this.props.content);
+    if (this.props.content.id) {
+      this.setState({
+        editorState: EditorState.createWithContent(
+          convertFromRaw(this.props.content.data)
+        )
+      });
+    } else {
+      this.setState({ editorState: EditorState.createEmpty() });
+    }
+  }
 
   onChange = editorState => {
-    // const contentState = editorState.getCurrentContent();
-    // console.log('content state', convertToRaw(contentState));
-    // console.log('not converted content state', contentState);
     this.setState({ editorState });
   };
 
@@ -35,8 +45,7 @@ class WritingEditor extends React.Component {
     const contentState = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
-    console.log('content state STRING', JSON.stringify(contentState));
-    console.log('content state', console.log(contentState));
+    this.props.saveCurrentContent(contentState, this.props.prompt.id);
   };
 
   handleKeyCommand(command, editorState) {
@@ -48,17 +57,20 @@ class WritingEditor extends React.Component {
     return 'not-handled';
   }
 
-  _onBoldClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  }
+  // _onBoldClick() {
+  //   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  // }
 
   render() {
+    if (!this.state.editorState) {
+      return <h3 className="loading">Loading...</h3>;
+    }
     return (
       <div className="editor-wrapper">
         <div className="editor-controls-wrapper">
-          <button type="button" onClick={this._onBoldClick.bind(this)}>
+          {/* <button type="button" onClick={this._onBoldClick.bind(this)}>
             Bold
-          </button>
+          </button> */}
           <button type="button" onClick={this.handleSubmit}>
             Save
           </button>
@@ -74,4 +86,15 @@ class WritingEditor extends React.Component {
   }
 }
 
-export default WritingEditor;
+const mapState = state => ({
+  prompt: state.prompts.current,
+  content: state.content
+});
+
+const mapDispatch = dispatch => ({
+  saveCurrentContent: (content, promptId) =>
+    dispatch(saveCurrentContent(content, promptId)),
+  loadCurrentContent: promptId => dispatch(loadCurrentContent(promptId))
+});
+
+export default connect(mapState, mapDispatch)(WritingEditor);

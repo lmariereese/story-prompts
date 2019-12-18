@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const { Prompt, User } = require('../db/models');
-// const uniqueSlug = require('unique-slug');
-
 module.exports = router;
-
-// console.log('UNIQUE SLUG HERE: ', uniqueSlug('1103147204269344'));
 
 router.get('/', async (req, res, next) => {
   try {

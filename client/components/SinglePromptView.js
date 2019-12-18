@@ -15,11 +15,13 @@ class SinglePromptView extends React.Component {
         <h2>Your Story</h2>
         <div>
           {this.props.current.id ? (
-            <SinglePromptCard prompts={this.props.current} />
+            <div>
+              <SinglePromptCard prompts={this.props.current} />
+              <WritingEditor promptId={this.props.match.params.id} />
+            </div>
           ) : (
             ''
           )}
-          <WritingEditor />
         </div>
       </div>
     );

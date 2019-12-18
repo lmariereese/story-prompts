@@ -12,7 +12,7 @@ const Content = require('./Content');
 User.hasMany(Prompt);
 Prompt.belongsTo(User);
 
-Prompt.hasMany(Content);
+Prompt.hasOne(Content);
 Content.belongsTo(Prompt);
 /**
  * We'll export all of our models here, so that any time a module needs a model,

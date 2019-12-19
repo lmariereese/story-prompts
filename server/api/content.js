@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Prompt, User, Content } = require('../db/models');
+const {Prompt, User, Content} = require('../db/models');
 module.exports = router;
 
 router.get('/:promptId', async (req, res, next) => {
@@ -48,8 +48,9 @@ router.put('/:contentId', async (req, res, next) => {
         returning: true
       }
     );
+    console.log('affected rows! ', affectedRows[0]);
     if (numOfAffectedRows !== 0) {
-      res.status(200).send('success!');
+      res.json(affectedRows[0]);
     }
   } catch (err) {
     next(err);

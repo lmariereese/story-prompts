@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllSavedPrompts, getOnePrompt } from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import history from '../history';
 
 class SavedPrompts extends React.Component {
@@ -37,6 +37,16 @@ class SavedPrompts extends React.Component {
                 );
               })
             : 'Login to see saved prompts.'}
+          {this.props.savedPrompts.length === 0 ? (
+            <div>
+              <h4>You haven't saved any prompts yet.</h4>
+              <Link to="/prompts">
+                <button type="button">Get Started</button>
+              </Link>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     );

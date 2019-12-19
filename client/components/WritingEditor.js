@@ -24,7 +24,6 @@ class WritingEditor extends React.Component {
   componentDidMount() {
     let promptId = this.props.promptId;
     this.props.loadCurrentContent(promptId);
-    console.log('inside component did mount! ', this.props.content);
     if (this.props.content.id) {
       this.setState({
         editorState: EditorState.createWithContent(
@@ -37,7 +36,11 @@ class WritingEditor extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.content.id !== prevProps.content.id) {
+    if (
+      this.props.content.id !== prevProps.content.id &&
+      this.props.prompt.id === prevProps.prompt.id
+    ) {
+      this.props.loadCurrentContent(this.props.promptId);
       this.setState({
         editorState: EditorState.createWithContent(
           convertFromRaw(this.props.content.data)
@@ -79,6 +82,12 @@ class WritingEditor extends React.Component {
     if (!this.state.editorState) {
       return <h3 className="loading">Loading...</h3>;
     }
+    console.log(
+      'contentid: ',
+      this.props.content.id,
+      'promptId: ',
+      this.props.prompt.id
+    );
     return (
       <div className="editor-wrapper">
         <div className="editor-controls-wrapper">

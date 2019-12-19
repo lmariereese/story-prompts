@@ -28,14 +28,28 @@ export const saveCurrentContent = (
   contentId
 ) => async dispatch => {
   try {
-    if (contentId !== undefined) {
-      await axios.put(`/api/content/${contentId}`, { content });
-    } else {
+    console.log(
+      'promptId inside thunk: ',
+      promptId,
+      'contentId inside thnk: ',
+      contentId
+    );
+    if (contentId === null) {
       const { data } = await axios.post(`/api/content/${promptId}`, {
         content
       });
       dispatch(saveContent(data));
+    } else {
+      await axios.put(`/api/content/${contentId}`, { content });
     }
+    // if (contentId !== undefined || contentId !== null) {
+    //   await axios.put(`/api/content/${contentId}`, { content });
+    // } else {
+    //   const { data } = await axios.post(`/api/content/${promptId}`, {
+    //     content
+    //   });
+    //   dispatch(saveContent(data));
+    // }
   } catch (err) {
     console.error(err);
   }
@@ -51,6 +65,7 @@ const content = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_CONTENT: {
       // spread operator might not work for data here
+      // const newData = Object.assign({}, )
       return { ...state, id: action.content.id };
     }
     case LOAD_CONTENT: {

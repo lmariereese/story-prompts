@@ -177,6 +177,36 @@ PromptGenerator component
   flex-direction: row;
   justify-content: space-between;
 }
+
+.prompt-wrapper-div {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffa4a2;
+  border-radius: 4px;
+  padding: 15px 25px;
+  background: white;
+}
+
+.prompt p {
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.btn {
+  padding: 7px 11px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  margin-left: 7px;
+  margin-top: 10px;
+  background-color: #2e738a;
+  color: white;
+  border: 1px solid #205f74;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
 /* ----- v1 styles ------ */
 
 .main-content-prompt-wrapper {
@@ -239,8 +269,6 @@ PromptGenerator component
 .btn-wrapper {
   display: flex;
   flex-direction: row;
-  /* justify-content: center;
-  margin: 10px auto; */
 }
 
 .generate-btn {
@@ -262,32 +290,14 @@ PromptGenerator component
   color: #cfd7e6;
 }
 
-.prompt-btn-div {
+/* .prompt-btn-div {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 10px;
 }
 
-.btn {
-  padding: 7px 11px;
-  font-size: 14px;
-  letter-spacing: 0.8px;
-  margin-left: 7px;
-  margin-top: 10px;
-  background-color: #2e738a;
-  color: white;
-  border: 1px solid #205f74;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-}
 
-.prompt-wrapper-div {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
-}
 
 .prompt-div {
   display: flex;
@@ -297,9 +307,6 @@ PromptGenerator component
   padding: 20px;
   border: 1px solid #ffd6d3;
   border-radius: 4px;
-  /*
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px; */
 }
 
 .prompt-div p {
@@ -309,7 +316,7 @@ PromptGenerator component
   color: #2e738a;
   margin: 0;
   border-bottom: 1px solid lightgrey;
-}
+} */
 
 /* SAVED PROMPT VIEW STYLES*/
 

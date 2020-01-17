@@ -57,7 +57,7 @@ class PromptGenerator extends React.Component {
         {this.props.current.setting.id ? (
           <div className="cta-div">
             <div className="prompt-wrapper-div">
-              <div>
+              <div className="prompt">
                 <p>{`${this.props.current.setting.text},`}</p>
                 <p>{`${addArticle(this.props.current.adjective.text)} ${
                   this.props.current.character.text
@@ -70,7 +70,7 @@ class PromptGenerator extends React.Component {
                 <div>
                   <button
                     type="button"
-                    className="generate-btn"
+                    className="btn"
                     onClick={() => this.generate()}
                   >
                     Get Prompt

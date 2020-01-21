@@ -52,8 +52,7 @@ class PromptGenerator extends React.Component {
 
   render() {
     return (
-      <div id="overlay">
-        <NavBar />
+      <div className="main-content-prompt-wrapper">
         {this.props.current.setting.id ? (
           <div className="cta-div">
             <div className="prompt-wrapper-div">

@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {addArticle} from './helperFuncs';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
-import NavBar from './navbar';
 
 class PromptGenerator extends React.Component {
   constructor(props) {
@@ -69,7 +68,7 @@ class PromptGenerator extends React.Component {
                 <div>
                   <button
                     type="button"
-                    className="btn"
+                    className="get-prompt-btn"
                     onClick={() => this.generate()}
                   >
                     Get Prompt

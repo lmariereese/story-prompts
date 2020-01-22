@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {logout} from '../store';
 
 class NavMenu extends React.Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class NavMenu extends React.Component {
 
   showMenu(event) {
     event.preventDefault();
-    this.setState({ showMenu: true }, () => {
+    this.setState({showMenu: true}, () => {
       document.addEventListener('click', this.closeMenu);
     });
   }
 
   closeMenu() {
-    this.setState({ showMenu: false }, () => {
+    this.setState({showMenu: false}, () => {
       document.removeEventListener('click', this.closeMenu);
     });
   }
@@ -41,9 +41,9 @@ class NavMenu extends React.Component {
             <li>
               <Link to="/saved-prompts">My Prompts</Link>
             </li>
-            <li>
+            {/* <li>
               <Link>My Groups</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/my-account">My Account</Link>
             </li>

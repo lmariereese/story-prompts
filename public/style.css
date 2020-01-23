@@ -131,7 +131,7 @@ nav {
   flex-direction: column;
   width: 85%;
   margin: 0 auto;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
 }
 
 /* ----------------------
@@ -149,10 +149,50 @@ PromptGenerator component
   flex-direction: column;
   width: 60%;
   margin: 5% auto;
+  align-items: center;
 }
 
 .cta-div h1 {
-  margin: 0;
+  font-family: 'Yellowtail', serif;
+  letter-spacing: 2px;
+  font-size: 54px;
+  margin-bottom: 0;
+}
+
+.cta-div h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: 5px 0px;
+}
+
+.cta-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.generate-btn {
+  font-family: 'Raleway', sans-serif;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 4px;
+  background-color: #2e738a;
+  color: white;
+  border: 1px solid #2e738a;
+  letter-spacing: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 2px 1px #ffa4a2;
+}
+
+.generate-btn:hover {
+  border: 1px solid #ca7473;
+  background-color: #ffa4a2;
+  color: white;
+  box-shadow: 6px 6px 2px 1px #2e738a;
 }
 
 .cta-div:nth-child(1) {
@@ -160,25 +200,49 @@ PromptGenerator component
   flex-direction: column;
 }
 
-.prompt-action-btns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.prompt-heading-div {
+  margin-top: 5px;
+  margin-bottom: 1rem;
+}
+
+.prompt-heading-div p {
+  font-size: 14px;
 }
 
 .prompt-wrapper-div {
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1); */
+  box-shadow: rgba(0, 0, 0, 0.23) 0px 0px 35px 0px;
   border: 1px solid #205f74;
   border-radius: 4px;
   padding: 15px 25px;
   background: white;
+  margin: 10px 0 10px 20px;
+  width: 80%;
+}
+
+.prompt {
+  margin-bottom: 20px;
 }
 
 .prompt p {
+  font-family: 'Lora', serif;
   letter-spacing: 0.5px;
   border-bottom: 1px solid lightgrey;
+  font-size: 28px;
+  margin: 5px 0px;
+}
+
+.prompt-action-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.prompt-action-btns div {
+  margin: auto 0;
 }
 
 .btn {
@@ -186,7 +250,7 @@ PromptGenerator component
   font-size: 14px;
   letter-spacing: 0.8px;
   margin-left: 7px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background-color: #2e738a;
   color: white;
   border: 1px solid #205f74;
@@ -199,8 +263,8 @@ PromptGenerator component
   padding: 7px 11px;
   font-size: 14px;
   letter-spacing: 0.8px;
-  margin-left: 7px;
-  margin-top: 10px;
+  /* margin-left: 7px;
+  margin-top: 10px; */
   background-color: #2e738a;
   color: white;
   border: 1px solid #205f74;
@@ -265,25 +329,6 @@ PromptGenerator component
 .btn-wrapper {
   display: flex;
   flex-direction: row;
-}
-
-.generate-btn {
-  padding: 14px 10px;
-  /* margin: 10px 20px; */
-  cursor: pointer;
-  outline: none;
-  border-radius: 4px;
-  background-color: #2e738a;
-  color: white;
-  border: 1px solid #2e738a;
-  letter-spacing: 0.8px;
-  font-size: 14px;
-}
-
-.generate-btn:hover {
-  border: 1px solid #114b5f;
-  background-color: #114b5f;
-  color: #cfd7e6;
 }
 
 /* SAVED PROMPT VIEW STYLES*/

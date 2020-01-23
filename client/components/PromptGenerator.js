@@ -53,7 +53,11 @@ class PromptGenerator extends React.Component {
     return (
       <div className="main-content-prompt-wrapper">
         {this.props.current.setting.id ? (
-          <div className="cta-div">
+          <div className="main-content-wrapper">
+            <div className="prompt-heading-div">
+              <h2>Start here</h2>
+              <p>Or generate another prompt</p>
+            </div>
             <div className="prompt-wrapper-div">
               <div className="prompt">
                 <p>{`${this.props.current.setting.text},`}</p>
@@ -97,7 +101,7 @@ class PromptGenerator extends React.Component {
           <div className="cta-div">
             <h1>Writer's block?</h1>
             <h3>Generate a short story prompt now</h3>
-            <div className="btn-wrapper">
+            <div className="cta-btn-wrapper">
               <button
                 type="button"
                 className="generate-btn"

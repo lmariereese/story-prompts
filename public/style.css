@@ -259,6 +259,10 @@ PromptGenerator component
   outline: none;
 }
 
+.btn:disabled {
+  cursor: unset;
+}
+
 .get-prompt-btn {
   padding: 7px 11px;
   font-size: 14px;

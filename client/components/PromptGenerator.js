@@ -90,6 +90,7 @@ class PromptGenerator extends React.Component {
                     type="button"
                     className="btn"
                     onClick={() => this.share()}
+                    disabled
                   >
                     Share
                   </button>

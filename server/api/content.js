@@ -48,7 +48,6 @@ router.put('/:contentId', async (req, res, next) => {
         returning: true
       }
     );
-    console.log('affected rows! ', affectedRows[0]);
     if (numOfAffectedRows !== 0) {
       res.json(affectedRows[0]);
     }

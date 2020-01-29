@@ -23,7 +23,7 @@ class SinglePromptView extends React.Component {
           {this.props.prompt.id !== undefined ? (
             <div>
               <SinglePromptCard prompts={this.props.prompt} />
-              <WritingEditor content={this.props.currentContent} />
+              <WritingEditor />
             </div>
           ) : (
             <h3>...loading</h3>

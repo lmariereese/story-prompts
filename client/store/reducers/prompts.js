@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
   SAVE_PROMPT,
   GET_ALL_SAVED_PROMPTS,
-  GET_ONE_SAVED_PROMPT
+  GET_ONE_SAVED_PROMPT,
+  SAVE_CONTENT
 } from './actions';
 import {DISPLAY_ONE_PROMPT} from '../index';
 
@@ -25,6 +26,11 @@ const gotAllSavedPrompts = prompts => ({
 const gotOneSavedPrompt = prompt => ({
   type: GET_ONE_SAVED_PROMPT,
   prompt
+});
+
+const saveContent = content => ({
+  type: SAVE_CONTENT,
+  content
 });
 
 // Thunks
@@ -55,6 +61,32 @@ export const getOnePrompt = id => async dispatch => {
   }
 };
 
+export const saveCurrentContent = (
+  content,
+  promptId,
+  contentId
+) => async dispatch => {
+  try {
+    console.log(
+      'promptId inside thunk: ',
+      promptId,
+      'contentId inside thnk: ',
+      contentId
+    );
+    if (contentId === null) {
+      const {data} = await axios.post(`/api/content/${promptId}`, {
+        content
+      });
+      dispatch(saveContent(data));
+    } else {
+      const {data} = await axios.put(`/api/content/${contentId}`, {content});
+      dispatch(saveContent(data));
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const initialState = {
   all: [],
   current: {},
@@ -74,6 +106,9 @@ const prompts = (state = initialState, action) => {
     case GET_ONE_SAVED_PROMPT: {
       const promptContent = action.prompt.content;
       return {...state, current: action.prompt, currentContent: promptContent};
+    }
+    case SAVE_CONTENT: {
+      return {...state, currentContent: action.content};
     }
     default:
       return state;

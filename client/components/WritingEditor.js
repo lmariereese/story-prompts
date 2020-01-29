@@ -7,10 +7,7 @@ import {
   convertToRaw,
   convertFromRaw
 } from 'draft-js';
-import {
-  saveCurrentContent,
-  loadCurrentContent
-} from '../store/reducers/content';
+import {saveCurrentContent} from '../store/reducers/prompts';
 
 class WritingEditor extends React.Component {
   constructor(props) {
@@ -26,7 +23,7 @@ class WritingEditor extends React.Component {
     } else {
       this.setState({
         editorState: EditorState.createWithContent(
-          convertFromRaw(this.props.content.data)
+          convertFromRaw(this.props.currentContent.data)
         )
       });
     }
@@ -55,11 +52,19 @@ class WritingEditor extends React.Component {
     const contentState = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
-    this.props.saveCurrentContent(
-      contentState,
-      this.props.prompt.id,
-      this.props.content.id
-    );
+    if (this.props.currentContent) {
+      this.props.saveCurrentContent(
+        contentState,
+        this.props.prompt.id,
+        this.props.currentContent.id
+      );
+    } else {
+      this.props.saveCurrentContent(
+        contentState,
+        this.props.prompt.id,
+        this.props.currentContent
+      );
+    }
   };
 
   handleKeyCommand(command, editorState) {
@@ -104,8 +109,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   saveCurrentContent: (content, promptId, contentId) =>
-    dispatch(saveCurrentContent(content, promptId, contentId)),
-  loadCurrentContent: promptId => dispatch(loadCurrentContent(promptId))
+    dispatch(saveCurrentContent(content, promptId, contentId))
 });
 
 export default connect(mapState, mapDispatch)(WritingEditor);

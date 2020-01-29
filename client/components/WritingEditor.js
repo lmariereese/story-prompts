@@ -11,27 +11,6 @@ import {
   saveCurrentContent,
   loadCurrentContent
 } from '../store/reducers/content';
-// import {Editor} from 'draft-js';
-
-// const WritingEditor = props => {
-//   return (
-//     <div className="editor-wrapper">
-//       <div className="editor-controls-wrapper">
-//         <button type="button" onClick={event => props.handleSubmit(event)}>
-//           Save
-//         </button>
-//       </div>
-//       <Editor
-//         editorState={props.editorState}
-//         handleKeyCommand={props.handleKeyCommand}
-//         onChange={props.onChange}
-//         placeholder="Tell a story"
-//       />
-//     </div>
-//   );
-// };
-
-// export default WritingEditor;
 
 class WritingEditor extends React.Component {
   constructor(props) {

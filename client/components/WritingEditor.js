@@ -42,7 +42,7 @@ class WritingEditor extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.content.id) {
+    if (this.props.currentContent.id) {
       this.setState({
         editorState: EditorState.createWithContent(
           convertFromRaw(this.props.content.data)
@@ -130,7 +130,8 @@ class WritingEditor extends React.Component {
 }
 
 const mapState = state => ({
-  prompt: state.prompts.current
+  prompt: state.prompts.current,
+  currentContent: state.prompts.currentContent
 });
 
 const mapDispatch = dispatch => ({

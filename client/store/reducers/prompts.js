@@ -69,17 +69,11 @@ const prompts = (state = initialState, action) => {
       return {...state, all: allPrompts};
     }
     case GET_ALL_SAVED_PROMPTS: {
-      return {...state, all: action.prompts};
+      return {...state, all: action.prompts, current: {}, currentContent: {}};
     }
     case GET_ONE_SAVED_PROMPT: {
       const promptContent = action.prompt.content;
       return {...state, current: action.prompt, currentContent: promptContent};
-      // return { ...state, current: action.prompt };
-    }
-    case DISPLAY_ONE_PROMPT: {
-      // TODO
-      const singlePrompt = state.all.filter(el => el.id === action.id);
-      return state;
     }
     default:
       return state;

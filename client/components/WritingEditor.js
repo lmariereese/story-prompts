@@ -29,20 +29,6 @@ class WritingEditor extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (
-  //     this.props.content.id !== prevProps.content.id &&
-  //     this.props.prompt.id === prevProps.prompt.id
-  //   ) {
-  //     this.props.loadCurrentContent(this.props.promptId);
-  //     this.setState({
-  //       editorState: EditorState.createWithContent(
-  //         convertFromRaw(this.props.content.data)
-  //       )
-  //     });
-  //   }
-  // }
-
   onChange = editorState => {
     this.setState({editorState});
   };

@@ -472,6 +472,21 @@ PromptGenerator component
 }
 
 /*
+  SINGLE PROMPT VIEW
+*/
+
+.back-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  color: #114b5f;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 1rem;
+  font-size: 14px;
+  padding: 0;
+}
+
+/*
   WRITING EDITOR COMPONENT
 */
 

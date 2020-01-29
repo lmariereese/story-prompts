@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter, Link} from 'react-router-dom';
+import history from '../history';
 import {getOnePrompt} from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
 import WritingEditor from './WritingEditor';
@@ -18,6 +20,15 @@ class SinglePromptView extends React.Component {
   render() {
     return (
       <div className="main-content-wrapper">
+        <div>
+          <button
+            type="button"
+            className="back-btn"
+            onClick={() => history.push('/saved-prompts')}
+          >
+            Back
+          </button>
+        </div>
         <h2>Your Story</h2>
         <div>
           {this.props.prompt.id !== undefined ? (
@@ -44,4 +55,4 @@ const mapDispatch = dispatch => ({
   getOnePrompt: id => dispatch(getOnePrompt(id))
 });
 
-export default connect(mapState, mapDispatch)(SinglePromptView);
+export default withRouter(connect(mapState, mapDispatch)(SinglePromptView));

@@ -189,7 +189,8 @@ PromptGenerator component
 }
 
 .generate-btn:hover {
-  border: 1px solid #ca7473;
+  /* border: 1px solid #ca7473; */
+  border: 1px solid #ffa4a2;
   background-color: #ffa4a2;
   color: white;
   box-shadow: 6px 6px 2px 1px #2e738a;

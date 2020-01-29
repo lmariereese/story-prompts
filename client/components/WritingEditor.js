@@ -7,6 +7,7 @@ import {
   convertToRaw,
   convertFromRaw
 } from 'draft-js';
+import {toast} from 'react-toastify';
 import {saveCurrentContent} from '../store/reducers/prompts';
 
 class WritingEditor extends React.Component {
@@ -51,6 +52,10 @@ class WritingEditor extends React.Component {
         this.props.currentContent
       );
     }
+    toast('Your story was saved', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   };
 
   handleKeyCommand(command, editorState) {

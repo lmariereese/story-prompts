@@ -1,10 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getOnePrompt} from '../store/reducers/prompts';
-import {
-  saveCurrentContent,
-  loadCurrentContent
-} from '../store/reducers/content';
 import SinglePromptCard from './SinglePromptCard';
 import WritingEditor from './WritingEditor';
 import 'draft-js/dist/Draft.css';
@@ -45,11 +41,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  displayOnePrompt: id => dispatch(displayOnePrompt(id)),
-  getOnePrompt: id => dispatch(getOnePrompt(id)),
-  saveCurrentContent: (content, promptId, contentId) =>
-    dispatch(saveCurrentContent(content, promptId, contentId)),
-  loadCurrentContent: promptId => dispatch(loadCurrentContent(promptId))
+  getOnePrompt: id => dispatch(getOnePrompt(id))
 });
 
 export default connect(mapState, mapDispatch)(SinglePromptView);

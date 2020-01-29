@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Prompt, User } = require('../db/models');
+const {Prompt, User, Content} = require('../db/models');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
     const allPrompts = await Prompt.findAll({
+      include: [{model: Content}],
       where: {
         userId: req.user.id
       }
@@ -41,6 +42,7 @@ router.post('/', async (req, res, next) => {
 router.get('/prompt/:id', async (req, res, next) => {
   try {
     const onePrompt = await Prompt.findOne({
+      include: [{model: Content}],
       where: {
         userId: req.user.id,
         id: req.params.id

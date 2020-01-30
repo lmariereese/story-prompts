@@ -15,30 +15,42 @@ class PromptGenerator extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllElements();
+    if (!this.props.elements.setting.length) {
+      this.props.getAllElements();
+    }
+    // else {
+    //   this.props.setCurrent()
+    // }
   }
 
   savePrompt() {
-    const {
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    } = this.props.current;
-    this.props.savePrompt({
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    });
-    toast('Your prompt was saved!', {
-      position: 'bottom-right',
-      autoClose: 2000
-    });
+    if (this.props.user.id) {
+      const {
+        setting,
+        adjective,
+        character,
+        detail,
+        action,
+        climax
+      } = this.props.current;
+      this.props.savePrompt({
+        setting,
+        adjective,
+        character,
+        detail,
+        action,
+        climax
+      });
+      toast('Your prompt was saved!', {
+        position: 'bottom-right',
+        autoClose: 2000
+      });
+    } else {
+      toast('Log in or sign up to start saving prompts!', {
+        position: 'bottom-right',
+        autoClose: 2000
+      });
+    }
   }
 
   share() {
@@ -116,80 +128,12 @@ class PromptGenerator extends React.Component {
       </div>
     );
   }
-  // render() {
-  //   return (
-  //     <div className="main-content-wrapper">
-  //       <div className="heading-div">
-  //         <h2>Generate a writing prompt</h2>
-  //       </div>
-  //       <div className="body-content">
-  //         <div className="section-small">
-  //           <div id="small-card">
-  //             <h3>
-  //               Got writer's block?<span />
-  //             </h3>
-  //             <div className="btn-wrapper">
-  //               <button
-  //                 type="button"
-  //                 className="generate-btn"
-  //                 onClick={() => this.generate()}
-  //               >
-  //                 Generate Prompt
-  //               </button>
-  //             </div>
-  //           </div>
-  //         </div>
-  //         <div className="section">
-  //           {this.props.current.setting.text ? (
-  //             <div className="prompt-wrapper-div">
-  //               <div className="prompt-div">
-  //                 <p className="prompt">{`${
-  //                   this.props.current.setting.text
-  //                 },`}</p>
-  //                 <p>{`${addArticle(this.props.current.adjective.text)} ${
-  //                   this.props.current.character.text
-  //                 }`}</p>
-  //                 <p>{this.props.current.detail.text}</p>
-  //                 <p>{`${this.props.current.action.text}`}</p>
-  //                 <p>{`and ${this.props.current.climax.text}.`}</p>
-  //                 {/* </div> */}
-  //                 <div className="prompt-btn-div">
-  //                   <button
-  //                     type="button"
-  //                     className="btn"
-  //                     onClick={() => this.savePrompt()}
-  //                   >
-  //                     Save
-  //                   </button>
-  //                   <button
-  //                     type="button"
-  //                     className="btn"
-  //                     onClick={() => this.share()}
-  //                   >
-  //                     Share
-  //                   </button>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           ) : (
-  //             ''
-  //           )}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 }
 
 const mapStateToProps = state => ({
   elements: state.elements,
-  current: state.elements.current
-  // setting: state.elements.current.setting,
-  // adjective: state.elements.current.adjective,
-  // character: state.elements.current.character,
-  // detail: state.elements.current.detail,
-  // action: state.elements.current.action,
-  // climax: state.elements.current.climax
+  current: state.elements.current,
+  user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

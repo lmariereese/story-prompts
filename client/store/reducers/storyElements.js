@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { GET_ALL_ELEMENTS, SET_CURRENT_PROMPT } from './actions';
-import { randomNumber } from '../../components/helperFuncs';
+import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT} from './actions';
+import {randomNumber} from '../../components/helperFuncs';
 
 // Action Creators
 const gotAllElements = allElements => ({
@@ -15,7 +15,7 @@ const setCurrentPrompt = () => ({
 // Thunks
 export const getAllElements = () => async dispatch => {
   try {
-    const { data } = await axios.get('/api/story-elements');
+    const {data} = await axios.get('/api/story-elements');
     // data is an array of objects
     dispatch(gotAllElements(data));
   } catch (error) {
@@ -26,39 +26,6 @@ export const getAllElements = () => async dispatch => {
 export const setCurrent = () => dispatch => {
   dispatch(setCurrentPrompt());
 };
-
-// const initialState = {
-//   settings: [],
-//   adjectives: [],
-//   characters: [],
-//   details: [],
-//   actions: [],
-//   climaxes: []
-// };
-
-// // Elements Reducer
-// const elements = (state = initialState, action) => {
-//   switch (action.type) {
-//     case GET_ALL_ELEMENTS: {
-//       const all = { ...state };
-//       action.allElements.forEach(item => {
-//         let element =
-//           item.element === 'climax' ? `${item.element}es` : `${item.element}s`;
-//         all[element].push(item);
-//       });
-//       return {
-//         settings: all.settings,
-//         adjectives: all.adjectives,
-//         characters: all.characters,
-//         details: all.details,
-//         actions: all.actions,
-//         climaxes: all.climaxes
-//       };
-//     }
-//     default:
-//       return state;
-//   }
-// };
 
 const initialState = {
   setting: [],
@@ -81,7 +48,7 @@ const initialState = {
 const elements = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_ELEMENTS: {
-      const all = { ...state };
+      const all = {...state};
       const currentCopy = Object.assign(state.current, {});
       action.allElements.forEach(item => {
         let element = item.element;

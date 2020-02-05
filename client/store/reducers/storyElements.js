@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT} from './index';
-import {randomNumber} from '../../components/helperFuncs';
+import {getRandomNums} from '../../components/helperFuncs';
 
 // Action Creators
 const gotAllElements = allElements => ({
@@ -8,8 +8,9 @@ const gotAllElements = allElements => ({
   allElements
 });
 
-const setCurrentPrompt = () => ({
-  type: SET_CURRENT_PROMPT
+const setCurrentPrompt = current => ({
+  type: SET_CURRENT_PROMPT,
+  current
 });
 
 // Thunks
@@ -23,8 +24,28 @@ export const getAllElements = () => async dispatch => {
   }
 };
 
-export const setCurrent = () => dispatch => {
-  dispatch(setCurrentPrompt());
+export const setCurrent = () => {
+  return (dispatch, getState) => {
+    const {elements} = getState();
+    const {setting, adjective, character, detail, action, climax} = elements;
+    const randomIdx = getRandomNums([
+      setting.length,
+      adjective.length,
+      character.length,
+      detail.length,
+      action.length,
+      climax.length
+    ]);
+    const current = {
+      setting: elements.setting[randomIdx[0]],
+      adjective: elements.adjective[randomIdx[1]],
+      character: elements.character[randomIdx[2]],
+      detail: elements.detail[randomIdx[3]],
+      action: elements.action[randomIdx[4]],
+      climax: elements.climax[randomIdx[5]]
+    };
+    dispatch(setCurrentPrompt(current));
+  };
 };
 
 const initialState = {
@@ -49,7 +70,7 @@ const elements = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_ELEMENTS: {
       const all = {...state};
-      const currentCopy = Object.assign(state.current, {});
+      const currentCopy = Object.assign({}, state.current);
       action.allElements.forEach(item => {
         let element = item.element;
         all[element].push(item);
@@ -65,24 +86,14 @@ const elements = (state = initialState, action) => {
       };
     }
     case SET_CURRENT_PROMPT: {
-      // Object.assign(target, ...sources)
-      // Object.assign({}, state.current)
-      let currentCopy = Object.assign(state.current, {});
-      for (let key in state) {
-        if (key !== 'current') {
-          let len = state[key].length;
-          let idx = randomNumber(len);
-          currentCopy[key] = Object.assign(state[key][idx], {});
-        }
-      }
       return {
-        setting: Object.assign(state.setting, []),
-        adjective: Object.assign(state.adjective, []),
-        character: Object.assign(state.character, []),
-        detail: Object.assign(state.detail, []),
-        action: Object.assign(state.action, []),
-        climax: Object.assign(state.climax, []),
-        current: currentCopy
+        setting: Object.assign([], state.setting),
+        adjective: Object.assign([], state.adjective),
+        character: Object.assign([], state.character),
+        detail: Object.assign([], state.detail),
+        action: Object.assign([], state.action),
+        climax: Object.assign([], state.climax),
+        current: {...action.current}
       };
     }
     default:

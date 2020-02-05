@@ -1,5 +1,5 @@
 // import axios from 'axios';
-// import {LOAD_CONTENT, SAVE_CONTENT} from './actions';
+// import {LOAD_CONTENT, SAVE_CONTENT} from './index';
 
 // // Action creators
 // const loadContent = content => ({

@@ -1,12 +1,13 @@
 import axios from 'axios';
-import history from '../history';
+import history from '../../history';
+import {GET_USER, REMOVE_USER} from './index';
 // import {UPDATE_USER} from './reducers/actions';
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
-const REMOVE_USER = 'REMOVE_USER';
+// const GET_USER = 'GET_USER';
+// const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * INITIAL STATE
@@ -16,8 +17,8 @@ const defaultUser = {};
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({ type: GET_USER, user });
-const removeUser = () => ({ type: REMOVE_USER });
+const getUser = user => ({type: GET_USER, user});
+const removeUser = () => ({type: REMOVE_USER});
 // const update = () => ({type: UPDATE_USER })
 
 /**
@@ -35,9 +36,9 @@ export const me = () => async dispatch => {
 export const auth = (email, password, method) => async dispatch => {
   let res;
   try {
-    res = await axios.post(`/auth/${method}`, { email, password });
+    res = await axios.post(`/auth/${method}`, {email, password});
   } catch (authError) {
-    return dispatch(getUser({ error: authError }));
+    return dispatch(getUser({error: authError}));
   }
 
   try {

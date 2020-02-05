@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT} from './actions';
+import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT} from './index';
 import {randomNumber} from '../../components/helperFuncs';
 
 // Action Creators
@@ -65,6 +65,8 @@ const elements = (state = initialState, action) => {
       };
     }
     case SET_CURRENT_PROMPT: {
+      // Object.assign(target, ...sources)
+      // Object.assign({}, state.current)
       let currentCopy = Object.assign(state.current, {});
       for (let key in state) {
         if (key !== 'current') {

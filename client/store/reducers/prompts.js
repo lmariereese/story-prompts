@@ -4,15 +4,9 @@ import {
   GET_ALL_SAVED_PROMPTS,
   GET_ONE_SAVED_PROMPT,
   SAVE_CONTENT
-} from './actions';
-import {DISPLAY_ONE_PROMPT} from '../index';
+} from './index';
 
 // Action Creators
-export const displayOnePrompt = id => ({
-  type: DISPLAY_ONE_PROMPT,
-  id
-});
-
 const savedPrompt = prompt => ({
   type: SAVE_PROMPT,
   prompt

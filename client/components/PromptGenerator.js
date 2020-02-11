@@ -18,9 +18,6 @@ class PromptGenerator extends React.Component {
     if (!this.props.elements.setting.length) {
       this.props.getAllElements();
     }
-    // else {
-    //   this.props.setCurrent()
-    // }
   }
 
   savePrompt() {

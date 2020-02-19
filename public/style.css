@@ -336,6 +336,36 @@ PromptGenerator component
   flex-direction: row;
 }
 
+/* LOGIN & SIGN UP STYLES */
+
+.ls-section-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  margin-top: 1em;
+}
+
+/* .ls-section {
+  width: 30%;
+} */
+
+.ls-section h2 {
+  text-align: center;
+}
+
+.ls-section .ls-form form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  /* margin: 0 auto; */
+}
+
+.ls-section .ls-form form div {
+  display: flex;
+  flex-direction: column;
+}
+
 /* SAVED PROMPT VIEW STYLES*/
 
 .prompt-list-div {

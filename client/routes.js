@@ -9,6 +9,7 @@ import MyAccount from './components/MyAccount';
 import SinglePromptView from './components/SinglePromptView';
 import Home from './components/Home';
 import {me} from './store';
+import LoginSignup from './components/LoginSignup';
 
 /**
  * COMPONENT
@@ -25,16 +26,17 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
+        <Route path="/account/:method" component={LoginSignup} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/prompts" component={PromptGenerator} />
         <Route exact path="/saved-prompts" component={SavedPrompts} />
         <Route path="/saved-prompts/prompt/:id" component={SinglePromptView} />
-        <Route path="/my-account" component={MyAccount} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/my-account" component={MyAccount} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

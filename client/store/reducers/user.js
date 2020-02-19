@@ -43,7 +43,7 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data));
-    history.push('/');
+    history.push('/prompts');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }

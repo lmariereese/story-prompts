@@ -64,8 +64,8 @@ class PromptGenerator extends React.Component {
         {this.props.current.setting.id ? (
           <div className="main-content-wrapper">
             <div className="prompt-heading-div">
-              <h2>Start here</h2>
-              <p>Or generate another prompt</p>
+              <h2>Prompt Generator</h2>
+              <p>Use this prompt for inspiration or generate another</p>
             </div>
             <div className="prompt-wrapper-div">
               <div className="prompt">

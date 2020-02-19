@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {logout} from '../store';
 import NavMenu from './NavMenu';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="nav">
     <div>
       <div>
@@ -17,19 +17,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            {/* <Link to="/home" className="nav-link">
-              Home
-            </Link>
-            <a href="#" className="nav-link" onClick={handleClick}>
-              Logout
-            </a> */}
-            {/* <div className="nav-button-div">
-              <button type="button" className="menu-drop-down">Menu</button>
-            </div> */}
             <NavMenu />
-            <div className="account-div">
+            {/* <div className="account-div">
               <img src="https://image.flaticon.com/icons/svg/126/126486.svg" />
-            </div>
+            </div> */}
           </div>
         ) : (
           <div>

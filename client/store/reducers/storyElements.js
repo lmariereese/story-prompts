@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT} from './index';
+import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, REMOVE_USER} from './index';
 import {getRandomNums} from '../../components/helperFuncs';
 
 // Action Creators
@@ -86,15 +86,12 @@ const elements = (state = initialState, action) => {
       };
     }
     case SET_CURRENT_PROMPT: {
-      return {
-        setting: Object.assign([], state.setting),
-        adjective: Object.assign([], state.adjective),
-        character: Object.assign([], state.character),
-        detail: Object.assign([], state.detail),
-        action: Object.assign([], state.action),
-        climax: Object.assign([], state.climax),
-        current: {...action.current}
-      };
+      const newCurrent = {...action.current};
+      return {...state, current: {...newCurrent}};
+    }
+    case REMOVE_USER: {
+      const emptyCurrent = {...initialState.current};
+      return {...state, current: {...emptyCurrent}};
     }
     default:
       return state;

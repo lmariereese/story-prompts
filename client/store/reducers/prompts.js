@@ -3,7 +3,8 @@ import {
   SAVE_PROMPT,
   GET_ALL_SAVED_PROMPTS,
   GET_ONE_SAVED_PROMPT,
-  SAVE_CONTENT
+  SAVE_CONTENT,
+  REMOVE_USER
 } from './index';
 
 // Action Creators
@@ -103,6 +104,9 @@ const prompts = (state = initialState, action) => {
     }
     case SAVE_CONTENT: {
       return {...state, currentContent: action.content};
+    }
+    case REMOVE_USER: {
+      return initialState;
     }
     default:
       return state;

@@ -10,7 +10,9 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllElements();
+    if (!this.props.elements.setting.length) {
+      this.props.getAllElements();
+    }
   }
 
   generate() {

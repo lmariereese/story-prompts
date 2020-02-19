@@ -17,6 +17,15 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
+            {/* <Link to="/home" className="nav-link">
+              Home
+            </Link>
+            <a href="#" className="nav-link" onClick={handleClick}>
+              Logout
+            </a> */}
+            {/* <div className="nav-button-div">
+              <button type="button" className="menu-drop-down">Menu</button>
+            </div> */}
             <NavMenu />
             {/* <div className="account-div">
               <img src="https://image.flaticon.com/icons/svg/126/126486.svg" />

@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {updateUser} from '../store/reducers/user';
 
 class MyAccount extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class MyAccount extends React.Component {
 
   handleChange(event) {
     event.preventDefault();
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({[event.target.name]: event.target.value});
   }
 
   handleSubmit(type) {
@@ -32,12 +33,14 @@ class MyAccount extends React.Component {
     this.setState(state => ({
       toggleEdit: !state.toggleEdit
     }));
-    // if (type === 'email' && this.state.email) {
-    // }
+    if (type === 'email' && this.state.email) {
+      this.props.updateUser('email', this.state.email);
+      this.setState({email: '', toggleEdit: false});
+    }
   }
 
   render() {
-    console.log(this.state.currentPassword);
+    // console.log(this.state.currentPassword);
     return (
       <div className="main-content-wrapper">
         <div>
@@ -123,7 +126,11 @@ class MyAccount extends React.Component {
                   onChange={event => this.handleChange(event)}
                   value={this.state.confirmNew}
                 />
-                <button type="button" className="update-password-btn">
+                <button
+                  type="button"
+                  className="update-password-btn"
+                  onClick={() => this.handleSubmit('password')}
+                >
                   Update Password
                 </button>
               </div>
@@ -139,8 +146,8 @@ const mapState = state => ({
   userEmail: state.user.email
 });
 
-// const mapDispatch = dispatch => ({
+const mapDispatch = dispatch => ({
+  updateUser: (property, newVal) => dispatch(updateUser(property, newVal))
+});
 
-// })
-
-export default connect(mapState)(MyAccount);
+export default connect(mapState, mapDispatch)(MyAccount);

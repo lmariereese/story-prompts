@@ -1,13 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
-import {GET_USER, REMOVE_USER} from './index';
-// import {UPDATE_USER} from './reducers/actions';
-
-/**
- * ACTION TYPES
- */
-// const GET_USER = 'GET_USER';
-// const REMOVE_USER = 'REMOVE_USER';
+import {GET_USER, REMOVE_USER, UPDATE_USER} from './index';
 
 /**
  * INITIAL STATE
@@ -19,7 +12,7 @@ const defaultUser = {};
  */
 const getUser = user => ({type: GET_USER, user});
 const removeUser = () => ({type: REMOVE_USER});
-// const update = () => ({type: UPDATE_USER })
+const update = user => ({type: UPDATE_USER, user});
 
 /**
  * THUNK CREATORS
@@ -59,13 +52,15 @@ export const logout = () => async dispatch => {
   }
 };
 
-// export const updateUser = (property, newVal, oldVal) => async dispatch => {
-//   try {
-//     if (!oldVal) {
-
-//     }
-//   }
-// }
+export const updateUser = (property, newVal) => async dispatch => {
+  // let res;
+  try {
+    let res = await axios.put(`/auth/update/${property}`, {newEmail: newVal});
+    dispatch(update(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 /**
  * REDUCER
@@ -76,6 +71,9 @@ export default function(state = defaultUser, action) {
       return action.user;
     case REMOVE_USER:
       return defaultUser;
+    case UPDATE_USER:
+      console.log('user in reducer:', action.user);
+      return {...action.user};
     default:
       return state;
   }

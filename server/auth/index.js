@@ -52,12 +52,9 @@ router.put('/update/email', async (req, res, next) => {
       }
     });
     if (emailInUse) {
-      res
-        .status(401)
-        .send(`The email ${req.body.newEmail} is in use with another account.`);
+      res.status(401).send(`${req.body.newEmail} is unavailable.`);
     } else {
       // update user's email address in db
-      console.log(`req.body`, req.body);
       const [numRows, affectedRows] = await User.update(
         {
           email: req.body.newEmail

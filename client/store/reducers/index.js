@@ -7,6 +7,7 @@ import prompts from './prompts';
 export const GET_USER = 'GET_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_ERROR = 'UPDATE_ERROR';
 
 export const GET_ALL_ELEMENTS = 'GET_ALL_ELEMENTS';
 export const SET_CURRENT_PROMPT = 'SET_CURRENT_PROMPT';

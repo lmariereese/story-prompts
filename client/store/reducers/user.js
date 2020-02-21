@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
-import {GET_USER, REMOVE_USER, UPDATE_USER} from './index';
+import {GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR} from './index';
 
 /**
  * INITIAL STATE
@@ -13,6 +13,11 @@ const defaultUser = {};
 const getUser = user => ({type: GET_USER, user});
 const removeUser = () => ({type: REMOVE_USER});
 const update = user => ({type: UPDATE_USER, user});
+const updateError = (error, property) => ({
+  type: UPDATE_ERROR,
+  error,
+  property
+});
 
 /**
  * THUNK CREATORS
@@ -53,12 +58,17 @@ export const logout = () => async dispatch => {
 };
 
 export const updateUser = (property, newVal) => async dispatch => {
-  // let res;
+  let res;
   try {
-    let res = await axios.put(`/auth/update/${property}`, {newEmail: newVal});
-    dispatch(update(res.data));
+    res = await axios.put(`/auth/update/${property}`, {newEmail: newVal});
   } catch (err) {
-    console.error(err);
+    return dispatch(updateError(err.response, property));
+  }
+
+  try {
+    dispatch(update(res.data, property));
+  } catch (dispatchErr) {
+    console.error(dispatchErr);
   }
 };
 
@@ -72,8 +82,9 @@ export default function(state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser;
     case UPDATE_USER:
-      console.log('user in reducer:', action.user);
       return {...action.user};
+    case UPDATE_ERROR:
+      return {...state, error: action.error, errorProperty: action.property};
     default:
       return state;
   }

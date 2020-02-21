@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../store/reducers/user';
+import FormError from './FormError';
 
 class MyAccount extends React.Component {
   constructor(props) {
@@ -17,6 +18,21 @@ class MyAccount extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.error !== prevProps.error &&
+      this.props.errorProperty === 'email'
+    ) {
+      this.setState({toggleEdit: true});
+    }
+  }
+
+  // discardChanges () {
+  //   if (this.props.errorProperty && (this.props.errorProperty === 'email')) {
+  //     /// you were here!
+  //   }
+  // }
+
   toggleEdit() {
     this.setState(state => ({
       toggleEdit: !state.toggleEdit
@@ -29,7 +45,6 @@ class MyAccount extends React.Component {
   }
 
   handleSubmit(type) {
-    console.log(type);
     this.setState(state => ({
       toggleEdit: !state.toggleEdit
     }));
@@ -53,44 +68,53 @@ class MyAccount extends React.Component {
               <h4>Email Address</h4>
               <div>
                 {this.state.toggleEdit ? (
-                  <div className="email-update-form">
-                    <input
-                      placeholder="enter a new email address"
-                      type="email"
-                      name="email"
-                      id="email-update-input"
-                      value={this.state.email}
-                      onChange={event => this.handleChange(event)}
-                    />
-                    <div id="email-update-btn-div">
-                      <button
-                        type="button"
-                        className="inline"
-                        onClick={() => this.handleSubmit('email')}
-                      >
-                        Update
-                      </button>
+                  <div className="email-update-form-wrapper">
+                    <div className="email-update-form">
+                      <input
+                        placeholder="enter a new email address"
+                        type="email"
+                        name="email"
+                        id="email-update-input"
+                        value={this.state.email}
+                        onChange={event => this.handleChange(event)}
+                      />
+                      <div id="email-update-btn-div">
+                        <button
+                          type="button"
+                          className="inline"
+                          onClick={() => this.handleSubmit('email')}
+                        >
+                          Update
+                        </button>
+                        <button
+                          type="button"
+                          className="inline"
+                          onClick={this.toggleEdit}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                    {this.props.errorProperty === 'email' ? (
+                      <FormError error={this.props.error.data} />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                ) : (
+                  <div className="email-update-form-wrapper">
+                    <div className="email-update-form">
+                      <span className="display-email">
+                        {this.props.userEmail}
+                      </span>
                       <button
                         type="button"
                         className="inline"
                         onClick={this.toggleEdit}
                       >
-                        Cancel
+                        Edit
                       </button>
                     </div>
-                  </div>
-                ) : (
-                  <div className="email-update-form">
-                    <span className="display-email">
-                      {this.props.userEmail}
-                    </span>
-                    <button
-                      type="button"
-                      className="inline"
-                      onClick={this.toggleEdit}
-                    >
-                      Edit
-                    </button>
                   </div>
                 )}
               </div>
@@ -143,7 +167,9 @@ class MyAccount extends React.Component {
 }
 
 const mapState = state => ({
-  userEmail: state.user.email
+  userEmail: state.user.email,
+  error: state.user.error,
+  errorProperty: state.user.errorProperty
 });
 
 const mapDispatch = dispatch => ({

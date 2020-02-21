@@ -412,13 +412,20 @@ PromptGenerator component
   margin: 10px 0;
 }
 
+.email-update-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ffa4a2;
+}
+
 .email-update-form {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #ffa4a2;
+  /* padding-bottom: 4px;
+  border-bottom: 1px solid #ffa4a2; */
 }
 
 .display-email {
@@ -500,6 +507,16 @@ PromptGenerator component
   border: 1px solid #114b5f;
   background-color: #114b5f;
   color: #cfd7e6;
+}
+
+/*
+  FORM ERROR
+*/
+.form-error-message {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 0;
 }
 
 /*

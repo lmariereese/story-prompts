@@ -214,22 +214,31 @@ PromptGenerator component
   display: flex;
   flex-direction: column;
   /* box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1); */
-  box-shadow: rgba(0, 0, 0, 0.23) 0px 0px 35px 0px;
-  border: 1px solid #205f74;
+  /* box-shadow: rgba(0, 0, 0, 0.23) 0px 0px 35px 0px; */
+  /* border: 1px solid #205f74; */
+  border: 1px solid #b4deed;
   border-radius: 4px;
   padding: 15px 25px;
   background: white;
-  margin: 10px 0 10px 20px;
+  margin: 20px 0 10px 20px;
   width: 80%;
+}
+
+.prompt-heading-div > h2 {
+  font-family: 'Yellowtail', serif;
+  font-size: 3em;
+  letter-spacing: 1.5px;
+  margin-bottom: 0;
+  margin-top: 10px;
 }
 
 .prompt {
   margin-bottom: 20px;
 }
 
-.prompt p {
-  font-family: 'Lora', serif;
-  letter-spacing: 0.5px;
+.prompt > p {
+  /* font-family: 'Lora', serif; */
+  letter-spacing: 1px;
   border-bottom: 1px solid lightgrey;
   font-size: 28px;
   margin: 5px 0px;

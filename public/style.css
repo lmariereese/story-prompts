@@ -271,8 +271,17 @@ PromptGenerator component
   outline: none;
 }
 
+.btn:hover {
+  border: 1px solid #ffa4a2;
+  background-color: #ffa4a2;
+  color: white;
+}
+
 .btn:disabled {
   cursor: unset;
+  background-color: #2e738a;
+  color: white;
+  border: 1px solid #205f74;
 }
 
 .get-prompt-btn {

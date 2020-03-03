@@ -65,7 +65,7 @@ class PromptGenerator extends React.Component {
           <div className="main-content-wrapper">
             <div className="prompt-heading-div">
               <h2>Prompt Generator</h2>
-              <p>Use this prompt for inspiration or generate another</p>
+              <span>Use this prompt for inspiration or generate another</span>
             </div>
             <div className="prompt-wrapper-div">
               <div className="prompt">

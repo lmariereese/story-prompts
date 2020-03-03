@@ -55,7 +55,6 @@ class MyAccount extends React.Component {
   }
 
   render() {
-    // console.log(this.state.currentPassword);
     return (
       <div className="main-content-wrapper">
         <div>

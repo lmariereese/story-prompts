@@ -2,14 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from '../store/reducers/user';
 import FormError from './FormError';
+import UpdatePasswordForm from './UpdatePasswordForm';
 
 class MyAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPassword: '',
-      newPassword: '',
-      confirmNew: '',
       toggleEdit: false,
       email: ''
     };
@@ -120,7 +118,8 @@ class MyAccount extends React.Component {
             </div>
             <div className="profile-section">
               <h4>Password</h4>
-              <div className="password-update-form">
+              <UpdatePasswordForm />
+              {/* <div className="password-update-form">
                 <label htmlFor="currentPassword">Current Password</label>
                 <input
                   placeholder="enter your current password"
@@ -156,7 +155,7 @@ class MyAccount extends React.Component {
                 >
                   Update Password
                 </button>
-              </div>
+                </div> */}
             </div>
           </div>
         </div>

@@ -522,7 +522,7 @@ PromptGenerator component
   font-family: 'Roboto', sans-serif;
   margin-left: 10px;
   margin-top: 10px;
-  width: 30%;
+  min-width: 30%;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857;

@@ -72,6 +72,30 @@ export const updateUser = (property, newVal) => async dispatch => {
   }
 };
 
+export const updateUserPassword = (
+  property,
+  newVal,
+  oldVal
+) => async dispatch => {
+  let res;
+  try {
+    // check to see if the current password matches what's on file
+    res = await axios.put(`/auth/update/${property}`, {
+      newPassword: newVal,
+      password: oldVal
+    });
+  } catch (err) {
+    dispatch(updateError(err.response, property));
+  }
+
+  try {
+    dispatch(update(res.data, property));
+    // history.push('/prompts');
+  } catch (dispatchErr) {
+    console.error(dispatchErr);
+  }
+};
+
 /**
  * REDUCER
  */

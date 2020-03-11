@@ -53,8 +53,6 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex');
 };
 
-// User.check
-
 /**
  * hooks
  */
@@ -65,12 +63,12 @@ const setSaltAndPassword = user => {
   }
 };
 
-// const checkEmail = user => {
-//   if (user.changed('email'))
-// }
-
 User.beforeCreate(setSaltAndPassword);
 User.beforeUpdate(setSaltAndPassword);
 User.beforeBulkCreate(users => {
   users.forEach(setSaltAndPassword);
 });
+// User.beforeBulkUpdate(users => {
+//   users.forEach(setSaltAndPassword);
+// });
+// User.afterUpdate(setSaltAndPassword);

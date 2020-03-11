@@ -39,10 +39,11 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/me', (req, res) => {
-  console.log(req.user);
+  // console.log(req.user);
   res.json(req.user);
 });
 
+// maybe this should be .post instead, researching
 router.put('/update/email', async (req, res, next) => {
   try {
     // check if the new email address is already associated with another account
@@ -70,6 +71,21 @@ router.put('/update/email', async (req, res, next) => {
       if (affectedRows) {
         res.json(affectedRows);
       }
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// should this be a post?
+router.put('/update/password', async (req, res, next) => {
+  try {
+    let currUser = await User.findByPk(req.user.id);
+    if (!currUser.correctPassword(req.body.password)) {
+      res.status(401).send('Wrong password');
+    } else {
+      let temp = await currUser.set('password', req.body.newPassword);
+      await temp.save();
     }
   } catch (err) {
     next(err);

@@ -82,10 +82,11 @@ router.put('/update/password', async (req, res, next) => {
   try {
     let currUser = await User.findByPk(req.user.id);
     if (!currUser.correctPassword(req.body.password)) {
-      res.status(401).send('Wrong password');
+      res.status(401).send('Incorrect password');
     } else {
       let temp = await currUser.set('password', req.body.newPassword);
       await temp.save();
+      res.json(temp);
     }
   } catch (err) {
     next(err);

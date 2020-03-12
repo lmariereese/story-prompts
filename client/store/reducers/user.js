@@ -79,7 +79,6 @@ export const updateUserPassword = (
 ) => async dispatch => {
   let res;
   try {
-    // check to see if the current password matches what's on file
     res = await axios.put(`/auth/update/${property}`, {
       newPassword: newVal,
       password: oldVal

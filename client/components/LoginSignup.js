@@ -16,7 +16,7 @@ const LoginSignup = props => {
             <Login />
             <div>
               <p>
-                <Link to="/account/signup">Sign up</Link>
+                Don't have an account? <Link to="/account/signup">Sign up</Link>
               </p>
             </div>
           </div>

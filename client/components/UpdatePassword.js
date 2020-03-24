@@ -85,7 +85,8 @@ class UpdatePassword extends React.Component {
             disabled={
               !this.state.currentPassword ||
               !this.state.newPassword ||
-              !this.state.confirmNew
+              !this.state.currentPassword ||
+              this.state.newPassword !== this.state.confirmNew
             }
           >
             Update Password

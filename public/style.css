@@ -538,6 +538,13 @@ PromptGenerator component
   color: #cfd7e6;
 }
 
+.update-password-btn:disabled {
+  cursor: default;
+  background-color: white;
+  border: 1px solid #ffd6d3;
+  color: #cfd7e6;
+}
+
 /*
   FORM ERROR
 */

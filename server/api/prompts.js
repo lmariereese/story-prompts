@@ -53,7 +53,7 @@ router.post('/share', async (req, res, next) => {
       urlToken: url
     });
     if (newPrompt) {
-      res.send(url);
+      res.json(newPrompt);
     }
   } catch (err) {
     next(err);

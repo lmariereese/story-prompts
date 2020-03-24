@@ -13,6 +13,11 @@ const savedPrompt = prompt => ({
   prompt
 });
 
+// const sharedPrompt = prompt => ({
+//   type: SHARE_PROMPT,
+//   prompt
+// })
+
 const gotAllSavedPrompts = prompts => ({
   type: GET_ALL_SAVED_PROMPTS,
   prompts
@@ -37,6 +42,15 @@ export const savePrompt = els => async dispatch => {
     console.error(err);
   }
 };
+
+// export const sharePrompt = els => async dispatch => {
+//   try {
+//     const {data} = await axios.post('/api/prompts/share', els);
+//     dispatch(sharedPrompt(data));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 export const getAllSavedPrompts = () => async dispatch => {
   try {

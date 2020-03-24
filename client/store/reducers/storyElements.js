@@ -1,5 +1,10 @@
 import axios from 'axios';
-import {GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, REMOVE_USER} from './index';
+import {
+  GET_ALL_ELEMENTS,
+  SET_CURRENT_PROMPT,
+  REMOVE_USER,
+  SHARE_PROMPT
+} from './index';
 import {getRandomNums} from '../../components/helperFuncs';
 
 // Action Creators
@@ -13,6 +18,11 @@ const setCurrentPrompt = current => ({
   current
 });
 
+const sharedPrompt = prompt => ({
+  type: SHARE_PROMPT,
+  urlToken: prompt.urlToken
+});
+
 // Thunks
 export const getAllElements = () => async dispatch => {
   try {
@@ -23,6 +33,8 @@ export const getAllElements = () => async dispatch => {
     console.error(error);
   }
 };
+
+// export const get
 
 export const setCurrent = () => {
   return (dispatch, getState) => {
@@ -48,6 +60,15 @@ export const setCurrent = () => {
   };
 };
 
+export const sharePrompt = els => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/prompts/share', els);
+    dispatch(sharedPrompt(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const initialState = {
   setting: [],
   adjective: [],
@@ -61,7 +82,8 @@ const initialState = {
     character: {},
     detail: {},
     action: {},
-    climax: {}
+    climax: {},
+    urlToken: null
   }
 };
 
@@ -88,6 +110,11 @@ const elements = (state = initialState, action) => {
     case SET_CURRENT_PROMPT: {
       const newCurrent = {...action.current};
       return {...state, current: {...newCurrent}};
+    }
+    case SHARE_PROMPT: {
+      const withUrlToken = {...state.current};
+      withUrlToken.urlToken = action.urlToken;
+      return {...state, current: {...withUrlToken}};
     }
     case REMOVE_USER: {
       const emptyCurrent = {...initialState.current};

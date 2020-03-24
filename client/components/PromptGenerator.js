@@ -1,5 +1,9 @@
 import React from 'react';
-import {getAllElements, setCurrent} from '../store/reducers/storyElements';
+import {
+  getAllElements,
+  setCurrent,
+  sharePrompt
+} from '../store/reducers/storyElements';
 import {savePrompt} from '../store/reducers/prompts';
 import {connect} from 'react-redux';
 import {addArticle} from './helperFuncs';
@@ -51,7 +55,22 @@ class PromptGenerator extends React.Component {
   }
 
   share() {
-    console.log('clicked!');
+    const {
+      setting,
+      adjective,
+      character,
+      detail,
+      action,
+      climax
+    } = this.props.current;
+    this.props.sharePrompt({
+      setting,
+      adjective,
+      character,
+      detail,
+      action,
+      climax
+    });
   }
 
   generate() {
@@ -59,6 +78,7 @@ class PromptGenerator extends React.Component {
   }
 
   render() {
+    console.log('urlToken:', this.props.urlToken);
     return (
       <div className="main-content-prompt-wrapper">
         {this.props.current.setting.id ? (
@@ -99,7 +119,6 @@ class PromptGenerator extends React.Component {
                     type="button"
                     className="btn"
                     onClick={() => this.share()}
-                    disabled
                   >
                     Share
                   </button>
@@ -130,13 +149,15 @@ class PromptGenerator extends React.Component {
 const mapStateToProps = state => ({
   elements: state.elements,
   current: state.elements.current,
-  user: state.user
+  user: state.user,
+  urlToken: state.elements.current.urlToken
 });
 
 const mapDispatchToProps = dispatch => ({
   getAllElements: () => dispatch(getAllElements()),
   savePrompt: els => dispatch(savePrompt(els)),
-  setCurrent: () => dispatch(setCurrent())
+  setCurrent: () => dispatch(setCurrent()),
+  sharePrompt: els => dispatch(sharePrompt(els))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromptGenerator);

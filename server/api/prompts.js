@@ -87,3 +87,18 @@ router.get('/prompt/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/:urlToken', async (req, res, next) => {
+  try {
+    const onePrompt = await Prompt.findOne({
+      where: {
+        urlToken: req.params.urlToken
+      }
+    });
+    if (onePrompt) {
+      res.json(onePrompt);
+    }
+  } catch (err) {
+    next(err);
+  }
+});

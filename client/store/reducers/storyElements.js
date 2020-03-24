@@ -34,7 +34,15 @@ export const getAllElements = () => async dispatch => {
   }
 };
 
-// export const get
+export const getByToken = urlToken => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/prompts/${urlToken}`);
+    console.log('inside getByToken thunk', data);
+    dispatch(setCurrentPrompt(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const setCurrent = () => {
   return (dispatch, getState) => {

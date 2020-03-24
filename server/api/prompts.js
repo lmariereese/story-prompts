@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const uniqueSlug = require('unique-slug');
 const {Prompt, User, Content} = require('../db/models');
 module.exports = router;
 
@@ -39,9 +40,25 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// router.post('/share', async (req, res, next) => {
-
-// });
+router.post('/share', async (req, res, next) => {
+  try {
+    const url = uniqueSlug();
+    const newPrompt = await Prompt.create({
+      setting: req.body.setting.text,
+      adjective: req.body.adjective.text,
+      character: req.body.character.text,
+      detail: req.body.detail.text,
+      action: req.body.action.text,
+      climax: req.body.climax.text,
+      urlToken: url
+    });
+    if (newPrompt) {
+      res.send(url);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get('/prompt/:id', async (req, res, next) => {
   try {

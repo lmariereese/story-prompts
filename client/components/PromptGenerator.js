@@ -11,6 +11,7 @@ import {addArticle} from './helperFuncs';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
 import {withRouter} from 'react-router-dom';
+import PromptDisplay from './PromptDisplay';
 
 class PromptGenerator extends React.Component {
   constructor(props) {
@@ -21,9 +22,9 @@ class PromptGenerator extends React.Component {
   }
 
   componentDidMount() {
-    // if (!this.props.elements.setting.length) {
-    //   this.props.getAllElements();
-    // }
+    if (!this.props.elements.setting.length) {
+      this.props.getAllElements();
+    }
     if (this.props.match.params.urlToken) {
       this.props.getByToken(this.props.match.params.urlToken);
     }
@@ -88,14 +89,15 @@ class PromptGenerator extends React.Component {
     // console.log('urlToken:', this.props.urlToken);
     return (
       <div className="main-content-prompt-wrapper">
-        {this.props.match.params.urlToken || this.props.current.setting.id ? (
+        {this.props.current.setting.id ? (
           <div className="main-content-wrapper">
             <div className="prompt-heading-div">
               <h2>Prompt Generator</h2>
               <span>Use this prompt for inspiration or generate another</span>
             </div>
             <div className="prompt-wrapper-div">
-              <div className="prompt">
+              <PromptDisplay current={this.props.current} />
+              {/* <div className="prompt">
                 <p>{`${this.props.current.setting.text},`}</p>
                 <p>{`${addArticle(this.props.current.adjective.text)} ${
                   this.props.current.character.text
@@ -103,7 +105,7 @@ class PromptGenerator extends React.Component {
                 <p>{this.props.current.detail.text}</p>
                 <p>{`${this.props.current.action.text}`}</p>
                 <p>{`and ${this.props.current.climax.text}.`}</p>
-              </div>
+              </div> */}
               <div className="prompt-action-btns">
                 <div>
                   <button

@@ -74,7 +74,20 @@ class UpdatePassword extends React.Component {
             onChange={event => this.handleChange(event)}
             value={this.state.confirmNew}
           />
-          <button type="submit" className="update-password-btn">
+          {this.state.newPassword &&
+            this.state.confirmNew &&
+            this.state.newPassword !== this.state.confirmNew && (
+              <FormError error="Passwords do not match." />
+            )}
+          <button
+            type="submit"
+            className="update-password-btn"
+            disabled={
+              !this.state.currentPassword ||
+              !this.state.newPassword ||
+              !this.state.confirmNew
+            }
+          >
             Update Password
           </button>
         </form>

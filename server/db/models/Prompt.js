@@ -25,6 +25,9 @@ const Prompt = db.define('prompt', {
   climax: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  urlToken: {
+    type: Sequelize.STRING
   }
 });
 

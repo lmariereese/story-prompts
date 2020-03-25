@@ -393,6 +393,7 @@ PromptGenerator component
 .ls-section .ls-form form div {
   display: flex;
   flex-direction: column;
+  margin: 1em;
 }
 
 /* SAVED PROMPT VIEW STYLES*/

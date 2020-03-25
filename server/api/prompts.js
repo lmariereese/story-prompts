@@ -44,12 +44,12 @@ router.post('/share', async (req, res, next) => {
   try {
     const url = uniqueSlug();
     const newPrompt = await Prompt.create({
-      setting: req.body.setting.text,
-      adjective: req.body.adjective.text,
-      character: req.body.character.text,
-      detail: req.body.detail.text,
-      action: req.body.action.text,
-      climax: req.body.climax.text,
+      setting: req.body.setting,
+      adjective: req.body.adjective,
+      character: req.body.character,
+      detail: req.body.detail,
+      action: req.body.action,
+      climax: req.body.climax,
       urlToken: url
     });
     if (newPrompt) {

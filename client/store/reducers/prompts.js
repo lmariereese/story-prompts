@@ -43,15 +43,6 @@ export const savePrompt = els => async dispatch => {
   }
 };
 
-// export const sharePrompt = els => async dispatch => {
-//   try {
-//     const {data} = await axios.post('/api/prompts/share', els);
-//     dispatch(sharedPrompt(data));
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
 export const getAllSavedPrompts = () => async dispatch => {
   try {
     const {data} = await axios.get(`/api/prompts/`);

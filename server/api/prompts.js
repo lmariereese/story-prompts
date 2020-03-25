@@ -24,12 +24,12 @@ router.post('/', async (req, res, next) => {
     if (!req.user) res.status(401).send();
     else {
       const newPrompt = await Prompt.create({
-        setting: req.body.setting.text,
-        adjective: req.body.adjective.text,
-        character: req.body.character.text,
-        detail: req.body.detail.text,
-        action: req.body.action.text,
-        climax: req.body.climax.text
+        setting: req.body.setting,
+        adjective: req.body.adjective,
+        character: req.body.character,
+        detail: req.body.detail,
+        action: req.body.action,
+        climax: req.body.climax
       });
       const user = await User.findByPk(req.user.id);
       await newPrompt.setUser(user);

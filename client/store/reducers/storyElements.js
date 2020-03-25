@@ -85,12 +85,12 @@ const initialState = {
   action: [],
   climax: [],
   current: {
-    setting: {},
-    adjective: {},
-    character: {},
-    detail: {},
-    action: {},
-    climax: {},
+    setting: '',
+    adjective: '',
+    character: '',
+    detail: '',
+    action: '',
+    climax: '',
     urlToken: null
   }
 };
@@ -103,7 +103,7 @@ const elements = (state = initialState, action) => {
       const currentCopy = Object.assign({}, state.current);
       action.allElements.forEach(item => {
         let element = item.element;
-        all[element].push(item);
+        all[element].push(item.text);
       });
       return {
         setting: all.setting,

@@ -89,7 +89,7 @@ class PromptGenerator extends React.Component {
     // console.log('urlToken:', this.props.urlToken);
     return (
       <div className="main-content-prompt-wrapper">
-        {this.props.current.setting.id ? (
+        {this.props.current.setting.length ? (
           <div className="main-content-wrapper">
             <div className="prompt-heading-div">
               <h2>Prompt Generator</h2>
@@ -97,15 +97,6 @@ class PromptGenerator extends React.Component {
             </div>
             <div className="prompt-wrapper-div">
               <PromptDisplay current={this.props.current} />
-              {/* <div className="prompt">
-                <p>{`${this.props.current.setting.text},`}</p>
-                <p>{`${addArticle(this.props.current.adjective.text)} ${
-                  this.props.current.character.text
-                }`}</p>
-                <p>{this.props.current.detail.text}</p>
-                <p>{`${this.props.current.action.text}`}</p>
-                <p>{`and ${this.props.current.climax.text}.`}</p>
-              </div> */}
               <div className="prompt-action-btns">
                 <div>
                   <button

@@ -7,10 +7,12 @@ import {
 } from '../store/reducers/storyElements';
 import {savePrompt} from '../store/reducers/prompts';
 import {connect} from 'react-redux';
-import {addArticle} from './helperFuncs';
+import Popup from 'reactjs-popup';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
 import {withRouter} from 'react-router-dom';
+import ShareableLinkPopup from './ShareableLinkPopup';
+// import ShareButton from './ShareButton';
 import PromptDisplay from './PromptDisplay';
 
 class PromptGenerator extends React.Component {
@@ -18,7 +20,7 @@ class PromptGenerator extends React.Component {
     super(props);
     this.generate = this.generate.bind(this);
     this.savePrompt = this.savePrompt.bind(this);
-    this.share = this.share.bind(this);
+    // this.share = this.share.bind(this);
   }
 
   componentDidMount() {
@@ -60,24 +62,24 @@ class PromptGenerator extends React.Component {
     }
   }
 
-  share() {
-    const {
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    } = this.props.current;
-    this.props.sharePrompt({
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    });
-  }
+  // share() {
+  //   const {
+  //     setting,
+  //     adjective,
+  //     character,
+  //     detail,
+  //     action,
+  //     climax
+  //   } = this.props.current;
+  //   this.props.sharePrompt({
+  //     setting,
+  //     adjective,
+  //     character,
+  //     detail,
+  //     action,
+  //     climax
+  //   });
+  // }
 
   generate() {
     this.props.setCurrent();
@@ -102,7 +104,7 @@ class PromptGenerator extends React.Component {
                   <button
                     type="button"
                     className="get-prompt-btn"
-                    onClick={() => this.generate()}
+                    onClick={this.generate}
                   >
                     Get Prompt
                   </button>
@@ -115,13 +117,23 @@ class PromptGenerator extends React.Component {
                   >
                     Save
                   </button>
-                  <button
+                  <Popup
+                    trigger={
+                      <button type="button" className="btn">
+                        Share
+                      </button>
+                    }
+                    modal
+                  >
+                    {close => <ShareableLinkPopup close={close} />}
+                  </Popup>
+                  {/* <button
                     type="button"
                     className="btn"
-                    onClick={() => this.share()}
+                    onClick={this.share}
                   >
                     Share
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -134,7 +146,7 @@ class PromptGenerator extends React.Component {
               <button
                 type="button"
                 className="generate-btn"
-                onClick={() => this.generate()}
+                onClick={this.generate}
               >
                 Get Prompt
               </button>

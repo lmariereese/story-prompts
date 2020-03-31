@@ -31,7 +31,7 @@ class ShareableLinkPopup extends React.Component {
     return (
       <div>
         {this.props.current.urlToken ? (
-          <p>{`${url}prompts/${this.props.current.urlToken}`}</p>
+          <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
         ) : (
           ''
         )}

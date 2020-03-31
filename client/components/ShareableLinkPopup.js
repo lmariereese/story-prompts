@@ -7,31 +7,31 @@ const url = 'localhost:8080';
 
 class ShareableLinkPopup extends React.Component {
   componentDidMount() {
-    const {
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    } = this.props.current;
-    this.props.sharePrompt({
-      setting,
-      adjective,
-      character,
-      detail,
-      action,
-      climax
-    });
+    if (!this.props.current.urlToken) {
+      const {
+        setting,
+        adjective,
+        character,
+        detail,
+        action,
+        climax
+      } = this.props.current;
+      this.props.sharePrompt({
+        setting,
+        adjective,
+        character,
+        detail,
+        action,
+        climax
+      });
+    }
   }
 
   render() {
     return (
       <div>
         {this.props.current.urlToken ? (
-          <p>{`${url}${this.props.location.pathname}/${
-            this.props.current.urlToken
-          }`}</p>
+          <p>{`${url}prompts/${this.props.current.urlToken}`}</p>
         ) : (
           ''
         )}

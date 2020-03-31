@@ -11,6 +11,7 @@ import Popup from 'reactjs-popup';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast} from 'react-toastify';
 import {withRouter} from 'react-router-dom';
+import history from '../history';
 import ShareableLinkPopup from './ShareableLinkPopup';
 import PromptDisplay from './PromptDisplay';
 
@@ -62,6 +63,9 @@ class PromptGenerator extends React.Component {
 
   generate() {
     this.props.setCurrent();
+    if (this.props.match.params.urlToken) {
+      history.push('/prompts');
+    }
   }
 
   render() {

@@ -7,6 +7,7 @@ const url = 'localhost:8080';
 
 class ShareableLinkPopup extends React.Component {
   componentDidMount() {
+    // if prompt hasn't already been shared, then save/share it
     if (!this.props.current.urlToken) {
       const {
         setting,

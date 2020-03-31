@@ -69,9 +69,6 @@ class PromptGenerator extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
-    // console.log('paraaaams', this.props.match.params.urlToken);
-    // console.log('urlToken:', this.props.urlToken);
     return (
       <div className="main-content-prompt-wrapper">
         {this.props.current.setting.length ? (

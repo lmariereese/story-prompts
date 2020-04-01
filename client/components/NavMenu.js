@@ -45,10 +45,10 @@ class NavMenu extends React.Component {
               <Link to="/prompts">Prompt Generator</Link>
             </li>
             <li>
-              <Link to="/saved-prompts">My Prompts</Link>
+              <Link to="/saved-prompts">Saved Prompts</Link>
             </li>
             <li>
-              <Link to="/my-account">My Account</Link>
+              <Link to="/account">Account</Link>
             </li>
             <li>
               <a href="#" onClick={this.props.handleClick}>

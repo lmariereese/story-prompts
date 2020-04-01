@@ -56,7 +56,7 @@ class MyAccount extends React.Component {
     return (
       <div className="main-content-wrapper">
         <div>
-          <h2>My Account</h2>
+          <h2>Account</h2>
         </div>
         <div>
           <div className="profile-wrapper-div">

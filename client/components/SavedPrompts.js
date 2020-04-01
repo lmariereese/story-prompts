@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getAllSavedPrompts, getOnePrompt } from '../store/reducers/prompts';
+import {connect} from 'react-redux';
+import {getAllSavedPrompts, getOnePrompt} from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
-import { withRouter, Link } from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import history from '../history';
 
 class SavedPrompts extends React.Component {
@@ -22,7 +22,7 @@ class SavedPrompts extends React.Component {
     return (
       <div className="main-content-wrapper">
         <div>
-          <h2>Your Saved Prompts</h2>
+          <h2>Saved Prompts</h2>
         </div>
         <div className="prompt-list-div">
           {this.props.user.id

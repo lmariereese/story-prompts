@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {sharePrompt} from '../store/reducers/storyElements';
-// import copyLinkIcon from '../../public/copyLinkIcon.png';
 const url = 'localhost:8080';
 
 class ShareableLinkPopup extends React.Component {
@@ -32,7 +31,15 @@ class ShareableLinkPopup extends React.Component {
     return (
       <div>
         {this.props.current.urlToken ? (
-          <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
+          <div>
+            <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
+            <img
+              src="https://image.flaticon.com/icons/svg/126/126481.svg"
+              alt="link icon"
+              width="20"
+              height="20"
+            />
+          </div>
         ) : (
           ''
         )}

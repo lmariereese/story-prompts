@@ -253,7 +253,7 @@ PromptGenerator component
   margin: 5px 0;
 }
 
-.prompt-action-btns div {
+.prompt-action-btns > div {
   margin: auto 0;
 }
 

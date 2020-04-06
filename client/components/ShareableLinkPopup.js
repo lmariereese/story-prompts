@@ -31,14 +31,16 @@ class ShareableLinkPopup extends React.Component {
     return (
       <div>
         {this.props.current.urlToken ? (
-          <div>
+          <div className="share-popup-wrapper">
             <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
-            <img
-              src="https://image.flaticon.com/icons/svg/126/126481.svg"
-              alt="link icon"
-              width="20"
-              height="20"
-            />
+            <button type="button" className="link-icon">
+              <img
+                src="https://image.flaticon.com/icons/svg/126/126481.svg"
+                alt="link icon"
+                width="20"
+                height="20"
+              />
+            </button>
           </div>
         ) : (
           ''

@@ -365,6 +365,22 @@ PromptGenerator component
   flex-direction: row;
 }
 
+/* ------------------------------
+-- SHARE PROMPT POPUP STYLES --
+------------------------------ */
+
+.share-popup-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.link-icon {
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 /* LOGIN & SIGN UP STYLES */
 
 .ls-section-wrapper {

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {sharePrompt} from '../store/reducers/storyElements';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 const url = 'localhost:8080';
 
 class ShareableLinkPopup extends React.Component {
@@ -28,19 +29,22 @@ class ShareableLinkPopup extends React.Component {
   }
 
   render() {
+    const toCopy = `${url}/prompts/${this.props.current.urlToken}`;
     return (
       <div>
         {this.props.current.urlToken ? (
           <div className="share-popup-wrapper">
             <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
-            <button type="button" className="link-icon">
-              <img
-                src="https://image.flaticon.com/icons/svg/126/126481.svg"
-                alt="link icon"
-                width="20"
-                height="20"
-              />
-            </button>
+            <CopyToClipboard text={toCopy}>
+              <button type="button" className="link-icon">
+                <img
+                  src="https://image.flaticon.com/icons/svg/126/126481.svg"
+                  alt="link icon"
+                  width="20"
+                  height="20"
+                />
+              </button>
+            </CopyToClipboard>
           </div>
         ) : (
           ''

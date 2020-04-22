@@ -15,6 +15,8 @@ import history from '../history';
 import ShareableLinkPopup from './ShareableLinkPopup';
 import PromptDisplay from './PromptDisplay';
 
+const styles = {width: 'inherit', minWidth: '50%'};
+
 class PromptGenerator extends React.Component {
   constructor(props) {
     super(props);
@@ -104,6 +106,7 @@ class PromptGenerator extends React.Component {
                       </button>
                     }
                     modal
+                    contentStyle={styles}
                   >
                     {close => <ShareableLinkPopup close={close} />}
                   </Popup>

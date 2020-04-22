@@ -445,7 +445,6 @@ ACCOUNT COMPONENT STYLES
 .profile-section {
   display: flex;
   flex-direction: column;
-  width: 40%;
   margin-bottom: 20px;
   min-height: 82px;
 }
@@ -554,6 +553,13 @@ ACCOUNT COMPONENT STYLES
   background-color: white;
   border: 1px solid #ffd6d3;
   color: #cfd7e6;
+}
+
+/* Tablet landscape and larger */
+@media all and (min-width: 992px) {
+  .profile-section {
+    width: 40%;
+  }
 }
 
 /* ----------------------

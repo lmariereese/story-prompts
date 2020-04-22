@@ -239,7 +239,7 @@ PromptGenerator component
   padding: 15px 25px;
   background: white;
   margin: 1.5rem auto;
-  width: 80%;
+  width: 90%;
 }
 
 .prompt-heading-div > h2 {
@@ -255,11 +255,13 @@ PromptGenerator component
 }
 
 .prompt > p {
-  /* font-family: 'Lora', serif; */
+  display: inline;
   letter-spacing: 1px;
   border-bottom: 1px solid lightgrey;
-  font-size: 28px;
+  font-size: 1.3rem;
   margin: 5px 0px;
+  line-height: 1.5;
+  padding-right: 5px;
 }
 
 .prompt-action-btns {
@@ -334,6 +336,19 @@ PromptGenerator component
 
 /* Tablet landscape and larger */
 @media all and (min-width: 992px) {
+  .prompt-wrapper-div {
+    width: 80%;
+  }
+
+  .prompt > p {
+    display: block;
+    letter-spacing: 1px;
+    border-bottom: 1px solid lightgrey;
+    font-size: 28px;
+    margin: 5px 0px;
+    line-height: 1.3;
+    padding-right: 0;
+  }
 }
 
 /* Laptops and larger */
@@ -356,7 +371,9 @@ PromptGenerator component
   cursor: pointer;
 }
 
-/* LOGIN & SIGN UP STYLES */
+/* ----------------------
+LOGIN & SIGN UP STYLES
+---------------------- */
 
 .ls-section-wrapper {
   display: flex;
@@ -383,7 +400,9 @@ PromptGenerator component
   margin: 1em;
 }
 
-/* SAVED PROMPT VIEW STYLES*/
+/* ----------------------
+SAVED PROMPT VIEW STYLES
+---------------------- */
 
 .prompt-list-div {
   display: flex;
@@ -391,7 +410,9 @@ PromptGenerator component
   flex-wrap: wrap;
 }
 
-/* SINGLE PROMPT CARD STYLES*/
+/* ----------------------
+SINGLE PROMPT CARD STYLES
+---------------------- */
 
 .single-prompt-div {
   padding: 10px;
@@ -414,9 +435,9 @@ PromptGenerator component
   }
 }
 
-/*
------- MY ACCOUNT COMPONENT STYLES
-*/
+/* ----------------------
+ACCOUNT COMPONENT STYLES
+---------------------- */
 
 .profile-wrapper-div {
   display: flex;
@@ -537,9 +558,9 @@ PromptGenerator component
   color: #cfd7e6;
 }
 
-/*
-  FORM ERROR
-*/
+/* ----------------------
+FORM ERROR
+---------------------- */
 .form-error-message {
   color: red;
   font-size: 12px;
@@ -547,9 +568,9 @@ PromptGenerator component
   margin-top: 0;
 }
 
-/*
-  SINGLE PROMPT VIEW
-*/
+/* ----------------------
+SINGLE PROMPT VIEW
+----------------------*/
 
 .back-btn {
   background-color: white;
@@ -562,9 +583,9 @@ PromptGenerator component
   padding: 0;
 }
 
-/*
-  WRITING EDITOR COMPONENT
-*/
+/* ----------------------
+WRITING EDITOR COMPONENT
+---------------------- */
 
 .editor-wrapper {
   min-height: 400px;

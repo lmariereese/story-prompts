@@ -423,8 +423,14 @@ SINGLE PROMPT CARD STYLES
 
 .single-prompt-div p {
   font-size: 14px;
-  margin: 5px;
+  margin: 5px 5px 12px 5px;
   letter-spacing: 0.01rem;
+}
+
+.single-prompt-div .small-date {
+  color: lightgray;
+  font-size: 12px;
+  margin: 5px;
 }
 
 /* Tablet landscape and larger */

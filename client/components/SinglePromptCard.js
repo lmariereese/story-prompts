@@ -6,7 +6,9 @@ const SinglePromptCard = props => {
   const {prompts} = props;
   return (
     <div className="single-prompt-div">
-      <p>{moment(prompts.createdAt).format('MMM D YYYY')}</p>
+      <p className="small-date">
+        {moment(prompts.createdAt).format('MMM D YYYY')}
+      </p>
       <p>
         {`${prompts.setting}, ${addArticle(prompts.adjective)} ${
           prompts.character

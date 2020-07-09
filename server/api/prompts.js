@@ -9,7 +9,8 @@ router.get('/', async (req, res, next) => {
       include: [{model: Content}],
       where: {
         userId: req.user.id
-      }
+      },
+      order: [['createdAt', 'DESC']]
     });
     if (allPrompts) {
       res.json(allPrompts);

@@ -1,11 +1,12 @@
 import React from 'react';
 import {addArticle} from './helperFuncs';
+import moment from 'moment';
 
 const SinglePromptCard = props => {
   const {prompts} = props;
   return (
     <div className="single-prompt-div">
-      <p>{prompts.createdAt}</p>
+      <p>{moment(prompts.createdAt).format('MMM D YYYY')}</p>
       <p>
         {`${prompts.setting}, ${addArticle(prompts.adjective)} ${
           prompts.character

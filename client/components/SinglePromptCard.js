@@ -1,10 +1,11 @@
 import React from 'react';
-import { addArticle } from './helperFuncs';
+import {addArticle} from './helperFuncs';
 
 const SinglePromptCard = props => {
-  const { prompts } = props;
+  const {prompts} = props;
   return (
     <div className="single-prompt-div">
+      <p>{prompts.createdAt}</p>
       <p>
         {`${prompts.setting}, ${addArticle(prompts.adjective)} ${
           prompts.character

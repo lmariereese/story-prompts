@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
       where: {
         userId: req.user.id
       },
-      order: [['createdAt', 'DESC']]
+      order: [['createdAt', 'ASC']]
     });
     if (allPrompts) {
       res.json(allPrompts);

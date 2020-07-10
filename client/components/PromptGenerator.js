@@ -56,10 +56,11 @@ class PromptGenerator extends React.Component {
         autoClose: 2000
       });
     } else {
-      toast('Log in or sign up to start saving prompts!', {
-        position: 'bottom-right',
-        autoClose: 2000
-      });
+      history.push('/account/signup');
+      // toast('Log in or sign up to start saving prompts!', {
+      //   position: 'bottom-right',
+      //   autoClose: 2000
+      // });
     }
   }
 

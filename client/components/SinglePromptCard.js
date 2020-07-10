@@ -17,7 +17,7 @@ const SinglePromptCard = props => {
       {props.view ? (
         <div>
           <button type="button" onClick={() => props.more(prompts.id)}>
-            More
+            {prompts.content !== null ? 'Continue' : 'Start'}
           </button>
         </div>
       ) : (

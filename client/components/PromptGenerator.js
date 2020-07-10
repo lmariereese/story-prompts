@@ -57,10 +57,6 @@ class PromptGenerator extends React.Component {
       });
     } else {
       history.push('/account/signup');
-      // toast('Log in or sign up to start saving prompts!', {
-      //   position: 'bottom-right',
-      //   autoClose: 2000
-      // });
     }
   }
 

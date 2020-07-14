@@ -9,7 +9,9 @@ class SavedPrompts extends React.Component {
   constructor(props) {
     super(props);
     this.more = this.more.bind(this);
+    this.filter = this.filter.bind(this);
   }
+
   componentDidMount() {
     this.props.getAllSavedPrompts();
   }
@@ -18,11 +20,20 @@ class SavedPrompts extends React.Component {
     history.push(`/saved-prompts/prompt/${id}`);
   }
 
+  filter() {
+    console.log('filter method!');
+  }
+
   render() {
     return (
       <div className="main-content-wrapper">
         <div>
           <h2>Saved Prompts</h2>
+          <div className="filter-div">
+            <button type="button">All</button>
+            <button type="button">In-Progress</button>
+          </div>
+          <hr className="filter-hr" />
         </div>
         <div className="prompt-list-div">
           {this.props.user.id

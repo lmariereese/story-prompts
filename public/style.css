@@ -412,6 +412,24 @@ SAVED PROMPT VIEW STYLES
 /* ----------------------
 SINGLE PROMPT CARD STYLES
 ---------------------- */
+.filter-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.filter-div button {
+  min-width: 20px;
+  background-color: white;
+  border: 1px solid #b4deed;
+  margin-right: 10px;
+  border-radius: 2px;
+  color: inherit;
+}
+
+.filter-hr {
+  border: 1px solid #b4deed;
+}
 
 .single-prompt-div {
   padding: 10px;

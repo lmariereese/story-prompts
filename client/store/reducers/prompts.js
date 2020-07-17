@@ -97,6 +97,7 @@ const initialState = {
 const prompts = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_PROMPT: {
+      action.prompt.content = null;
       const allPrompts = [...state.all, action.prompt];
       return {...state, all: allPrompts};
     }

@@ -600,16 +600,15 @@ FORM ERROR
 /* ----------------------
 SINGLE PROMPT VIEW
 ----------------------*/
-
-.back-btn {
-  background-color: white;
-  border: none;
-  cursor: pointer;
+.back-link {
   color: #114b5f;
   font-family: 'Roboto', sans-serif;
-  margin-top: 1rem;
   font-size: 14px;
-  padding: 0;
+}
+
+.back-link p {
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
 }
 
 /* ----------------------

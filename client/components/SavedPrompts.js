@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getAllSavedPrompts, getOnePrompt} from '../store/reducers/prompts';
+import {
+  setVisibilityFilter,
+  getVisiblePrompts
+} from '../store/reducers/visibilityFilter';
 import SinglePromptCard from './SinglePromptCard';
 import {withRouter, Link} from 'react-router-dom';
 import history from '../history';
@@ -14,14 +18,23 @@ class SavedPrompts extends React.Component {
 
   componentDidMount() {
     this.props.getAllSavedPrompts();
+    // if (!this.props.savedPrompts.length) {
+    //   this.props.getAllSavedPrompts();
+    // }
+    // if (this.props.savedPrompts.length) {
+    //   this.props.getVisiblePrompts(this.props.savedPrompts, this.props.visibilityFilter)
+    // } else {
+
+    // }
   }
 
   more(id) {
     history.push(`/saved-prompts/prompt/${id}`);
   }
 
-  filter() {
+  filter(f) {
     console.log('filter method!');
+    this.props.setVisibilityFilter(f);
   }
 
   render() {
@@ -30,8 +43,15 @@ class SavedPrompts extends React.Component {
         <div>
           <h2>Saved Prompts</h2>
           <div className="filter-div">
-            <button type="button">All</button>
-            <button type="button">In-Progress</button>
+            <button type="button" onClick={() => this.filter('SHOW_ALL')}>
+              All
+            </button>
+            <button
+              type="button"
+              onClick={() => this.filter('SHOW_IN_PROGRESS')}
+            >
+              In-Progress
+            </button>
           </div>
           <hr className="filter-hr" />
         </div>
@@ -65,13 +85,16 @@ class SavedPrompts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  savedPrompts: state.prompts.all,
+  // savedPrompts: state.prompts.all,
+  savedPrompts: getVisiblePrompts(state.prompts.all, state.visibilityFilter),
+  visibilityFilter: state.visibilityFilter,
   user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
   getAllSavedPrompts: () => dispatch(getAllSavedPrompts()),
-  getOnePrompt: id => dispatch(getOnePrompt(id))
+  getOnePrompt: id => dispatch(getOnePrompt(id)),
+  setVisibilityFilter: f => dispatch(setVisibilityFilter(f))
 });
 
 export default withRouter(

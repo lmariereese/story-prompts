@@ -21,13 +21,9 @@ class SinglePromptView extends React.Component {
     return (
       <div className="main-content-wrapper">
         <div>
-          <button
-            type="button"
-            className="back-btn"
-            onClick={() => history.push('/saved-prompts')}
-          >
-            Back
-          </button>
+          <Link to="/saved-prompts" className="back-link">
+            <p>Back</p>
+          </Link>
         </div>
         <h2>Your Story</h2>
         <div>

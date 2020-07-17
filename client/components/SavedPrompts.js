@@ -18,14 +18,6 @@ class SavedPrompts extends React.Component {
 
   componentDidMount() {
     this.props.getAllSavedPrompts();
-    // if (!this.props.savedPrompts.length) {
-    //   this.props.getAllSavedPrompts();
-    // }
-    // if (this.props.savedPrompts.length) {
-    //   this.props.getVisiblePrompts(this.props.savedPrompts, this.props.visibilityFilter)
-    // } else {
-
-    // }
   }
 
   more(id) {
@@ -33,7 +25,6 @@ class SavedPrompts extends React.Component {
   }
 
   filter(f) {
-    console.log('filter method!');
     this.props.setVisibilityFilter(f);
   }
 
@@ -43,17 +34,30 @@ class SavedPrompts extends React.Component {
         <div>
           <h2>Saved Prompts</h2>
           <div className="filter-div">
-            <button type="button" onClick={() => this.filter('SHOW_ALL')}>
+            <button
+              type="button"
+              className={
+                this.props.visibilityFilter === 'SHOW_ALL'
+                  ? 'active-filter'
+                  : ''
+              }
+              onClick={() => this.filter('SHOW_ALL')}
+            >
               All
             </button>
             <button
               type="button"
+              className={
+                this.props.visibilityFilter === 'SHOW_IN_PROGRESS'
+                  ? 'active-filter'
+                  : ''
+              }
               onClick={() => this.filter('SHOW_IN_PROGRESS')}
             >
               In-Progress
             </button>
           </div>
-          <hr className="filter-hr" />
+          {/* <hr className="filter-hr" /> */}
         </div>
         <div className="prompt-list-div">
           {this.props.user.id
@@ -85,7 +89,6 @@ class SavedPrompts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  // savedPrompts: state.prompts.all,
   savedPrompts: getVisiblePrompts(state.prompts.all, state.visibilityFilter),
   visibilityFilter: state.visibilityFilter,
   user: state.user

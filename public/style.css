@@ -409,6 +409,12 @@ SAVED PROMPT VIEW STYLES
   flex-wrap: wrap;
 }
 
+.filter-div button.active-filter {
+  background-color: #2f738a;
+  border: 1px solid #2f738a;
+  color: white;
+}
+
 /* ----------------------
 SINGLE PROMPT CARD STYLES
 ---------------------- */
@@ -416,6 +422,7 @@ SINGLE PROMPT CARD STYLES
   display: flex;
   flex-direction: row;
   justify-content: start;
+  margin-left: 0.7rem;
 }
 
 .filter-div button {

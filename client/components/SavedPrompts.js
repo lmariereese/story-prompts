@@ -16,9 +16,6 @@ import history from '../history';
 class SavedPrompts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: 'oldest'
-    };
     this.handleChange = this.handleChange.bind(this);
     this.more = this.more.bind(this);
     this.filter = this.filter.bind(this);
@@ -29,8 +26,6 @@ class SavedPrompts extends React.Component {
   }
 
   handleChange(event) {
-    console.log('inside handleChange');
-    // this.setState({value: event.target.value});
     this.props.sortBy(event.target.value);
   }
 

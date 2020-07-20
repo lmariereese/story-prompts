@@ -434,8 +434,24 @@ SINGLE PROMPT CARD STYLES
   color: inherit;
 }
 
-.filter-hr {
+/* .filter-hr {
   border: 1px solid #b4deed;
+} */
+
+.sort-by-div {
+  margin-left: 0.7rem;
+}
+
+.sort-by-div label {
+  display: inline;
+  font-size: 12px;
+  /* margin-right: 0.7rem; */
+}
+
+.sort-by-div select {
+  font-size: 12px;
+  border: inherit;
+  color: #114b5f;
 }
 
 .single-prompt-div {

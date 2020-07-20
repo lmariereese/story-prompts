@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getAllSavedPrompts, getOnePrompt} from '../store/reducers/prompts';
+import {
+  getAllSavedPrompts,
+  getOnePrompt,
+  sortBy
+} from '../store/reducers/prompts';
 import {
   setVisibilityFilter,
   getVisiblePrompts
@@ -12,12 +16,22 @@ import history from '../history';
 class SavedPrompts extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      value: 'oldest'
+    };
+    this.handleChange = this.handleChange.bind(this);
     this.more = this.more.bind(this);
     this.filter = this.filter.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllSavedPrompts();
+  }
+
+  handleChange(event) {
+    console.log('inside handleChange');
+    // this.setState({value: event.target.value});
+    this.props.sortBy(event.target.value);
   }
 
   more(id) {
@@ -56,6 +70,13 @@ class SavedPrompts extends React.Component {
             >
               In-Progress
             </button>
+          </div>
+          <div className="sort-by-div">
+            <label htmlFor="">SORT BY:</label>
+            <select onChange={this.handleChange}>
+              <option value="oldest">Oldest first</option>
+              <option value="newest">Newest first</option>
+            </select>
           </div>
           {/* <hr className="filter-hr" /> */}
         </div>
@@ -97,7 +118,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getAllSavedPrompts: () => dispatch(getAllSavedPrompts()),
   getOnePrompt: id => dispatch(getOnePrompt(id)),
-  setVisibilityFilter: f => dispatch(setVisibilityFilter(f))
+  setVisibilityFilter: f => dispatch(setVisibilityFilter(f)),
+  sortBy: order => dispatch(sortBy(order))
 });
 
 export default withRouter(

@@ -1,10 +1,12 @@
 import axios from 'axios';
+import moment from 'moment';
 import {
   SAVE_PROMPT,
   GET_ALL_SAVED_PROMPTS,
   GET_ONE_SAVED_PROMPT,
   SAVE_CONTENT,
-  REMOVE_USER
+  REMOVE_USER,
+  SORT_BY
 } from './index';
 
 // Action Creators
@@ -31,6 +33,11 @@ const gotOneSavedPrompt = prompt => ({
 const saveContent = content => ({
   type: SAVE_CONTENT,
   content
+});
+
+export const sortBy = order => ({
+  type: SORT_BY,
+  order: order
 });
 
 // Thunks
@@ -93,7 +100,12 @@ const initialState = {
   currentContent: {}
 };
 
+// const compare = (a, b) => {
+
+// }
+
 // Reducer
+// eslint-disable-next-line complexity
 const prompts = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_PROMPT: {
@@ -107,6 +119,23 @@ const prompts = (state = initialState, action) => {
     case GET_ONE_SAVED_PROMPT: {
       const promptContent = action.prompt.content;
       return {...state, current: action.prompt, currentContent: promptContent};
+    }
+    case SORT_BY: {
+      const copy = [...state.all];
+      if (action.order === 'newest') {
+        copy.sort(
+          (a, b) =>
+            moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf()
+        );
+      }
+      if (action.order === 'oldest') {
+        copy.sort(
+          (a, b) =>
+            moment(a.createdAt).valueOf() - moment(b.createdAt).valueOf()
+        );
+      }
+      console.log(copy[1].createdAt);
+      return {...state, all: copy};
     }
     case SAVE_CONTENT: {
       return {...state, currentContent: action.content};

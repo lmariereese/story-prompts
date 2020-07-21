@@ -14,8 +14,10 @@ class WritingEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.editor = React.createRef();
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.focus = this.focus.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +30,10 @@ class WritingEditor extends React.Component {
         )
       });
     }
+  }
+
+  focus() {
+    this.editor.current.focus();
   }
 
   onChange = editorState => {
@@ -82,12 +88,15 @@ class WritingEditor extends React.Component {
             Save
           </button>
         </div>
-        <Editor
-          editorState={this.state.editorState}
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.onChange}
-          placeholder="Tell a story"
-        />
+        <div className="focus-wrapper" onClick={this.focus}>
+          <Editor
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            placeholder="Tell a story"
+            ref={this.editor}
+          />
+        </div>
       </div>
     );
   }

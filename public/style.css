@@ -653,6 +653,10 @@ WRITING EDITOR COMPONENT
   padding-bottom: 10px;
 }
 
+.focus-wrapper {
+  min-height: 400px;
+}
+
 .DraftEditor-root {
   height: 100%;
   overflow-y: auto;

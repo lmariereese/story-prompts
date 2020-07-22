@@ -68,16 +68,7 @@ router.get('/prompt/:id', async (req, res, next) => {
       where: {
         userId: req.user.id,
         id: req.params.id
-      },
-      attributes: [
-        'id',
-        'setting',
-        'adjective',
-        'character',
-        'detail',
-        'action',
-        'climax'
-      ]
+      }
     });
     if (onePrompt) {
       res.json(onePrompt);

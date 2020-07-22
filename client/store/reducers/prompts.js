@@ -100,10 +100,6 @@ const initialState = {
   currentContent: {}
 };
 
-// const compare = (a, b) => {
-
-// }
-
 // Reducer
 // eslint-disable-next-line complexity
 const prompts = (state = initialState, action) => {
@@ -134,7 +130,6 @@ const prompts = (state = initialState, action) => {
             moment(a.createdAt).valueOf() - moment(b.createdAt).valueOf()
         );
       }
-      console.log(copy[1].createdAt);
       return {...state, all: copy};
     }
     case SAVE_CONTENT: {

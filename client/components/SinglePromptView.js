@@ -34,7 +34,7 @@ class SinglePromptView extends React.Component {
               {this.props.currentContent !== null &&
               this.props.currentContent.updatedAt !== undefined ? (
                 <SmallDate
-                  text="Last saved:"
+                  text="Last save:"
                   timestamp={this.props.currentContent.updatedAt}
                 />
               ) : (

@@ -9,6 +9,7 @@ import {
 } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import {toast} from 'react-toastify';
+import Toolbar from './Toolbar';
 import {saveCurrentContent} from '../store/reducers/prompts';
 
 class WritingEditor extends React.Component {
@@ -20,6 +21,7 @@ class WritingEditor extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.focus = this.focus.bind(this);
     this.inlineStyle = this.inlineStyle.bind(this);
+    this.blockStyle = this.blockStyle.bind(this);
   }
 
   componentDidMount() {
@@ -32,10 +34,6 @@ class WritingEditor extends React.Component {
         )
       });
     }
-  }
-
-  focus() {
-    this.editor.current.focus();
   }
 
   onChange = editorState => {
@@ -75,6 +73,10 @@ class WritingEditor extends React.Component {
     return 'not-handled';
   }
 
+  focus() {
+    this.editor.current.focus();
+  }
+
   inlineStyle = (event, style) => {
     event.preventDefault();
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, style));
@@ -95,42 +97,11 @@ class WritingEditor extends React.Component {
           <button type="button" onClick={this.handleSubmit}>
             Save
           </button>
-          <button
-            type="button"
-            onMouseDown={event => this.inlineStyle(event, 'BOLD')}
-          >
-            Bold
-          </button>
-          <button
-            type="button"
-            onMouseDown={event => this.inlineStyle(event, 'ITALIC')}
-          >
-            Italic
-          </button>
-          <button
-            type="button"
-            onMouseDown={event => this.inlineStyle(event, 'UNDERLINE')}
-          >
-            Underline
-          </button>
-          <button
-            type="button"
-            onMouseDown={event => this.blockStyle(event, 'header-one')}
-          >
-            h1
-          </button>
-          <button
-            type="button"
-            onMouseDown={event => this.blockStyle(event, 'header-two')}
-          >
-            h2
-          </button>
-          <button
-            type="button"
-            onMouseDown={event => this.blockStyle(event, 'header-three')}
-          >
-            h3
-          </button>
+          <Toolbar
+            inlineStyle={this.inlineStyle}
+            blockStyle={this.blockStyle}
+            editorState={this.state.editorState}
+          />
         </div>
         <div className="focus-wrapper">
           <Editor

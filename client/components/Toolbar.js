@@ -1,7 +1,7 @@
 import React from 'react';
 import {RichUtils} from 'draft-js';
 
-const Toolbar = ({inlineStyle, blockStyle, editorState}) => {
+const Toolbar = ({inlineStyleToggle, blockStyleToggle, editorState}) => {
   const inline = [
     {value: 'Bold', style: 'BOLD'},
     {value: 'Italic', style: 'ITALIC'},
@@ -23,7 +23,7 @@ const Toolbar = ({inlineStyle, blockStyle, editorState}) => {
             type="button"
             key={btn.style}
             className={currentStyle.has(btn.style) ? 'active' : ''}
-            onMouseDown={event => inlineStyle(event, btn.style)}
+            onMouseDown={event => inlineStyleToggle(event, btn.style)}
           >
             {btn.value}
           </button>
@@ -35,7 +35,7 @@ const Toolbar = ({inlineStyle, blockStyle, editorState}) => {
             type="button"
             key={btn.block}
             className={currentBlock === btn.block ? 'active' : ''}
-            onMouseDown={event => blockStyle(event, btn.block)}
+            onMouseDown={event => blockStyleToggle(event, btn.block)}
           >
             {btn.value}
           </button>

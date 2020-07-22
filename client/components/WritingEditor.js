@@ -20,8 +20,8 @@ class WritingEditor extends React.Component {
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.focus = this.focus.bind(this);
-    this.inlineStyle = this.inlineStyle.bind(this);
-    this.blockStyle = this.blockStyle.bind(this);
+    this.inlineStyleToggle = this.inlineStyleToggle.bind(this);
+    this.blockStyleToggle = this.blockStyleToggle.bind(this);
   }
 
   componentDidMount() {
@@ -77,12 +77,12 @@ class WritingEditor extends React.Component {
     this.editor.current.focus();
   }
 
-  inlineStyle = (event, style) => {
+  inlineStyleToggle = (event, style) => {
     event.preventDefault();
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, style));
   };
 
-  blockStyle = (event, block) => {
+  blockStyleToggle = (event, block) => {
     event.preventDefault();
     this.onChange(RichUtils.toggleBlockType(this.state.editorState, block));
   };
@@ -98,8 +98,8 @@ class WritingEditor extends React.Component {
             Save
           </button>
           <Toolbar
-            inlineStyle={this.inlineStyle}
-            blockStyle={this.blockStyle}
+            inlineStyleToggle={this.inlineStyleToggle}
+            blockStyleToggle={this.blockStyleToggle}
             editorState={this.state.editorState}
           />
         </div>

@@ -648,6 +648,9 @@ WRITING EDITOR COMPONENT
 }
 
 .editor-controls-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 7px;
   border-bottom: 1px solid #ffd6d3;
   padding-bottom: 10px;
@@ -655,10 +658,19 @@ WRITING EDITOR COMPONENT
 
 .focus-wrapper {
   min-height: 400px;
+  margin-top: 1rem;
+}
+
+.toolbar button {
+  margin: 0 0.7rem 0 0;
+  background-color: white;
+  border: 1px solid white;
+  color: #2f738a;
+  border-radius: 4px;
 }
 
 .toolbar .active {
-  background-color: pink;
+  background-color: #ffd6d3;
 }
 
 .DraftEditor-root {

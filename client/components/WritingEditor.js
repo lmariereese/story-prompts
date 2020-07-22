@@ -94,14 +94,16 @@ class WritingEditor extends React.Component {
     return (
       <div className="editor-wrapper">
         <div className="editor-controls-wrapper">
-          <button type="button" onClick={this.handleSubmit}>
-            Save
-          </button>
           <Toolbar
             inlineStyleToggle={this.inlineStyleToggle}
             blockStyleToggle={this.blockStyleToggle}
             editorState={this.state.editorState}
           />
+          <div>
+            <button type="button" onClick={this.handleSubmit}>
+              Save
+            </button>
+          </div>
         </div>
         <div className="focus-wrapper">
           <Editor

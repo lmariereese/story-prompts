@@ -634,6 +634,15 @@ SINGLE PROMPT VIEW
   letter-spacing: 0.5px;
 }
 
+.date-wrapper {
+  margin-left: 0.7rem;
+}
+
+.small-date {
+  color: lightgray;
+  font-size: 12px;
+}
+
 /* ----------------------
 WRITING EDITOR COMPONENT
 ---------------------- */

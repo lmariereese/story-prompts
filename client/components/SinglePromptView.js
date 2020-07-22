@@ -4,6 +4,7 @@ import {withRouter, Link} from 'react-router-dom';
 import history from '../history';
 import {getOnePrompt} from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
+import SmallDate from './SmallDate';
 import WritingEditor from './WritingEditor';
 import 'draft-js/dist/Draft.css';
 
@@ -30,6 +31,15 @@ class SinglePromptView extends React.Component {
           {this.props.prompt.id !== undefined ? (
             <div>
               <SinglePromptCard prompts={this.props.prompt} />
+              {this.props.currentContent !== null &&
+              this.props.currentContent.updatedAt !== undefined ? (
+                <SmallDate
+                  text="Last saved:"
+                  timestamp={this.props.currentContent.updatedAt}
+                />
+              ) : (
+                ''
+              )}
               <WritingEditor />
             </div>
           ) : (

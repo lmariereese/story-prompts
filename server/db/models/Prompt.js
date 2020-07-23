@@ -28,6 +28,9 @@ const Prompt = db.define('prompt', {
   },
   urlToken: {
     type: Sequelize.STRING
+  },
+  starred: {
+    type: Sequelize.BOOLEAN
   }
 });
 

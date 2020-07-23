@@ -41,7 +41,12 @@ class SavedPrompts extends React.Component {
     return (
       <div className="main-content-wrapper">
         <div>
-          <h2>Saved Prompts</h2>
+          <div className="page-heading-div">
+            <h2>Saved Prompts</h2>
+            <Link to="/prompts">
+              <p>Generate new prompt</p>
+            </Link>
+          </div>
           <div className="filter-div">
             <button
               type="button"

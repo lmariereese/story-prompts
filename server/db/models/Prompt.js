@@ -30,7 +30,8 @@ const Prompt = db.define('prompt', {
     type: Sequelize.STRING
   },
   starred: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 

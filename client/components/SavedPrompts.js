@@ -10,6 +10,7 @@ import {
   getVisiblePrompts
 } from '../store/reducers/visibilityFilter';
 import SinglePromptCard from './SinglePromptCard';
+import FilterButtons from './FilterButtons';
 import {withRouter, Link} from 'react-router-dom';
 import history from '../history';
 
@@ -47,7 +48,11 @@ class SavedPrompts extends React.Component {
               <p>Generate new prompt</p>
             </Link>
           </div>
-          <div className="filter-div">
+          <FilterButtons
+            filter={this.filter}
+            visibilityFilter={this.props.visibilityFilter}
+          />
+          {/* <div className="filter-div">
             <button
               type="button"
               className={
@@ -70,7 +75,7 @@ class SavedPrompts extends React.Component {
             >
               In-Progress
             </button>
-          </div>
+          </div> */}
           <div className="sort-by-div">
             <label htmlFor="">SORT BY:</label>
             <select onChange={this.handleChange}>

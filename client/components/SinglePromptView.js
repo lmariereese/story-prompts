@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 import history from '../history';
-import {getOnePrompt} from '../store/reducers/prompts';
+import {getOnePrompt, toggleStarredPrompt} from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
 import SmallDate from './SmallDate';
 import WritingEditor from './WritingEditor';
@@ -12,10 +12,15 @@ class SinglePromptView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.toggleStar = this.toggleStar.bind(this);
   }
 
   componentDidMount() {
     this.props.getOnePrompt(this.props.match.params.id);
+  }
+
+  toggleStar(prompt) {
+    this.props.toggleStarredPrompt(prompt);
   }
 
   render() {
@@ -30,7 +35,10 @@ class SinglePromptView extends React.Component {
         <div>
           {this.props.prompt.id !== undefined ? (
             <div>
-              <SinglePromptCard prompts={this.props.prompt} />
+              <SinglePromptCard
+                prompts={this.props.prompt}
+                toggleStar={this.toggleStar}
+              />
               {this.props.currentContent !== null &&
               this.props.currentContent.updatedAt !== undefined ? (
                 <SmallDate
@@ -58,7 +66,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  getOnePrompt: id => dispatch(getOnePrompt(id))
+  getOnePrompt: id => dispatch(getOnePrompt(id)),
+  toggleStarredPrompt: prompt => dispatch(toggleStarredPrompt(prompt))
 });
 
 export default withRouter(connect(mapState, mapDispatch)(SinglePromptView));

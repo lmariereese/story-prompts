@@ -134,15 +134,15 @@ const prompts = (state = initialState, action) => {
       return {...state, current: action.prompt, currentContent: promptContent};
     }
     case UPDATE_STARRED_TOGGLE: {
-      // let currentCopy = {...state.current};
-      // if (currentCopy.id )
+      let currentCopy = {...state.current};
+      currentCopy.starred = action.prompt.starred;
       const allPrompts = state.all.map(prompt => {
         if (prompt.id === action.prompt.id) {
           prompt.starred = action.prompt.starred;
         }
         return prompt;
       });
-      return {...state, all: allPrompts};
+      return {...state, all: allPrompts, current: currentCopy};
     }
     case SORT_BY: {
       const copy = [...state.all];

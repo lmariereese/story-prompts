@@ -12,10 +12,10 @@ const SinglePromptCard = props => {
         </p>
         <button
           type="button"
-          className={prompts.starred ? 'starred' : ''}
+          className={prompts.starred ? 'star-btn starred' : 'star-btn'}
           onClick={() => props.toggleStar(prompts)}
         >
-          Star
+          Starred
         </button>
       </div>
       <p>

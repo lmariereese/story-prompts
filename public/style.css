@@ -484,6 +484,13 @@ SINGLE PROMPT CARD STYLES
   box-shadow: 2px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
+/* selects the first child element of single-prompt-div */
+.single-prompt-div > :first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .single-prompt-div p {
   font-size: 14px;
   margin: 5px 5px 12px 5px;
@@ -496,8 +503,18 @@ SINGLE PROMPT CARD STYLES
   margin: 5px;
 }
 
+.star-btn {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  color: lightgrey;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
 .starred {
-  background-color: yellow;
+  background-color: lightyellow;
+  color: inherit;
 }
 
 /* Tablet landscape and larger */

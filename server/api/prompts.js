@@ -80,6 +80,30 @@ router.get('/prompt/:id', async (req, res, next) => {
   }
 });
 
+router.put('/prompt/:id', async (req, res, next) => {
+  try {
+    if (!req.user) res.status(401).send();
+    else {
+      const [numOfAffectedRows, affectedRows] = await Prompt.update(
+        {
+          starred: !req.body.prompt.starred
+        },
+        {
+          where: {
+            id: req.params.id
+          },
+          returning: true
+        }
+      );
+      if (numOfAffectedRows !== 0) {
+        res.json(affectedRows[0]);
+      }
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/:urlToken', async (req, res, next) => {
   try {
     const onePrompt = await Prompt.findOne({

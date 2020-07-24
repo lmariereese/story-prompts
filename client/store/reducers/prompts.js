@@ -6,7 +6,8 @@ import {
   GET_ONE_SAVED_PROMPT,
   SAVE_CONTENT,
   REMOVE_USER,
-  SORT_BY
+  SORT_BY,
+  UPDATE_STARRED_TOGGLE
 } from './index';
 
 // Action Creators
@@ -27,6 +28,11 @@ const gotAllSavedPrompts = prompts => ({
 
 const gotOneSavedPrompt = prompt => ({
   type: GET_ONE_SAVED_PROMPT,
+  prompt
+});
+
+const updateStarred = prompt => ({
+  type: UPDATE_STARRED_TOGGLE,
   prompt
 });
 
@@ -63,6 +69,17 @@ export const getOnePrompt = id => async dispatch => {
   try {
     const {data} = await axios.get(`/api/prompts/prompt/${id}`);
     dispatch(gotOneSavedPrompt(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const toggleStarredPrompt = prompt => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/prompts/prompt/${prompt.id}`, {
+      prompt
+    });
+    dispatch(updateStarred(data));
   } catch (err) {
     console.error(err);
   }
@@ -115,6 +132,17 @@ const prompts = (state = initialState, action) => {
     case GET_ONE_SAVED_PROMPT: {
       const promptContent = action.prompt.content;
       return {...state, current: action.prompt, currentContent: promptContent};
+    }
+    case UPDATE_STARRED_TOGGLE: {
+      // let currentCopy = {...state.current};
+      // if (currentCopy.id )
+      const allPrompts = state.all.map(prompt => {
+        if (prompt.id === action.prompt.id) {
+          prompt.starred = action.prompt.starred;
+        }
+        return prompt;
+      });
+      return {...state, all: allPrompts};
     }
     case SORT_BY: {
       const copy = [...state.all];

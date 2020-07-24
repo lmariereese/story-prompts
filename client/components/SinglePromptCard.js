@@ -6,9 +6,18 @@ const SinglePromptCard = props => {
   const {prompts} = props;
   return (
     <div className="single-prompt-div">
-      <p className="small-date">
-        {moment(prompts.createdAt).format('MMM D YYYY')}
-      </p>
+      <div>
+        <p className="small-date">
+          {moment(prompts.createdAt).format('MMM D YYYY')}
+        </p>
+        <button
+          type="button"
+          className={prompts.starred ? 'starred' : ''}
+          onClick={() => props.toggleStar(prompts)}
+        >
+          Star
+        </button>
+      </div>
       <p>
         {`${prompts.setting}, ${addArticle(prompts.adjective)} ${
           prompts.character

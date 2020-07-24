@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {
   getAllSavedPrompts,
   getOnePrompt,
-  sortBy
+  sortBy,
+  toggleStarredPrompt
 } from '../store/reducers/prompts';
 import {
   setVisibilityFilter,
@@ -20,6 +21,7 @@ class SavedPrompts extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.more = this.more.bind(this);
     this.filter = this.filter.bind(this);
+    this.toggleStar = this.toggleStar.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +38,10 @@ class SavedPrompts extends React.Component {
 
   filter(f) {
     this.props.setVisibilityFilter(f);
+  }
+
+  toggleStar(prompt) {
+    this.props.toggleStarredPrompt(prompt);
   }
 
   render() {
@@ -70,6 +76,7 @@ class SavedPrompts extends React.Component {
                     prompts={item}
                     view="list"
                     more={this.more}
+                    toggleStar={this.toggleStar}
                   />
                 );
               })
@@ -100,7 +107,8 @@ const mapDispatchToProps = dispatch => ({
   getAllSavedPrompts: () => dispatch(getAllSavedPrompts()),
   getOnePrompt: id => dispatch(getOnePrompt(id)),
   setVisibilityFilter: f => dispatch(setVisibilityFilter(f)),
-  sortBy: order => dispatch(sortBy(order))
+  sortBy: order => dispatch(sortBy(order)),
+  toggleStarredPrompt: prompt => dispatch(toggleStarredPrompt(prompt))
 });
 
 export default withRouter(

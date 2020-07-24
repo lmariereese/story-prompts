@@ -496,6 +496,10 @@ SINGLE PROMPT CARD STYLES
   margin: 5px;
 }
 
+.starred {
+  background-color: yellow;
+}
+
 /* Tablet landscape and larger */
 @media all and (min-width: 992px) {
   .single-prompt-div {

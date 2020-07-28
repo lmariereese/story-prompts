@@ -9,7 +9,7 @@ import {
 } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import debounce from 'lodash/debounce';
-import {toast} from 'react-toastify';
+// import {toast} from 'react-toastify';
 import Toolbar from './Toolbar';
 import {saveCurrentContent} from '../store/reducers/prompts';
 

@@ -8,6 +8,7 @@ import {
   convertFromRaw
 } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import debounce from 'lodash/debounce';
 import {toast} from 'react-toastify';
 import Toolbar from './Toolbar';
 import {saveCurrentContent} from '../store/reducers/prompts';
@@ -18,7 +19,6 @@ class WritingEditor extends React.Component {
     this.state = {};
     this.editor = React.createRef();
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.focus = this.focus.bind(this);
     this.inlineStyleToggle = this.inlineStyleToggle.bind(this);
     this.blockStyleToggle = this.blockStyleToggle.bind(this);
@@ -36,32 +36,19 @@ class WritingEditor extends React.Component {
     }
   }
 
-  onChange = editorState => {
-    this.setState({editorState});
-  };
+  saveContent = debounce(content => {
+    let id = this.props.currentContent
+      ? this.props.currentContent.id
+      : this.props.currentContent;
+    this.props.saveCurrentContent(content, this.props.prompt.id, id);
+  }, 2000);
 
-  handleSubmit = event => {
-    event.preventDefault();
+  onChange = editorState => {
     const contentState = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
-    if (this.props.currentContent) {
-      this.props.saveCurrentContent(
-        contentState,
-        this.props.prompt.id,
-        this.props.currentContent.id
-      );
-    } else {
-      this.props.saveCurrentContent(
-        contentState,
-        this.props.prompt.id,
-        this.props.currentContent
-      );
-    }
-    toast('Your story was saved', {
-      position: 'bottom-right',
-      autoClose: 2000
-    });
+    this.saveContent(contentState);
+    this.setState({editorState});
   };
 
   handleKeyCommand(command, editorState) {
@@ -100,9 +87,9 @@ class WritingEditor extends React.Component {
             editorState={this.state.editorState}
           />
           <div>
-            <button type="button" onClick={this.handleSubmit}>
+            {/* <button type="button" onClick={this.handleSubmit}>
               Save
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="focus-wrapper">

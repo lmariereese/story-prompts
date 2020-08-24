@@ -16,6 +16,10 @@ label {
   display: block;
 }
 
+button {
+  cursor: pointer;
+}
+
 .nav-link {
   display: inline-block;
   margin: 1em;

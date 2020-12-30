@@ -11,6 +11,7 @@ import 'draft-js/dist/Draft.css';
 import debounce from 'lodash/debounce';
 // import {toast} from 'react-toastify';
 import Toolbar from './Toolbar';
+import ContentTitle from './ContentTitle';
 import {saveCurrentContent} from '../store/reducers/prompts';
 
 class WritingEditor extends React.Component {

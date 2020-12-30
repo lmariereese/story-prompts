@@ -5,6 +5,7 @@ import history from '../history';
 import {getOnePrompt, toggleStarredPrompt} from '../store/reducers/prompts';
 import SinglePromptCard from './SinglePromptCard';
 import SmallDate from './SmallDate';
+import {ContentTitle} from './ContentTitle';
 import WritingEditor from './WritingEditor';
 import 'draft-js/dist/Draft.css';
 
@@ -39,6 +40,7 @@ class SinglePromptView extends React.Component {
                 prompts={this.props.prompt}
                 toggleStar={this.toggleStar}
               />
+              <ContentTitle />
               {this.props.currentContent !== null &&
               this.props.currentContent.updatedAt !== undefined ? (
                 <SmallDate

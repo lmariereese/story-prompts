@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
-const sessionStore = new SequelizeStore({ db });
+const sessionStore = new SequelizeStore({db});
 const PORT = process.env.PORT || 8080;
 const app = express();
 const socketio = require('socket.io');
@@ -46,7 +46,7 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({extended: true}));
 
   // compression middleware
   app.use(compression());
@@ -118,7 +118,9 @@ async function bootApp() {
 // It will evaluate false when this module is required by another module - for example,
 // if we wanted to require our app in a test spec
 if (require.main === module) {
+  console.log('Running bootApp');
   bootApp();
 } else {
+  console.warn('Running createApp');
   createApp();
 }

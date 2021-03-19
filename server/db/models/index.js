@@ -1,6 +1,6 @@
 const User = require('./user');
 const StoryElement = require('./storyElement');
-const Prompt = require('./Prompt');
+const Prompt = require('./prompt');
 const Content = require('./Content');
 
 /**

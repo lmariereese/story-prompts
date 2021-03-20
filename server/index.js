@@ -109,9 +109,13 @@ const syncDb = () => db.sync();
 
 async function bootApp() {
   await sessionStore.sync();
+  console.log('session store synced');
   await syncDb();
+  console.log('db synced');
   await createApp();
+  console.log('app created');
   await startListening();
+  console.log('listening?...started?');
 }
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)

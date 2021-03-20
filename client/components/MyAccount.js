@@ -25,12 +25,6 @@ class MyAccount extends React.Component {
     }
   }
 
-  // discardChanges () {
-  //   if (this.props.errorProperty && (this.props.errorProperty === 'email')) {
-  //     /// you were here!
-  //   }
-  // }
-
   toggleEdit() {
     this.setState(state => ({
       toggleEdit: !state.toggleEdit
@@ -63,100 +57,74 @@ class MyAccount extends React.Component {
             <h3>Profile</h3>
             <div className="profile-section">
               <h4>Email Address</h4>
-              <div>
-                {this.state.toggleEdit ? (
-                  <div className="email-update-form-wrapper">
-                    <div className="email-update-form">
-                      <input
-                        placeholder="enter a new email address"
-                        type="email"
-                        name="email"
-                        id="email-update-input"
-                        value={this.state.email}
-                        onChange={event => this.handleChange(event)}
-                      />
-                      <div id="email-update-btn-div">
-                        <button
-                          type="button"
-                          className="inline"
-                          onClick={() => this.handleSubmit('email')}
-                        >
-                          Update
-                        </button>
+              {this.props.user.googleId ? (
+                <div>
+                  <span className="display-email">{this.props.userEmail}</span>
+                  <p>Manage your account settings through Google.</p>
+                </div>
+              ) : (
+                <div>
+                  {this.state.toggleEdit ? (
+                    <div className="email-update-form-wrapper">
+                      <div className="email-update-form">
+                        <input
+                          placeholder="enter a new email address"
+                          type="email"
+                          name="email"
+                          id="email-update-input"
+                          value={this.state.email}
+                          onChange={event => this.handleChange(event)}
+                        />
+                        <div id="email-update-btn-div">
+                          <button
+                            type="button"
+                            className="inline"
+                            onClick={() => this.handleSubmit('email')}
+                          >
+                            Update
+                          </button>
+                          <button
+                            type="button"
+                            className="inline"
+                            onClick={this.toggleEdit}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                      {this.props.errorProperty === 'email' ? (
+                        <FormError error={this.props.error.data} />
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  ) : (
+                    <div className="email-update-form-wrapper">
+                      <div className="email-update-form">
+                        <span className="display-email">
+                          {this.props.userEmail}
+                        </span>
                         <button
                           type="button"
                           className="inline"
                           onClick={this.toggleEdit}
                         >
-                          Cancel
+                          Edit
                         </button>
                       </div>
                     </div>
-                    {this.props.errorProperty === 'email' ? (
-                      <FormError error={this.props.error.data} />
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                ) : (
-                  <div className="email-update-form-wrapper">
-                    <div className="email-update-form">
-                      <span className="display-email">
-                        {this.props.userEmail}
-                      </span>
-                      <button
-                        type="button"
-                        className="inline"
-                        onClick={this.toggleEdit}
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
+              )}
+            </div>
+            {this.props.user.googleId ? (
+              ''
+            ) : (
+              <div className="profile-section">
+                <h4>Password</h4>
+                <UpdatePassword />
               </div>
-            </div>
-            <div className="profile-section">
-              <h4>Password</h4>
-              <UpdatePassword />
-              {/* <div className="password-update-form">
-                <label htmlFor="currentPassword">Current Password</label>
-                <input
-                  placeholder="enter your current password"
-                  type="password"
-                  name="currentPassword"
-                  className="account-input"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.currentPassword}
-                />
-                <label htmlFor="newPassword">New Password</label>
-                <input
-                  placeholder="enter a new password"
-                  type="password"
-                  name="newPassword"
-                  className="account-input"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.newPassword}
-                />
-                <label>Confirm New Password</label>
-                <input
-                  htmlFor="confirm-new-password"
-                  placeholder="enter the password again"
-                  type="password"
-                  name="confirmNew"
-                  className="account-input"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.confirmNew}
-                />
-                <button
-                  type="button"
-                  className="update-password-btn"
-                  onClick={() => this.handleSubmit('password')}
-                >
-                  Update Password
-                </button>
-                </div> */}
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -165,6 +133,7 @@ class MyAccount extends React.Component {
 }
 
 const mapState = state => ({
+  user: state.user,
   userEmail: state.user.email,
   error: state.user.error,
   errorProperty: state.user.errorProperty

@@ -430,12 +430,7 @@ function (_React$Component) {
           toggleEdit: true
         });
       }
-    } // discardChanges () {
-    //   if (this.props.errorProperty && (this.props.errorProperty === 'email')) {
-    //     /// you were here!
-    //   }
-    // }
-
+    }
   }, {
     key: "toggleEdit",
     value: function toggleEdit() {
@@ -479,7 +474,9 @@ function (_React$Component) {
         className: "profile-wrapper-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-section"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.toggleEdit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Email Address"), this.props.user.googleId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "display-email"
+      }, this.props.userEmail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Manage your account settings through Google.")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.toggleEdit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "email-update-form-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "email-update-form"
@@ -516,7 +513,7 @@ function (_React$Component) {
         type: "button",
         className: "inline",
         onClick: this.toggleEdit
-      }, "Edit"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Edit"))))), this.props.user.googleId ? '' : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UpdatePassword__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
     }
@@ -527,6 +524,7 @@ function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
+    user: state.user,
     userEmail: state.user.email,
     error: state.user.error,
     errorProperty: state.user.errorProperty
@@ -91660,7 +91658,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -108,6 +108,7 @@ const startListening = () => {
 const syncDb = () => db.sync();
 
 async function bootApp() {
+  console.log('attempting to sync session store');
   await sessionStore.sync();
   console.log('session store synced');
   await syncDb();

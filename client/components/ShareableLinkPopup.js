@@ -37,7 +37,15 @@ class ShareableLinkPopup extends React.Component {
       <div>
         {this.props.current.urlToken ? (
           <div className="share-popup-wrapper">
-            <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
+            <p>
+              <a
+                href={`${url}/prompts/${this.props.current.urlToken}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`${url}/prompts/${this.props.current.urlToken}`}
+              </a>
+            </p>
             <CopyToClipboard text={toCopy}>
               <button type="button" className="link-icon">
                 <img

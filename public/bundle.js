@@ -1149,7 +1149,11 @@ function (_React$Component) {
       var toCopy = "".concat(url, "/prompts/").concat(this.props.current.urlToken);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.current.urlToken ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "share-popup-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(url, "/prompts/").concat(this.props.current.urlToken)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_4__["CopyToClipboard"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "".concat(url, "/prompts/").concat(this.props.current.urlToken),
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }, "".concat(url, "/prompts/").concat(this.props.current.urlToken))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_4__["CopyToClipboard"], {
         text: toCopy
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",

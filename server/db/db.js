@@ -9,7 +9,7 @@ const db = new Sequelize(
   {
     logging: false,
     dialectOptions: {
-      ssl: true
+      ssl: !!process.env.DATABASE_URL
     }
   }
 );

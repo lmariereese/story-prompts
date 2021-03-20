@@ -3,7 +3,10 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {sharePrompt} from '../store/reducers/storyElements';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-const url = 'localhost:8080';
+const url =
+  process.env.NODE_ENV === 'test'
+    ? 'localhost:8080'
+    : 'http://story-prompts.herokuapp.com';
 
 class ShareableLinkPopup extends React.Component {
   componentDidMount() {

@@ -51,7 +51,7 @@ router.get('/share', async (req, res, next) => {
           [Op.not]: null
         }
       },
-      order: [['createdAt', 'ASC']],
+      order: [['createdAt', 'DESC']],
       limit: 5
     });
     if (sharedPrompts) {

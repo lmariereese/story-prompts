@@ -216,6 +216,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../history */ "./client/history.js");
 /* harmony import */ var _store_reducers_storyElements__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/reducers/storyElements */ "./client/store/reducers/storyElements.js");
+/* harmony import */ var _store_reducers_shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/reducers/shared */ "./client/store/reducers/shared.js");
+/* harmony import */ var _helperFuncs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helperFuncs */ "./client/components/helperFuncs.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -233,6 +237,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
 
 
 
@@ -260,6 +267,8 @@ function (_React$Component) {
       if (!this.props.elements.setting.length) {
         this.props.getAllElements();
       }
+
+      this.props.getAllShared();
     }
   }, {
     key: "generate",
@@ -284,7 +293,14 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.generate();
         }
-      }, "Get Prompt"))));
+      }, "Get Prompt"))), this.props.shared.length !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Recently Shared Story Prompts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.shared.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-prompt-div",
+          key: item.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "small-date"
+        }, moment__WEBPACK_IMPORTED_MODULE_6___default()(item.createdAt).format('MMM D YYYY'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(item.setting, ", ").concat(Object(_helperFuncs__WEBPACK_IMPORTED_MODULE_5__["addArticle"])(item.adjective), " ").concat(item.character, ", ").concat(item.detail, ", ").concat(item.action, " and ").concat(item.climax, ".")));
+      }))) : 'Loading');
     }
   }]);
 
@@ -294,7 +310,8 @@ function (_React$Component) {
 var mapState = function mapState(state) {
   return {
     elements: state.elements,
-    current: state.elements.current
+    current: state.elements.current,
+    shared: state.shared.all
   };
 };
 
@@ -305,6 +322,9 @@ var mapDispatch = function mapDispatch(dispatch) {
     },
     getAllElements: function getAllElements() {
       return dispatch(Object(_store_reducers_storyElements__WEBPACK_IMPORTED_MODULE_3__["getAllElements"])());
+    },
+    getAllShared: function getAllShared() {
+      return dispatch(Object(_store_reducers_shared__WEBPACK_IMPORTED_MODULE_4__["getAllShared"])());
     }
   };
 };
@@ -2351,7 +2371,7 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 /*!****************************************!*\
   !*** ./client/store/reducers/index.js ***!
   \****************************************/
-/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SORT_BY, SET_VISIBILITY_FILTER, visibilityFilters, SAVE_CONTENT, LOAD_CONTENT, default */
+/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, GET_ALL_SHARED, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SORT_BY, SET_VISIBILITY_FILTER, visibilityFilters, SAVE_CONTENT, LOAD_CONTENT, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2362,6 +2382,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_ERROR", function() { return UPDATE_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_ELEMENTS", function() { return GET_ALL_ELEMENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CURRENT_PROMPT", function() { return SET_CURRENT_PROMPT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_SHARED", function() { return GET_ALL_SHARED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_PROMPT", function() { return SAVE_PROMPT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SHARE_PROMPT", function() { return SHARE_PROMPT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_SAVED_PROMPTS", function() { return GET_ALL_SAVED_PROMPTS; });
@@ -2377,6 +2398,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storyElements__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storyElements */ "./client/store/reducers/storyElements.js");
 /* harmony import */ var _prompts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./prompts */ "./client/store/reducers/prompts.js");
 /* harmony import */ var _visibilityFilter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./visibilityFilter */ "./client/store/reducers/visibilityFilter.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared */ "./client/store/reducers/shared.js");
+
 
 
 
@@ -2389,6 +2412,7 @@ var UPDATE_USER = 'UPDATE_USER';
 var UPDATE_ERROR = 'UPDATE_ERROR';
 var GET_ALL_ELEMENTS = 'GET_ALL_ELEMENTS';
 var SET_CURRENT_PROMPT = 'SET_CURRENT_PROMPT';
+var GET_ALL_SHARED = 'GET_ALL_SHARED';
 var SAVE_PROMPT = 'SAVE_PROMPT';
 var SHARE_PROMPT = 'SHARE_PROMPT';
 var GET_ALL_SAVED_PROMPTS = 'GET_ALL_SAVED_PROMPTS';
@@ -2406,6 +2430,7 @@ var LOAD_CONTENT = 'LOAD_CONTENT';
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   user: _user__WEBPACK_IMPORTED_MODULE_1__["default"],
   elements: _storyElements__WEBPACK_IMPORTED_MODULE_2__["default"],
+  shared: _shared__WEBPACK_IMPORTED_MODULE_5__["default"],
   prompts: _prompts__WEBPACK_IMPORTED_MODULE_3__["default"],
   visibilityFilter: _visibilityFilter__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -2840,6 +2865,109 @@ var prompts = function prompts() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (prompts);
+
+/***/ }),
+
+/***/ "./client/store/reducers/shared.js":
+/*!*****************************************!*\
+  !*** ./client/store/reducers/shared.js ***!
+  \*****************************************/
+/*! exports provided: getAllShared, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllShared", function() { return getAllShared; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./client/store/reducers/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+var getShared = function getShared(shared) {
+  return {
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["GET_ALL_SHARED"],
+    shared: shared
+  };
+};
+
+var getAllShared = function getAllShared() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee(dispatch) {
+        var _ref2, data;
+
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/prompts/share');
+
+              case 3:
+                _ref2 = _context.sent;
+                data = _ref2.data;
+                // data is an array of objects
+                dispatch(getShared(data));
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+var initialState = {
+  all: [],
+  current: {}
+};
+
+var shared = function shared() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _index__WEBPACK_IMPORTED_MODULE_1__["GET_ALL_SHARED"]:
+      {
+        return _objectSpread({}, state, {
+          all: action.shared
+        });
+      }
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (shared);
 
 /***/ }),
 

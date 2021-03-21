@@ -2,6 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import history from '../history';
 import {getAllElements, setCurrent} from '../store/reducers/storyElements';
+import {getAllShared} from '../store/reducers/shared';
+import {addArticle} from './helperFuncs';
+import moment from 'moment';
 
 class Home extends React.Component {
   constructor(props) {
@@ -13,6 +16,7 @@ class Home extends React.Component {
     if (!this.props.elements.setting.length) {
       this.props.getAllElements();
     }
+    this.props.getAllShared();
   }
 
   generate() {
@@ -36,6 +40,31 @@ class Home extends React.Component {
             </button>
           </div>
         </div>
+        {this.props.shared.length !== 0 ? (
+          <div>
+            <h2>Recently Shared Story Prompts</h2>
+            <div>
+              {this.props.shared.map(item => {
+                return (
+                  <div className="single-prompt-div" key={item.id}>
+                    <div>
+                      <p className="small-date">
+                        {moment(item.createdAt).format('MMM D YYYY')}
+                      </p>
+                    </div>
+                    <p>
+                      {`${item.setting}, ${addArticle(item.adjective)} ${
+                        item.character
+                      }, ${item.detail}, ${item.action} and ${item.climax}.`}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          'Loading'
+        )}
       </div>
     );
   }
@@ -43,12 +72,14 @@ class Home extends React.Component {
 
 const mapState = state => ({
   elements: state.elements,
-  current: state.elements.current
+  current: state.elements.current,
+  shared: state.shared.all
 });
 
 const mapDispatch = dispatch => ({
   setCurrent: () => dispatch(setCurrent()),
-  getAllElements: () => dispatch(getAllElements())
+  getAllElements: () => dispatch(getAllElements()),
+  getAllShared: () => dispatch(getAllShared())
 });
 
 export default connect(mapState, mapDispatch)(Home);

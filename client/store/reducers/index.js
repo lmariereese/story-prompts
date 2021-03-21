@@ -3,6 +3,7 @@ import user from './user';
 import elements from './storyElements';
 import prompts from './prompts';
 import visibilityFilter from './visibilityFilter';
+import shared from './shared';
 // import content from './content';
 
 export const GET_USER = 'GET_USER';
@@ -12,6 +13,8 @@ export const UPDATE_ERROR = 'UPDATE_ERROR';
 
 export const GET_ALL_ELEMENTS = 'GET_ALL_ELEMENTS';
 export const SET_CURRENT_PROMPT = 'SET_CURRENT_PROMPT';
+
+export const GET_ALL_SHARED = 'GET_ALL_SHARED';
 
 export const SAVE_PROMPT = 'SAVE_PROMPT';
 export const SHARE_PROMPT = 'SHARE_PROMPT';
@@ -34,6 +37,7 @@ export const LOAD_CONTENT = 'LOAD_CONTENT';
 const rootReducer = combineReducers({
   user,
   elements,
+  shared,
   prompts,
   visibilityFilter
 });

@@ -218,6 +218,21 @@ PromptGenerator component
   flex-direction: column;
 }
 
+.cta-div + div {
+  margin: 20px auto;
+}
+
+.cta-div + div > h2 {
+  text-align: center;
+}
+
+.cta-div + div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
 /*
   Generated prompt
 */

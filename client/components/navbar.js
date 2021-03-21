@@ -10,7 +10,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <div>
       <div>
         <h1 className="site-title">
-          <Link to="/prompts">Story Maker</Link>
+          <Link to="/">Story Maker</Link>
         </h1>
       </div>
       <nav>

@@ -1,5 +1,7 @@
+const {Op} = require('sequelize');
 const router = require('express').Router();
 const uniqueSlug = require('unique-slug');
+//const { default: prompts } = require('../../client/store/reducers/prompts');
 const {Prompt, User, Content} = require('../db/models');
 module.exports = router;
 
@@ -35,6 +37,25 @@ router.post('/', async (req, res, next) => {
       const user = await User.findByPk(req.user.id);
       await newPrompt.setUser(user);
       res.json(newPrompt);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/share', async (req, res, next) => {
+  try {
+    const sharedPrompts = await Prompt.findAll({
+      where: {
+        urlToken: {
+          [Op.not]: null
+        }
+      },
+      order: [['createdAt', 'ASC']],
+      limit: 5
+    });
+    if (sharedPrompts) {
+      res.json(sharedPrompts);
     }
   } catch (err) {
     next(err);

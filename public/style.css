@@ -224,6 +224,8 @@ PromptGenerator component
 
 .cta-div + div > h2 {
   text-align: center;
+  letter-spacing: 1.3px;
+  font-weight: 100;
 }
 
 .cta-div + div > div {
@@ -350,7 +352,7 @@ PromptGenerator component
 @media all and (min-width: 992px) {
   .cta-div {
     width: 60%;
-    margin: 5% auto;
+    margin: 7% auto;
   }
 
   .cta-div h1 {

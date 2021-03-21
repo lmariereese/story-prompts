@@ -300,7 +300,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "small-date"
         }, moment__WEBPACK_IMPORTED_MODULE_6___default()(item.createdAt).format('MMM D YYYY'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(item.setting, ", ").concat(Object(_helperFuncs__WEBPACK_IMPORTED_MODULE_5__["addArticle"])(item.adjective), " ").concat(item.character, ", ").concat(item.detail, ", ").concat(item.action, " and ").concat(item.climax, ".")));
-      }))) : 'Loading');
+      }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "'Loading'"));
     }
   }]);
 
@@ -91790,7 +91790,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -63,7 +63,7 @@ class Home extends React.Component {
             </div>
           </div>
         ) : (
-          'Loading'
+          <div>'Loading'</div>
         )}
       </div>
     );

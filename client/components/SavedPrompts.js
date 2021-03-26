@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {
   getAllSavedPrompts,
   getOnePrompt,
-  sortBy,
   toggleStarredPrompt
 } from '../store/reducers/prompts';
 import {

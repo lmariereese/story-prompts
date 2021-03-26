@@ -23,8 +23,6 @@ export const GET_ALL_SAVED_PROMPTS = 'GET_ALL_SAVED_PROMPTS';
 export const GET_ONE_SAVED_PROMPT = 'GET_ONE_SAVED_PROMPT';
 export const UPDATE_STARRED_TOGGLE = 'UPDATE_STARRED_TOGGLE';
 
-export const SORT_BY = 'SORT_BY';
-
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const visibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',

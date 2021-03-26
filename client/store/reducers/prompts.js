@@ -1,12 +1,10 @@
 import axios from 'axios';
-import moment from 'moment';
 import {
   SAVE_PROMPT,
   GET_ALL_SAVED_PROMPTS,
   GET_ONE_SAVED_PROMPT,
   SAVE_CONTENT,
   REMOVE_USER,
-  SORT_BY,
   UPDATE_STARRED_TOGGLE
 } from './index';
 
@@ -34,11 +32,6 @@ const updateStarred = prompt => ({
 const saveContent = content => ({
   type: SAVE_CONTENT,
   content
-});
-
-export const sortBy = order => ({
-  type: SORT_BY,
-  order: order
 });
 
 // Thunks
@@ -113,7 +106,6 @@ const initialState = {
 };
 
 // Reducer
-// eslint-disable-next-line complexity
 const prompts = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_PROMPT: {

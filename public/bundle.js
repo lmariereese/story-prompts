@@ -2375,7 +2375,7 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 /*!****************************************!*\
   !*** ./client/store/reducers/index.js ***!
   \****************************************/
-/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, GET_ALL_SHARED, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SORT_BY, SET_VISIBILITY_FILTER, visibilityFilters, SET_SORT_ORDER, sortOptions, SAVE_CONTENT, LOAD_CONTENT, default */
+/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, GET_ALL_SHARED, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SET_VISIBILITY_FILTER, visibilityFilters, SET_SORT_ORDER, sortOptions, SAVE_CONTENT, LOAD_CONTENT, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2392,7 +2392,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ALL_SAVED_PROMPTS", function() { return GET_ALL_SAVED_PROMPTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ONE_SAVED_PROMPT", function() { return GET_ONE_SAVED_PROMPT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_STARRED_TOGGLE", function() { return UPDATE_STARRED_TOGGLE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SORT_BY", function() { return SORT_BY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VISIBILITY_FILTER", function() { return SET_VISIBILITY_FILTER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "visibilityFilters", function() { return visibilityFilters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SORT_ORDER", function() { return SET_SORT_ORDER; });
@@ -2426,7 +2425,6 @@ var SHARE_PROMPT = 'SHARE_PROMPT';
 var GET_ALL_SAVED_PROMPTS = 'GET_ALL_SAVED_PROMPTS';
 var GET_ONE_SAVED_PROMPT = 'GET_ONE_SAVED_PROMPT';
 var UPDATE_STARRED_TOGGLE = 'UPDATE_STARRED_TOGGLE';
-var SORT_BY = 'SORT_BY';
 var SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 var visibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
@@ -2456,12 +2454,11 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!******************************************!*\
   !*** ./client/store/reducers/prompts.js ***!
   \******************************************/
-/*! exports provided: sortBy, savePrompt, getAllSavedPrompts, getOnePrompt, toggleStarredPrompt, saveCurrentContent, default */
+/*! exports provided: savePrompt, getAllSavedPrompts, getOnePrompt, toggleStarredPrompt, saveCurrentContent, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortBy", function() { return sortBy; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "savePrompt", function() { return savePrompt; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllSavedPrompts", function() { return getAllSavedPrompts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnePrompt", function() { return getOnePrompt; });
@@ -2469,9 +2466,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveCurrentContent", function() { return saveCurrentContent; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index */ "./client/store/reducers/index.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./client/store/reducers/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2491,50 +2486,43 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-
  // Action Creators
 
 var savedPrompt = function savedPrompt(prompt) {
   return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_PROMPT"],
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["SAVE_PROMPT"],
     prompt: prompt
   };
 };
 
 var gotAllSavedPrompts = function gotAllSavedPrompts(prompts) {
   return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_SAVED_PROMPTS"],
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["GET_ALL_SAVED_PROMPTS"],
     prompts: prompts
   };
 };
 
 var gotOneSavedPrompt = function gotOneSavedPrompt(prompt) {
   return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["GET_ONE_SAVED_PROMPT"],
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["GET_ONE_SAVED_PROMPT"],
     prompt: prompt
   };
 };
 
 var updateStarred = function updateStarred(prompt) {
   return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["UPDATE_STARRED_TOGGLE"],
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["UPDATE_STARRED_TOGGLE"],
     prompt: prompt
   };
 };
 
 var saveContent = function saveContent(content) {
   return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_CONTENT"],
+    type: _index__WEBPACK_IMPORTED_MODULE_1__["SAVE_CONTENT"],
     content: content
   };
-};
-
-var sortBy = function sortBy(order) {
-  return {
-    type: _index__WEBPACK_IMPORTED_MODULE_2__["SORT_BY"],
-    order: order
-  };
 }; // Thunks
+
 
 var savePrompt = function savePrompt(els) {
   return (
@@ -2782,14 +2770,13 @@ var initialState = {
   current: {},
   currentContent: {}
 }; // Reducer
-// eslint-disable-next-line complexity
 
 var prompts = function prompts() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_PROMPT"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["SAVE_PROMPT"]:
       {
         action.prompt.content = null;
         var allPrompts = [].concat(_toConsumableArray(state.all), [action.prompt]);
@@ -2798,7 +2785,7 @@ var prompts = function prompts() {
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["GET_ALL_SAVED_PROMPTS"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["GET_ALL_SAVED_PROMPTS"]:
       {
         return _objectSpread({}, state, {
           all: action.prompts,
@@ -2807,7 +2794,7 @@ var prompts = function prompts() {
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["GET_ONE_SAVED_PROMPT"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["GET_ONE_SAVED_PROMPT"]:
       {
         var promptContent = action.prompt.content;
         return _objectSpread({}, state, {
@@ -2816,7 +2803,7 @@ var prompts = function prompts() {
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["UPDATE_STARRED_TOGGLE"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["UPDATE_STARRED_TOGGLE"]:
       {
         var currentCopy = _objectSpread({}, state.current);
 
@@ -2836,14 +2823,14 @@ var prompts = function prompts() {
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_CONTENT"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["SAVE_CONTENT"]:
       {
         return _objectSpread({}, state, {
           currentContent: action.content
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["REMOVE_USER"]:
+    case _index__WEBPACK_IMPORTED_MODULE_1__["REMOVE_USER"]:
       {
         return initialState;
       }

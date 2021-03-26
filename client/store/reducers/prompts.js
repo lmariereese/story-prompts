@@ -16,11 +16,6 @@ const savedPrompt = prompt => ({
   prompt
 });
 
-// const sharedPrompt = prompt => ({
-//   type: SHARE_PROMPT,
-//   prompt
-// })
-
 const gotAllSavedPrompts = prompts => ({
   type: GET_ALL_SAVED_PROMPTS,
   prompts
@@ -143,22 +138,6 @@ const prompts = (state = initialState, action) => {
         return prompt;
       });
       return {...state, all: allPrompts, current: currentCopy};
-    }
-    case SORT_BY: {
-      const copy = [...state.all];
-      if (action.order === 'newest') {
-        copy.sort(
-          (a, b) =>
-            moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf()
-        );
-      }
-      if (action.order === 'oldest') {
-        copy.sort(
-          (a, b) =>
-            moment(a.createdAt).valueOf() - moment(b.createdAt).valueOf()
-        );
-      }
-      return {...state, all: copy};
     }
     case SAVE_CONTENT: {
       return {...state, currentContent: action.content};

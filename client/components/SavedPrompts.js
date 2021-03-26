@@ -10,6 +10,7 @@ import {
   setVisibilityFilter,
   getVisiblePrompts
 } from '../store/reducers/visibilityFilter';
+import {setSortOrder, getSortedPrompts} from '../store/reducers/sortOrder';
 import SinglePromptCard from './SinglePromptCard';
 import FilterButtons from './FilterButtons';
 import {withRouter, Link} from 'react-router-dom';
@@ -18,18 +19,14 @@ import history from '../history';
 class SavedPrompts extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.more = this.more.bind(this);
     this.filter = this.filter.bind(this);
+    this.sort = this.sort.bind(this);
     this.toggleStar = this.toggleStar.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllSavedPrompts();
-  }
-
-  handleChange(event) {
-    this.props.sortBy(event.target.value);
   }
 
   more(id) {
@@ -38,6 +35,10 @@ class SavedPrompts extends React.Component {
 
   filter(f) {
     this.props.setVisibilityFilter(f);
+  }
+
+  sort(e) {
+    this.props.setSortOrder(e.target.value);
   }
 
   toggleStar(prompt) {
@@ -60,9 +61,9 @@ class SavedPrompts extends React.Component {
           />
           <div className="sort-by-div">
             <label htmlFor="">SORT BY:</label>
-            <select onChange={this.handleChange}>
-              <option value="oldest">Oldest first</option>
-              <option value="newest">Newest first</option>
+            <select defaultValue={this.props.sortOrder} onChange={this.sort}>
+              <option value="OLDEST">Oldest first</option>
+              <option value="NEWEST">Newest first</option>
             </select>
           </div>
           {/* <hr className="filter-hr" /> */}
@@ -98,8 +99,12 @@ class SavedPrompts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  savedPrompts: getVisiblePrompts(state.prompts.all, state.visibilityFilter),
+  savedPrompts: getSortedPrompts(
+    getVisiblePrompts(state.prompts.all, state.visibilityFilter),
+    state.sortOrder
+  ),
   visibilityFilter: state.visibilityFilter,
+  sortOrder: state.sortOrder,
   user: state.user
 });
 
@@ -107,7 +112,7 @@ const mapDispatchToProps = dispatch => ({
   getAllSavedPrompts: () => dispatch(getAllSavedPrompts()),
   getOnePrompt: id => dispatch(getOnePrompt(id)),
   setVisibilityFilter: f => dispatch(setVisibilityFilter(f)),
-  sortBy: order => dispatch(sortBy(order)),
+  setSortOrder: order => dispatch(setSortOrder(order)),
   toggleStarredPrompt: prompt => dispatch(toggleStarredPrompt(prompt))
 });
 

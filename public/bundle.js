@@ -938,10 +938,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_reducers_prompts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/reducers/prompts */ "./client/store/reducers/prompts.js");
 /* harmony import */ var _store_reducers_visibilityFilter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/reducers/visibilityFilter */ "./client/store/reducers/visibilityFilter.js");
-/* harmony import */ var _SinglePromptCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SinglePromptCard */ "./client/components/SinglePromptCard.js");
-/* harmony import */ var _FilterButtons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterButtons */ "./client/components/FilterButtons.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../history */ "./client/history.js");
+/* harmony import */ var _store_reducers_sortOrder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/reducers/sortOrder */ "./client/store/reducers/sortOrder.js");
+/* harmony import */ var _SinglePromptCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SinglePromptCard */ "./client/components/SinglePromptCard.js");
+/* harmony import */ var _FilterButtons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FilterButtons */ "./client/components/FilterButtons.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../history */ "./client/history.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -969,6 +970,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var SavedPrompts =
 /*#__PURE__*/
 function (_React$Component) {
@@ -980,9 +982,9 @@ function (_React$Component) {
     _classCallCheck(this, SavedPrompts);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SavedPrompts).call(this, props));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.more = _this.more.bind(_assertThisInitialized(_this));
     _this.filter = _this.filter.bind(_assertThisInitialized(_this));
+    _this.sort = _this.sort.bind(_assertThisInitialized(_this));
     _this.toggleStar = _this.toggleStar.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -993,19 +995,19 @@ function (_React$Component) {
       this.props.getAllSavedPrompts();
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(event) {
-      this.props.sortBy(event.target.value);
-    }
-  }, {
     key: "more",
     value: function more(id) {
-      _history__WEBPACK_IMPORTED_MODULE_7__["default"].push("/saved-prompts/prompt/".concat(id));
+      _history__WEBPACK_IMPORTED_MODULE_8__["default"].push("/saved-prompts/prompt/".concat(id));
     }
   }, {
     key: "filter",
     value: function filter(f) {
       this.props.setVisibilityFilter(f);
+    }
+  }, {
+    key: "sort",
+    value: function sort(e) {
+      this.props.setSortOrder(e.target.value);
     }
   }, {
     key: "toggleStar",
@@ -1021,9 +1023,9 @@ function (_React$Component) {
         className: "main-content-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-heading-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Saved Prompts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Saved Prompts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
         to: "/prompts"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Generate new prompt"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterButtons__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Generate new prompt"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterButtons__WEBPACK_IMPORTED_MODULE_6__["default"], {
         filter: this.filter,
         visibilityFilter: this.props.visibilityFilter
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1031,22 +1033,23 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
       }, "SORT BY:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        onChange: this.handleChange
+        defaultValue: this.props.sortOrder,
+        onChange: this.sort
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "oldest"
+        value: "OLDEST"
       }, "Oldest first"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "newest"
+        value: "NEWEST"
       }, "Newest first")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "prompt-list-div"
       }, this.props.user.id ? this.props.savedPrompts.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SinglePromptCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SinglePromptCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
           key: item.id,
           prompts: item,
           view: "list",
           more: _this2.more,
           toggleStar: _this2.toggleStar
         });
-      }) : 'Login to see saved prompts.', this.props.savedPrompts.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "You haven't saved any prompts yet."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
+      }) : 'Login to see saved prompts.', this.props.savedPrompts.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "You haven't saved any prompts yet."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
         to: "/prompts"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button"
@@ -1059,8 +1062,9 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    savedPrompts: Object(_store_reducers_visibilityFilter__WEBPACK_IMPORTED_MODULE_3__["getVisiblePrompts"])(state.prompts.all, state.visibilityFilter),
+    savedPrompts: Object(_store_reducers_sortOrder__WEBPACK_IMPORTED_MODULE_4__["getSortedPrompts"])(Object(_store_reducers_visibilityFilter__WEBPACK_IMPORTED_MODULE_3__["getVisiblePrompts"])(state.prompts.all, state.visibilityFilter), state.sortOrder),
     visibilityFilter: state.visibilityFilter,
+    sortOrder: state.sortOrder,
     user: state.user
   };
 };
@@ -1076,8 +1080,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     setVisibilityFilter: function setVisibilityFilter(f) {
       return dispatch(Object(_store_reducers_visibilityFilter__WEBPACK_IMPORTED_MODULE_3__["setVisibilityFilter"])(f));
     },
-    sortBy: function sortBy(order) {
-      return dispatch(Object(_store_reducers_prompts__WEBPACK_IMPORTED_MODULE_2__["sortBy"])(order));
+    setSortOrder: function setSortOrder(order) {
+      return dispatch(Object(_store_reducers_sortOrder__WEBPACK_IMPORTED_MODULE_4__["setSortOrder"])(order));
     },
     toggleStarredPrompt: function toggleStarredPrompt(prompt) {
       return dispatch(Object(_store_reducers_prompts__WEBPACK_IMPORTED_MODULE_2__["toggleStarredPrompt"])(prompt));
@@ -1085,7 +1089,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SavedPrompts)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SavedPrompts)));
 
 /***/ }),
 
@@ -2371,7 +2375,7 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 /*!****************************************!*\
   !*** ./client/store/reducers/index.js ***!
   \****************************************/
-/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, GET_ALL_SHARED, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SORT_BY, SET_VISIBILITY_FILTER, visibilityFilters, SAVE_CONTENT, LOAD_CONTENT, default */
+/*! exports provided: GET_USER, REMOVE_USER, UPDATE_USER, UPDATE_ERROR, GET_ALL_ELEMENTS, SET_CURRENT_PROMPT, GET_ALL_SHARED, SAVE_PROMPT, SHARE_PROMPT, GET_ALL_SAVED_PROMPTS, GET_ONE_SAVED_PROMPT, UPDATE_STARRED_TOGGLE, SORT_BY, SET_VISIBILITY_FILTER, visibilityFilters, SET_SORT_ORDER, sortOptions, SAVE_CONTENT, LOAD_CONTENT, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2391,6 +2395,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SORT_BY", function() { return SORT_BY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VISIBILITY_FILTER", function() { return SET_VISIBILITY_FILTER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "visibilityFilters", function() { return visibilityFilters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SORT_ORDER", function() { return SET_SORT_ORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortOptions", function() { return sortOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_CONTENT", function() { return SAVE_CONTENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_CONTENT", function() { return LOAD_CONTENT; });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
@@ -2399,6 +2405,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _prompts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./prompts */ "./client/store/reducers/prompts.js");
 /* harmony import */ var _visibilityFilter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./visibilityFilter */ "./client/store/reducers/visibilityFilter.js");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared */ "./client/store/reducers/shared.js");
+/* harmony import */ var _sortOrder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./sortOrder */ "./client/store/reducers/sortOrder.js");
+
 
 
 
@@ -2425,6 +2433,11 @@ var visibilityFilters = {
   SHOW_IN_PROGRESS: 'SHOW_IN_PROGRESS',
   SHOW_STARRED: 'SHOW_STARRED'
 };
+var SET_SORT_ORDER = 'SET_SORT_ORDER';
+var sortOptions = {
+  OLDEST: 'OLDEST',
+  NEWEST: 'NEWEST'
+};
 var SAVE_CONTENT = 'SAVE_CONTENT';
 var LOAD_CONTENT = 'LOAD_CONTENT';
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
@@ -2432,7 +2445,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   elements: _storyElements__WEBPACK_IMPORTED_MODULE_2__["default"],
   shared: _shared__WEBPACK_IMPORTED_MODULE_5__["default"],
   prompts: _prompts__WEBPACK_IMPORTED_MODULE_3__["default"],
-  visibilityFilter: _visibilityFilter__WEBPACK_IMPORTED_MODULE_4__["default"]
+  visibilityFilter: _visibilityFilter__WEBPACK_IMPORTED_MODULE_4__["default"],
+  sortOrder: _sortOrder__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -2485,11 +2499,7 @@ var savedPrompt = function savedPrompt(prompt) {
     type: _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_PROMPT"],
     prompt: prompt
   };
-}; // const sharedPrompt = prompt => ({
-//   type: SHARE_PROMPT,
-//   prompt
-// })
-
+};
 
 var gotAllSavedPrompts = function gotAllSavedPrompts(prompts) {
   return {
@@ -2826,27 +2836,6 @@ var prompts = function prompts() {
         });
       }
 
-    case _index__WEBPACK_IMPORTED_MODULE_2__["SORT_BY"]:
-      {
-        var copy = _toConsumableArray(state.all);
-
-        if (action.order === 'newest') {
-          copy.sort(function (a, b) {
-            return moment__WEBPACK_IMPORTED_MODULE_1___default()(b.createdAt).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1___default()(a.createdAt).valueOf();
-          });
-        }
-
-        if (action.order === 'oldest') {
-          copy.sort(function (a, b) {
-            return moment__WEBPACK_IMPORTED_MODULE_1___default()(a.createdAt).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1___default()(b.createdAt).valueOf();
-          });
-        }
-
-        return _objectSpread({}, state, {
-          all: copy
-        });
-      }
-
     case _index__WEBPACK_IMPORTED_MODULE_2__["SAVE_CONTENT"]:
       {
         return _objectSpread({}, state, {
@@ -2968,6 +2957,66 @@ var shared = function shared() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (shared);
+
+/***/ }),
+
+/***/ "./client/store/reducers/sortOrder.js":
+/*!********************************************!*\
+  !*** ./client/store/reducers/sortOrder.js ***!
+  \********************************************/
+/*! exports provided: setSortOrder, getSortedPrompts, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSortOrder", function() { return setSortOrder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSortedPrompts", function() { return getSortedPrompts; });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ "./client/store/reducers/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var setSortOrder = function setSortOrder(order) {
+  return {
+    type: _index__WEBPACK_IMPORTED_MODULE_0__["SET_SORT_ORDER"],
+    order: order
+  };
+};
+var getSortedPrompts = function getSortedPrompts(prompts, order) {
+  switch (order) {
+    case _index__WEBPACK_IMPORTED_MODULE_0__["sortOptions"].OLDEST:
+      {
+        return prompts.sort(function (a, b) {
+          return moment__WEBPACK_IMPORTED_MODULE_1___default()(a.createdAt).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1___default()(b.createdAt).valueOf();
+        });
+      }
+
+    case _index__WEBPACK_IMPORTED_MODULE_0__["sortOptions"].NEWEST:
+      {
+        return prompts.sort(function (a, b) {
+          return moment__WEBPACK_IMPORTED_MODULE_1___default()(b.createdAt).valueOf() - moment__WEBPACK_IMPORTED_MODULE_1___default()(a.createdAt).valueOf();
+        });
+      }
+
+    default:
+      return prompts;
+  }
+};
+
+var sortOrder = function sortOrder() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index__WEBPACK_IMPORTED_MODULE_0__["sortOptions"].OLDEST;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _index__WEBPACK_IMPORTED_MODULE_0__["SET_SORT_ORDER"]:
+      return action.order;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (sortOrder);
 
 /***/ }),
 
@@ -91790,7 +91839,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

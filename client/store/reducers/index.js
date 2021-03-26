@@ -4,6 +4,7 @@ import elements from './storyElements';
 import prompts from './prompts';
 import visibilityFilter from './visibilityFilter';
 import shared from './shared';
+import sortOrder from './sortOrder';
 // import content from './content';
 
 export const GET_USER = 'GET_USER';
@@ -31,6 +32,12 @@ export const visibilityFilters = {
   SHOW_STARRED: 'SHOW_STARRED'
 };
 
+export const SET_SORT_ORDER = 'SET_SORT_ORDER';
+export const sortOptions = {
+  OLDEST: 'OLDEST',
+  NEWEST: 'NEWEST'
+};
+
 export const SAVE_CONTENT = 'SAVE_CONTENT';
 export const LOAD_CONTENT = 'LOAD_CONTENT';
 
@@ -39,7 +46,8 @@ const rootReducer = combineReducers({
   elements,
   shared,
   prompts,
-  visibilityFilter
+  visibilityFilter,
+  sortOrder
 });
 
 export default rootReducer;

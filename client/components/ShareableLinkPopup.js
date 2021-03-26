@@ -9,6 +9,12 @@ const url =
     : 'http://story-prompts.herokuapp.com';
 
 class ShareableLinkPopup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      copied: false
+    };
+  }
   componentDidMount() {
     // if prompt hasn't already been shared, then save/share it
     if (!this.props.current.urlToken) {
@@ -37,25 +43,25 @@ class ShareableLinkPopup extends React.Component {
       <div>
         {this.props.current.urlToken ? (
           <div className="share-popup-wrapper">
-            <p>
-              <a
-                href={`${url}/prompts/${this.props.current.urlToken}`}
-                target="_blank"
-                rel="noopener noreferrer"
+            <div>
+              <p>{`${url}/prompts/${this.props.current.urlToken}`}</p>
+            </div>
+            <div>
+              {this.state.copied ? <p>Copied!</p> : ''}
+              <CopyToClipboard
+                text={toCopy}
+                onCopy={() => this.setState({copied: true})}
               >
-                {`${url}/prompts/${this.props.current.urlToken}`}
-              </a>
-            </p>
-            <CopyToClipboard text={toCopy}>
-              <button type="button" className="link-icon">
-                <img
-                  src="https://image.flaticon.com/icons/svg/126/126481.svg"
-                  alt="link icon"
-                  width="20"
-                  height="20"
-                />
-              </button>
-            </CopyToClipboard>
+                <button type="button" className="link-icon">
+                  <img
+                    src="https://image.flaticon.com/icons/svg/126/126481.svg"
+                    alt="link icon"
+                    width="20"
+                    height="20"
+                  />
+                </button>
+              </CopyToClipboard>
+            </div>
           </div>
         ) : (
           ''

@@ -1139,10 +1139,16 @@ var ShareableLinkPopup =
 function (_React$Component) {
   _inherits(ShareableLinkPopup, _React$Component);
 
-  function ShareableLinkPopup() {
+  function ShareableLinkPopup(props) {
+    var _this;
+
     _classCallCheck(this, ShareableLinkPopup);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ShareableLinkPopup).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ShareableLinkPopup).call(this, props));
+    _this.state = {
+      copied: false
+    };
+    return _this;
   }
 
   _createClass(ShareableLinkPopup, [{
@@ -1170,15 +1176,18 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var toCopy = "".concat(url, "/prompts/").concat(this.props.current.urlToken);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.current.urlToken ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "share-popup-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "".concat(url, "/prompts/").concat(this.props.current.urlToken),
-        target: "_blank",
-        rel: "noopener noreferrer"
-      }, "".concat(url, "/prompts/").concat(this.props.current.urlToken))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_4__["CopyToClipboard"], {
-        text: toCopy
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(url, "/prompts/").concat(this.props.current.urlToken))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.copied ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Copied!") : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_4__["CopyToClipboard"], {
+        text: toCopy,
+        onCopy: function onCopy() {
+          return _this2.setState({
+            copied: true
+          });
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "link-icon"
@@ -1187,7 +1196,7 @@ function (_React$Component) {
         alt: "link icon",
         width: "20",
         height: "20"
-      })))) : '');
+      }))))) : '');
     }
   }]);
 
@@ -1247,7 +1256,7 @@ var SinglePromptCard = function SinglePromptCard(props) {
     onClick: function onClick() {
       return props.more(prompts.id);
     }
-  }, prompts.content !== null ? 'Continue' : 'Start')) : '');
+  }, prompts.content !== null ? 'Continue Draft' : 'Start Draft')) : '');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SinglePromptCard);
@@ -91826,7 +91835,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
